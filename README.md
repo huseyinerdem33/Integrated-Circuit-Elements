@@ -17,6 +17,7 @@ Typical Package Type	DIP-8 (8-pin)
 
 ![LM555 Timer datasheet](https://github.com/user-attachments/assets/fafb2f4c-f793-4028-b627-acce99071f4f)
 
+
 Pin No	Name	Function
 
 1	GND	Ground (0V) connection
@@ -34,6 +35,7 @@ Pin No	Name	Function
 7	DISCH	Discharge pin (discharges capacitor)
 
 8	VCC	Supply voltage (typically 5V or 9V)
+
 
 ⚙️ Operating Modes
 
