@@ -15,17 +15,7 @@ Typical Package Type	DIP-8 (8-pin)
 
 📌 Pin Configuration (DIP-8)
 
-  +----------------------+
-  
-  1 -| GND      VCC   |- 8
-  
-  2 -| TRIG    DISCH |- 7
-  
-  3 -| OUT     THRS  |- 6
-  
-  4 -| RESET   CTRL  |- 5
-  
-  +----------------------+
+![LM555 Timer datasheet](https://github.com/user-attachments/assets/fafb2f4c-f793-4028-b627-acce99071f4f)
   
   
 Pin No	Name	Function
