@@ -91,29 +91,29 @@ The 7400 IC contains four independent NAND gates.
 
 (A4,B4) ──► NAND ──► Y4
 
-## 🌍 Universal Gate Applications
+🌍 Universal Gate Applications
 
 Since NAND is a universal gate, it can be used to create:
 
-### NOT Gate
+NOT Gate
 
 ```text
 Y = ¬A
 ```
 
-### AND Gate
+ AND Gate
 
 ```text
 Y = (A NAND B) NAND (A NAND B)
 ```
 
-### OR Gate
+OR Gate
 
 ```text
 Y = (A NAND A) NAND (B NAND B)
 ```
 
-### Other Gates
+ Other Gates
 
 * NOR Gate
 * XOR Gate
@@ -121,31 +121,31 @@ Y = (A NAND A) NAND (B NAND B)
 
 ---
 
-## 🛠️ Common Applications
+🛠️ Common Applications
 
-### Digital Logic Circuits
+#Digital Logic Circuits
 
 Used for implementing basic logic functions in digital systems.
 
-### Microprocessor Systems
+#Microprocessor Systems
 
 Used for control logic and signal processing.
 
-### Counters and Registers
+# Counters and Registers
 
 Commonly used in sequential logic circuits.
 
-### Educational Laboratories
+# Educational Laboratories
 
 Ideal for learning digital electronics and Boolean algebra.
 
-### Embedded Systems
+# Embedded Systems
 
 Used in control and interface circuits.
 
----
 
-## ⚡ Advantages
+
+⚡ Advantages
 
 * Very easy to use
 * Low cost
@@ -154,41 +154,41 @@ Used in control and interface circuits.
 * Universal logic functionality
 * Fast switching speed
 
----
 
-## ❌ Limitations
+
+ ❌ Limitations
 
 * Higher power consumption than CMOS logic
 * Requires a regulated +5V supply
 * Less power efficient than modern CMOS alternatives
 
----
 
-## 🧪 Example Applications
 
-### LED Control Circuit
+ 🧪 Example Applications
+
+# LED Control Circuit
 
 Turn an LED ON or OFF based on two digital inputs.
 
-### Logic Function Generator
+# Logic Function Generator
 
 Implement custom logic functions using multiple NAND gates.
 
-### Alarm Systems
+# Alarm Systems
 
 Combine sensor outputs using NAND logic.
 
-### Digital Control Systems
+# Digital Control Systems
 
 Generate control signals for embedded applications.
 
----
 
-# 🔷 7400 NAND Gate Usage Guide
 
-## 📌 When to Use a NAND Gate?
+ 🔷 7400 NAND Gate Usage Guide
 
-### Logic Circuit Design
+#📌 When to Use a NAND Gate?
+
+#Logic Circuit Design
 
 When implementing digital logic functions.
 
@@ -204,9 +204,9 @@ For learning logic design and Boolean algebra.
 
 For simple control and signal conditioning tasks.
 
----
 
-## 🎛️ Logic Gate Comparison
+
+ 🎛️ Logic Gate Comparison
 
 | Feature                              | NAND          | AND      | OR       |
 | ------------------------------------ | ------------- | -------- | -------- |
@@ -215,9 +215,9 @@ For simple control and signal conditioning tasks.
 | Can implement all other gates        | ✅ Yes         | ❌ No     | ❌ No     |
 | Common in Digital Design             | ✅ Very Common | ✅ Common | ✅ Common |
 
----
 
-## 🎯 Conclusion
+
+🎯 Conclusion
 
 The **7400 NAND Gate IC** is one of the most important building blocks of digital electronics. With four independent NAND gates and universal gate capability, it enables the implementation of virtually any digital logic function. Understanding the 7400 IC is essential for students, hobbyists, and engineers working with digital systems.
 
