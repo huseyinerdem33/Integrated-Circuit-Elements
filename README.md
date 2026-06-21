@@ -16,8 +16,7 @@ Typical Package Type	DIP-8 (8-pin)
 📌 Pin Configuration (DIP-8)
 
 ![LM555 Timer datasheet](https://github.com/user-attachments/assets/fafb2f4c-f793-4028-b627-acce99071f4f)
-  
-  
+
 Pin No	Name	Function
 1	GND	Ground (0V) connection
 2	TRIG	Trigger input (initiates a pulse)
