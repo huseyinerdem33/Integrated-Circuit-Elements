@@ -47,7 +47,8 @@ Because the NAND gate is a Universal Logic Gate, all other logic gates can be im
 
 A NAND gate performs the inverse of an AND operation.
 
-<font color="red">Boolean Expression</font>
+> [!IMPORTANT]
+> Boolean Expression
 
 ```text
 Y = ¬(A · B)
@@ -64,24 +65,24 @@ Where:
 
 ## 📊 Truth Table
 
-| A | B | Output (Y) |
-| - | - | ---------- |
-| 0 | 0 | 1          |
-| 0 | 1 | 1          |
-| 1 | 0 | 1          |
-| 1 | 1 | 0          |
+| A   | B     | Output (Y) |
+| -   | -     | ---------- |
+| 0   | 0     | 1          |
+| 0   | 1     | 1          |
+| 1   | 0     | 1          |
+| 1   | 1     | 0          |
 
-### 🎯 Summary
+🎯 Summary
 
 The output becomes LOW only when **both inputs are HIGH**.
 
----
 
-## ⚙️ Internal Structure
+
+ ⚙️ Internal Structure
 
 The 7400 IC contains four independent NAND gates.
 
-```text
+
 (A1,B1) ──► NAND ──► Y1
 
 (A2,B2) ──► NAND ──► Y2
@@ -89,9 +90,6 @@ The 7400 IC contains four independent NAND gates.
 (A3,B3) ──► NAND ──► Y3
 
 (A4,B4) ──► NAND ──► Y4
-```
-
----
 
 ## 🌍 Universal Gate Applications
 
