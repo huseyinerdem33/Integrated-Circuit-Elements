@@ -21,8 +21,7 @@ Typical Package Type	DIP-8 (8-pin)
 
 📌 Pin Configuration (DIP-8)
 
- ![LM555 Timer datasheeet](<img width="400" height="302" alt="lm555" src="https://github.com/user-attachments/assets/fafb2f4c-f793-4028-b627-acce99071f4f" />
-)
+ ![LM555 Timer datasheet](https://github.com/user-attachments/assets/fafb2f4c-f793-4028-b627-acce99071f4f)
  
 Pin No	Name	Function
 
