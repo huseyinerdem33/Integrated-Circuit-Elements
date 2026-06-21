@@ -221,3 +221,397 @@ For simple control and signal conditioning tasks.
 
 The **7400 NAND Gate IC** is one of the most important building blocks of digital electronics. With four independent NAND gates and universal gate capability, it enables the implementation of virtually any digital logic function. Understanding the 7400 IC is essential for students, hobbyists, and engineers working with digital systems.
 
+ 🔷 7402 NOR Gate IC
+
+The **7402 NOR Gate IC** is a fundamental digital logic integrated circuit belonging to the **TTL (Transistor-Transistor Logic)** family. It contains **four independent 2-input NOR gates** in a single package.
+
+Because the NOR gate is a **Universal Logic Gate**, any digital logic function can be implemented using only NOR gates. The 7402 IC is commonly used in digital systems, control circuits, and educational electronics projects.
+
+---
+
+## 📦 Basic Features
+
+| Feature           | Value               |
+| ----------------- | ------------------- |
+| IC Number         | 7402                |
+| Logic Family      | TTL                 |
+| Gate Type         | NOR                 |
+| Number of Gates   | 4                   |
+| Inputs per Gate   | 2                   |
+| Supply Voltage    | +5V                 |
+| Typical Package   | DIP-14              |
+| Propagation Delay | Approximately 10 ns |
+
+---
+
+## 📌 Pin Configuration (DIP-14)
+
+### Pin Description
+
+| Pin No | Name | Function           |
+| ------ | ---- | ------------------ |
+| 1      | 1Y   | Gate 1 Output      |
+| 2      | 1A   | Gate 1 Input A     |
+| 3      | 1B   | Gate 1 Input B     |
+| 4      | 2Y   | Gate 2 Output      |
+| 5      | 2A   | Gate 2 Input A     |
+| 6      | 2B   | Gate 2 Input B     |
+| 7      | GND  | Ground Connection  |
+| 8      | 3A   | Gate 3 Input A     |
+| 9      | 3B   | Gate 3 Input B     |
+| 10     | 3Y   | Gate 3 Output      |
+| 11     | 4A   | Gate 4 Input A     |
+| 12     | 4B   | Gate 4 Input B     |
+| 13     | 4Y   | Gate 4 Output      |
+| 14     | VCC  | +5V Supply Voltage |
+
+---
+
+## 🧠 NOR Gate Logic
+
+A NOR gate performs the inverse of an OR operation.
+
+> [!IMPORTANT]
+> Boolean Expression
+
+```text
+Y = ¬(A + B)
+```
+
+Where:
+
+* A = Input A
+* B = Input B
+* Y = Output
+* ¬ = NOT operation
+
+---
+
+## 📊 Truth Table
+
+| A | B | Output (Y) |
+| - | - | ---------- |
+| 0 | 0 | 1          |
+| 0 | 1 | 0          |
+| 1 | 0 | 0          |
+| 1 | 1 | 0          |
+
+🎯 Summary
+
+The output becomes HIGH only when **both inputs are LOW**.
+
+---
+
+## ⚙️ Internal Structure
+
+The 7402 IC contains four independent NOR gates.
+
+```text
+(A1,B1) ──► NOR ──► Y1
+
+(A2,B2) ──► NOR ──► Y2
+
+(A3,B3) ──► NOR ──► Y3
+
+(A4,B4) ──► NOR ──► Y4
+```
+
+---
+
+## 🌍 Universal Gate Applications
+
+Since NOR is a universal gate, it can be used to create:
+
+### NOT Gate
+
+```text
+Y = ¬A
+```
+
+### OR Gate
+
+```text
+Y = ¬(A NOR B)
+```
+
+### AND Gate
+
+```text
+Y = (A NOR A) NOR (B NOR B)
+```
+
+### Other Gates
+
+* NAND Gate
+* XOR Gate
+* XNOR Gate
+
+---
+
+## 🛠️ Common Applications
+
+### Digital Logic Circuits
+
+Used for implementing digital logic functions.
+
+### Control Systems
+
+Used in decision-making and control logic.
+
+### Counters and Registers
+
+Commonly found in sequential circuits.
+
+### Educational Laboratories
+
+Used for teaching Boolean algebra and logic design.
+
+### Embedded Systems
+
+Used for signal processing and control applications.
+
+---
+
+## ⚡ Advantages
+
+* Very easy to use
+* Low cost
+* Reliable operation
+* Universal logic functionality
+* Widely available
+
+---
+
+## ❌ Limitations
+
+* Higher power consumption than CMOS logic
+* Requires regulated +5V supply
+* Less efficient than CMOS alternatives
+
+---
+
+## 🧪 Example Applications
+
+### LED Control Circuit
+
+Control an LED using NOR logic.
+
+### Logic Function Generator
+
+Build complex logic functions using NOR gates.
+
+### Alarm Systems
+
+Combine multiple sensor signals.
+
+### Digital Controllers
+
+Generate logic control outputs.
+
+---
+
+## 🔷 7402 NOR Gate Usage Guide
+
+### 📌 When to Use a NOR Gate?
+
+### Logic Circuit Design
+
+When implementing digital logic functions.
+
+### Universal Gate Design
+
+When designing circuits using only one gate type.
+
+### Educational Projects
+
+For learning digital electronics.
+
+### Embedded Electronics
+
+For logic processing and control systems.
+
+---
+
+## 🎛️ Logic Gate Comparison
+
+| Feature                              | NOR      | OR       | NAND          |
+| ------------------------------------ | -------- | -------- | ------------- |
+| Universal Gate                       | ✅ Yes    | ❌ No     | ✅ Yes         |
+| Output HIGH only when all inputs LOW | ✅ Yes    | ❌ No     | ❌ No          |
+| Can implement all other gates        | ✅ Yes    | ❌ No     | ✅ Yes         |
+| Common in Digital Design             | ✅ Common | ✅ Common | ✅ Very Common |
+
+---
+
+## 🎯 Conclusion
+
+The **7402 NOR Gate IC** is an essential digital logic component. Its universal gate capability allows the implementation of any logic function, making it valuable for education, experimentation, and practical digital circuit design.
+
+
+🔷 7404 NOT Gate IC
+
+The 7404 NOT Gate IC is one of the most fundamental integrated circuits in digital electronics. It belongs to the TTL (Transistor-Transistor Logic) family and contains six independent NOT (inverter) gates in a single package.
+
+Because the NOT gate is the simplest logic gate, it is widely used in digital systems, signal inversion, waveform shaping, and educational electronics projects.
+
+---
+
+## 📦 Basic Features
+
+| Feature              | Value               |
+| -------------------- | ------------------- |
+| IC Number            | 7404                |
+| Logic Family         | TTL                 |
+| Gate Type            | NOT (Inverter)      |
+| Number of Gates      | 6                   |
+| Inputs per Gate      | 1                   |
+| Supply Voltage       | +5V                 |
+| Typical Package      | DIP-14              |
+| Propagation Delay    | Approximately 10 ns |
+
+---
+
+## 📌 Pin Configuration (DIP-14)
+
+### Pin Description
+
+| Pin No | Name | Function |
+|---------|------|----------|
+| 1 | 1A | Inverter Input 1 |
+| 2 | 1Y | Inverter Output 1 |
+| 3 | 2A | Inverter Input 2 |
+| 4 | 2Y | Inverter Output 2 |
+| 5 | 3A | Inverter Input 3 |
+| 6 | 3Y | Inverter Output 3 |
+| 7 | GND | Ground Connection |
+| 8 | 4Y | Inverter Output 4 |
+| 9 | 4A | Inverter Input 4 |
+| 10 | 5Y | Inverter Output 5 |
+| 11 | 5A | Inverter Input 5 |
+| 12 | 6Y | Inverter Output 6 |
+| 13 | 6A | Inverter Input 6 |
+| 14 | VCC | +5V Supply Voltage |
+
+---
+
+## 🧠 NOT Gate Logic
+
+A NOT gate (inverter) produces the opposite of its input.
+
+> [!IMPORTANT]
+> Boolean Expression
+
+```text
+Y = ¬A
+
+ 🔷 7408 AND Gate IC
+
+The 7408 AND Gate IC is one of the fundamental integrated circuits in digital electronics. It belongs to the TTL (Transistor-Transistor Logic) family and contains four independent 2-input AND gates in a single package.
+
+The AND gate is widely used in digital systems where multiple conditions must be satisfied simultaneously.
+
+---
+
+## 📦 Basic Features
+
+| Feature              | Value               |
+| -------------------- | ------------------- |
+| IC Number            | 7408                |
+| Logic Family         | TTL                 |
+| Gate Type            | AND                 |
+| Number of Gates      | 4                   |
+| Inputs per Gate      | 2                   |
+| Supply Voltage       | +5V                 |
+| Typical Package      | DIP-14              |
+| Propagation Delay    | Approximately 10 ns |
+
+---
+
+## 📌 Pin Configuration (DIP-14)
+
+### Pin Description
+
+| Pin No | Name | Function |
+|---------|------|----------|
+| 1 | 1A | Gate 1 Input A |
+| 2 | 1B | Gate 1 Input B |
+| 3 | 1Y | Gate 1 Output |
+| 4 | 2A | Gate 2 Input A |
+| 5 | 2B | Gate 2 Input B |
+| 6 | 2Y | Gate 2 Output |
+| 7 | GND | Ground Connection |
+| 8 | 3Y | Gate 3 Output |
+| 9 | 3A | Gate 3 Input A |
+| 10 | 3B | Gate 3 Input B |
+| 11 | 4Y | Gate 4 Output |
+| 12 | 4A | Gate 4 Input A |
+| 13 | 4B | Gate 4 Input B |
+| 14 | VCC | +5V Supply Voltage |
+
+---
+
+## 🧠 AND Gate Logic
+
+An AND gate produces HIGH output only when all inputs are HIGH.
+
+> [!IMPORTANT]
+> Boolean Expression
+
+```text
+Y = A · B
+
+🔷 7432 OR Gate IC
+
+The 7432 OR Gate IC is a fundamental integrated circuit in digital electronics. It belongs to the TTL (Transistor-Transistor Logic) family and contains four independent 2-input OR gates in a single package.
+
+The OR gate is widely used in digital systems where the output becomes active if at least one input is HIGH.
+
+---
+
+## 📦 Basic Features
+
+| Feature              | Value               |
+| -------------------- | ------------------- |
+| IC Number            | 7432                |
+| Logic Family         | TTL                 |
+| Gate Type            | OR                  |
+| Number of Gates      | 4                   |
+| Inputs per Gate      | 2                   |
+| Supply Voltage       | +5V                 |
+| Typical Package      | DIP-14              |
+| Propagation Delay    | Approximately 10 ns |
+
+---
+
+## 📌 Pin Configuration (DIP-14)
+
+### Pin Description
+
+| Pin No | Name | Function |
+|---------|------|----------|
+| 1 | 1A | Gate 1 Input A |
+| 2 | 1B | Gate 1 Input B |
+| 3 | 1Y | Gate 1 Output |
+| 4 | 2A | Gate 2 Input A |
+| 5 | 2B | Gate 2 Input B |
+| 6 | 2Y | Gate 2 Output |
+| 7 | GND | Ground Connection |
+| 8 | 3Y | Gate 3 Output |
+| 9 | 3A | Gate 3 Input A |
+| 10 | 3B | Gate 3 Input B |
+| 11 | 4Y | Gate 4 Output |
+| 12 | 4A | Gate 4 Input A |
+| 13 | 4B | Gate 4 Input B |
+| 14 | VCC | +5V Supply Voltage |
+
+---
+
+## 🧠 OR Gate Logic
+
+An OR gate produces HIGH output when at least one input is HIGH.
+
+> [!IMPORTANT]
+> Boolean Expression
+
+```text
+Y = A + B
