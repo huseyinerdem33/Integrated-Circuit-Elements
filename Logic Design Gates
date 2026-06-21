@@ -23,7 +23,7 @@ Because the NAND gate is a Universal Logic Gate, all other logic gates can be im
 
  📌 Pin Configuration (DIP-14)
 
-### Pin Description
+ Pin Description
 
 | Pin No    | Name    | Function           |
 | --------- | ------- | ------------------ |
@@ -42,13 +42,12 @@ Because the NAND gate is a Universal Logic Gate, all other logic gates can be im
 | 13        | 4B      | Gate 4 Input B     |
 | 14        | VCC     | +5V Supply Voltage |
 
----
 
-## 🧠 NAND Gate Logic
+🧠 NAND Gate Logic
 
 A NAND gate performs the inverse of an AND operation.
 
-### Boolean Expression
+<font color="red">Boolean Expression</font>
 
 ```text
 Y = ¬(A · B)
