@@ -1,46 +1,46 @@
 Logic Gates 
-# 🔷 7400 NAND Gate IC
+🔷 7400 NAND Gate IC
 
 The 7400 NAND Gate IC is one of the most fundamental integrated circuits in digital electronics. It belongs to the TTL (Transistor-Transistor Logic) family and contains four independent 2-input NAND gates in a single package.
 
 Because the NAND gate is a Universal Logic Gate, all other logic gates can be implemented using only NAND gates. For this reason, the 7400 IC is widely used in digital system design, logic circuits, and educational laboratories.
 ---
 
-## 📦 Basic Features
+ 📦 Basic Features
 
-| Feature           | Value               |
-| ----------------- | ------------------- |
-| IC Number         | 7400                |
-| Logic Family      | TTL                 |
-| Gate Type         | NAND                |
-| Number of Gates   | 4                   |
-| Inputs per Gate   | 2                   |
-| Supply Voltage    | +5V                 |
-| Typical Package   | DIP-14              |
-| Propagation Delay | Approximately 10 ns |
+| Feature              | Value               |
+| -------------------- | ------------------- |
+| IC Number            | 7400                |
+| Logic Family         | TTL                 |
+| Gate Type            | NAND                |
+| Number of Gates      | 4                   |
+| Inputs per Gate      | 2                   |
+| Supply Voltage       | +5V                 |
+| Typical Package      | DIP-14              |
+| Propagation Delay    | Approximately 10 ns |
 
----
 
-## 📌 Pin Configuration (DIP-14)
+
+ 📌 Pin Configuration (DIP-14)
 
 ### Pin Description
 
-| Pin No | Name | Function           |
-| ------ | ---- | ------------------ |
-| 1      | 1A   | Gate 1 Input A     |
-| 2      | 1B   | Gate 1 Input B     |
-| 3      | 1Y   | Gate 1 Output      |
-| 4      | 2A   | Gate 2 Input A     |
-| 5      | 2B   | Gate 2 Input B     |
-| 6      | 2Y   | Gate 2 Output      |
-| 7      | GND  | Ground Connection  |
-| 8      | 3Y   | Gate 3 Output      |
-| 9      | 3A   | Gate 3 Input A     |
-| 10     | 3B   | Gate 3 Input B     |
-| 11     | 4Y   | Gate 4 Output      |
-| 12     | 4A   | Gate 4 Input A     |
-| 13     | 4B   | Gate 4 Input B     |
-| 14     | VCC  | +5V Supply Voltage |
+| Pin No    | Name    | Function           |
+| --------- | ------- | ------------------ |
+| 1         | 1A      | Gate 1 Input A     |
+| 2         | 1B      | Gate 1 Input B     |
+| 3         | 1Y      | Gate 1 Output      |
+| 4         | 2A      | Gate 2 Input A     |
+| 5         | 2B      | Gate 2 Input B     |
+| 6         | 2Y      | Gate 2 Output      |
+| 7         | GND     | Ground Connection  |
+| 8         | 3Y      | Gate 3 Output      |
+| 9         | 3A      | Gate 3 Input A     |
+| 10        | 3B      | Gate 3 Input B     |
+| 11        | 4Y      | Gate 4 Output      |
+| 12        | 4A      | Gate 4 Input A     |
+| 13        | 4B      | Gate 4 Input B     |
+| 14        | VCC     | +5V Supply Voltage |
 
 ---
 
