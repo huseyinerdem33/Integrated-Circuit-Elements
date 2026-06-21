@@ -1,115 +1,105 @@
 Logic Gates 
-<div align="center">
+# 🔷 7400 NAND Gate IC
 
-# ⚡ 7400 NAND Gate IC
+The **7400 NAND Gate IC** is one of the most fundamental integrated circuits in digital electronics. It belongs to the **TTL (Transistor-Transistor Logic)** family and contains **four independent 2-input NAND gates** in a single package.
 
-### *The Fundamental Building Block of Digital Electronics*
-
-<img src="https://img.shields.io/badge/TTL-Logic-blue?style=for-the-badge&logo=buffer">
-<img src="https://img.shields.io/badge/7400-IC-success?style=for-the-badge">
-<img src="https://img.shields.io/badge/Gates-4-orange?style=for-the-badge">
-<img src="https://img.shields.io/badge/Voltage-5V-red?style=for-the-badge">
-
-<br>
-
-*"A universal logic gate capable of creating any digital circuit."*
-
-</div>
+Because the NAND gate is a **Universal Logic Gate**, all other logic gates can be implemented using only NAND gates. For this reason, the 7400 IC is widely used in digital system design, logic circuits, and educational laboratories.
 
 ---
 
-## 🚀 Introduction
+## 📦 Basic Features
 
-The **7400 IC** is one of the most famous integrated circuits in digital electronics.
-
-It contains **four independent 2-input NAND gates** and belongs to the **TTL (Transistor-Transistor Logic)** family.
-
-> 💡 Since NAND is a **Universal Gate**, every other logic gate can be built using only NAND gates.
+| Feature           | Value               |
+| ----------------- | ------------------- |
+| IC Number         | 7400                |
+| Logic Family      | TTL                 |
+| Gate Type         | NAND                |
+| Number of Gates   | 4                   |
+| Inputs per Gate   | 2                   |
+| Supply Voltage    | +5V                 |
+| Typical Package   | DIP-14              |
+| Propagation Delay | Approximately 10 ns |
 
 ---
 
-## 📸 Package View
+## 📌 Pin Configuration (DIP-14)
+
+### Pin Description
+
+| Pin No | Name | Function           |
+| ------ | ---- | ------------------ |
+| 1      | 1A   | Gate 1 Input A     |
+| 2      | 1B   | Gate 1 Input B     |
+| 3      | 1Y   | Gate 1 Output      |
+| 4      | 2A   | Gate 2 Input A     |
+| 5      | 2B   | Gate 2 Input B     |
+| 6      | 2Y   | Gate 2 Output      |
+| 7      | GND  | Ground Connection  |
+| 8      | 3Y   | Gate 3 Output      |
+| 9      | 3A   | Gate 3 Input A     |
+| 10     | 3B   | Gate 3 Input B     |
+| 11     | 4Y   | Gate 4 Output      |
+| 12     | 4A   | Gate 4 Input A     |
+| 13     | 4B   | Gate 4 Input B     |
+| 14     | VCC  | +5V Supply Voltage |
+
+---
+
+## 🧠 NAND Gate Logic
+
+A NAND gate performs the inverse of an AND operation.
+
+### Boolean Expression
 
 ```text
-        +---U---+
-   1A 1 |       | 14 VCC
-   1B 2 |       | 13 4B
-   1Y 3 | 7400  | 12 4A
-   2A 4 |       | 11 4Y
-   2B 5 |       | 10 3B
-   2Y 6 |       |  9 3A
-  GND 7 |       |  8 3Y
-        +-------+
-```
-
----
-
-## 🧠 How NAND Works
-
-```mermaid
-graph LR
-A(Input A) --> N[NAND]
-B(Input B) --> N
-N --> Y(Output)
-```
-
-### Boolean Equation
-
-```math
 Y = ¬(A · B)
 ```
+
+Where:
+
+* A = Input A
+* B = Input B
+* Y = Output
+* ¬ = NOT operation
 
 ---
 
 ## 📊 Truth Table
 
-| A | B | Output |
-| - | - | ------ |
-| 0 | 0 | ✅ 1    |
-| 0 | 1 | ✅ 1    |
-| 1 | 0 | ✅ 1    |
-| 1 | 1 | ❌ 0    |
+| A | B | Output (Y) |
+| - | - | ---------- |
+| 0 | 0 | 1          |
+| 0 | 1 | 1          |
+| 1 | 0 | 1          |
+| 1 | 1 | 0          |
+
+### 🎯 Summary
+
+The output becomes LOW only when **both inputs are HIGH**.
 
 ---
 
-## 🎯 Key Features
+## ⚙️ Internal Structure
 
-| Feature            | Value  |
-| ------------------ | ------ |
-| 🔢 IC Number       | 7400   |
-| ⚡ Technology       | TTL    |
-| 🚪 Gates           | 4      |
-| 🔌 Inputs per Gate | 2      |
-| 🔋 Supply Voltage  | +5V    |
-| 📦 Package         | DIP-14 |
-
----
-
-## 🌍 Why is NAND Special?
-
-NAND is called a **Universal Gate** because it can create:
-
-* ✅ NOT
-* ✅ AND
-* ✅ OR
-* ✅ NOR
-* ✅ XOR
-* ✅ XNOR
-
----
-
-<details>
-<summary>🔍 Click to See NAND Implementations</summary>
-
-### NOT Gate
+The 7400 IC contains four independent NAND gates.
 
 ```text
-A ----+
-      |
-      +---- NAND ---- Y
-      |
-A ----+
+(A1,B1) ──► NAND ──► Y1
+
+(A2,B2) ──► NAND ──► Y2
+
+(A3,B3) ──► NAND ──► Y3
+
+(A4,B4) ──► NAND ──► Y4
 ```
+
+---
+
+## 🌍 Universal Gate Applications
+
+Since NAND is a universal gate, it can be used to create:
+
+### NOT Gate
 
 ```text
 Y = ¬A
@@ -127,82 +117,111 @@ Y = (A NAND B) NAND (A NAND B)
 Y = (A NAND A) NAND (B NAND B)
 ```
 
-</details>
+### Other Gates
+
+* NOR Gate
+* XOR Gate
+* XNOR Gate
 
 ---
 
-## ⚙️ Applications
+## 🛠️ Common Applications
 
-```text
-Digital Systems
-│
-├── Microprocessors
-├── Embedded Systems
-├── Counters
-├── Registers
-├── Logic Controllers
-└── FPGA Education
-```
+### Digital Logic Circuits
+
+Used for implementing basic logic functions in digital systems.
+
+### Microprocessor Systems
+
+Used for control logic and signal processing.
+
+### Counters and Registers
+
+Commonly used in sequential logic circuits.
+
+### Educational Laboratories
+
+Ideal for learning digital electronics and Boolean algebra.
+
+### Embedded Systems
+
+Used in control and interface circuits.
 
 ---
 
-## ✅ Advantages
+## ⚡ Advantages
 
-🟢 Low Cost
-
-🟢 Easy to Use
-
-🟢 Highly Reliable
-
-🟢 Widely Available
-
-🟢 Universal Logic Functionality
+* Very easy to use
+* Low cost
+* Highly reliable
+* Widely available
+* Universal logic functionality
+* Fast switching speed
 
 ---
 
 ## ❌ Limitations
 
-🔴 Higher power consumption compared to CMOS
-
-🔴 Typically operates at +5V only
-
----
-
-## 📚 Quick Example
-
-```text
-A ----\
-       ) NAND ---- Y
-B ----/
-```
-
-If:
-
-```text
-A = 1
-B = 1
-```
-
-Then:
-
-```text
-Y = 0
-```
+* Higher power consumption than CMOS logic
+* Requires a regulated +5V supply
+* Less power efficient than modern CMOS alternatives
 
 ---
 
-## 🏁 Conclusion
+## 🧪 Example Applications
 
-The **7400 NAND Gate IC** is one of the most important building blocks in digital electronics.
+### LED Control Circuit
 
-Whether you are designing a simple logic circuit or learning computer architecture, understanding the 7400 IC is an essential first step.
+Turn an LED ON or OFF based on two digital inputs.
+
+### Logic Function Generator
+
+Implement custom logic functions using multiple NAND gates.
+
+### Alarm Systems
+
+Combine sensor outputs using NAND logic.
+
+### Digital Control Systems
+
+Generate control signals for embedded applications.
 
 ---
 
-<div align="center">
+# 🔷 7400 NAND Gate Usage Guide
 
-### ⭐ Star this repository if you found it useful!
+## 📌 When to Use a NAND Gate?
 
-Made with ❤️ for Digital Electronics Students
+### Logic Circuit Design
 
-</div>
+When implementing digital logic functions.
+
+### Gate Minimization
+
+When a design uses only one type of logic gate.
+
+### Educational Projects
+
+For learning logic design and Boolean algebra.
+
+### Embedded Electronics
+
+For simple control and signal conditioning tasks.
+
+---
+
+## 🎛️ Logic Gate Comparison
+
+| Feature                              | NAND          | AND      | OR       |
+| ------------------------------------ | ------------- | -------- | -------- |
+| Universal Gate                       | ✅ Yes         | ❌ No     | ❌ No     |
+| Output LOW only when all inputs HIGH | ✅ Yes         | ❌ No     | ❌ No     |
+| Can implement all other gates        | ✅ Yes         | ❌ No     | ❌ No     |
+| Common in Digital Design             | ✅ Very Common | ✅ Common | ✅ Common |
+
+---
+
+## 🎯 Conclusion
+
+The **7400 NAND Gate IC** is one of the most important building blocks of digital electronics. With four independent NAND gates and universal gate capability, it enables the implementation of virtually any digital logic function. Understanding the 7400 IC is essential for students, hobbyists, and engineers working with digital systems.
+
