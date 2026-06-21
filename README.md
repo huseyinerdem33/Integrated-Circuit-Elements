@@ -18,13 +18,21 @@ Typical Package Type	DIP-8 (8-pin)
 ![LM555 Timer datasheet](https://github.com/user-attachments/assets/fafb2f4c-f793-4028-b627-acce99071f4f)
 
 Pin No	Name	Function
+
 1	GND	Ground (0V) connection
+
 2	TRIG	Trigger input (initiates a pulse)
+
 3	OUT	Output (connect your load here)
+
 4	RESET	Active-low reset input (usually tied to VCC)
+
 5	CTRL	Control voltage (usually filtered by a capacitor)
+
 6	THRS	Threshold input (monitors capacitor voltage)
+
 7	DISCH	Discharge pin (discharges capacitor)
+
 8	VCC	Supply voltage (typically 5V or 9V)
 
 ⚙️ Operating Modes
