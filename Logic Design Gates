@@ -1,10 +1,9 @@
 Logic Gates 
 # 🔷 7400 NAND Gate IC
 
-The **7400 NAND Gate IC** is one of the most fundamental integrated circuits in digital electronics. It belongs to the **TTL (Transistor-Transistor Logic)** family and contains **four independent 2-input NAND gates** in a single package.
+The 7400 NAND Gate IC is one of the most fundamental integrated circuits in digital electronics. It belongs to the TTL (Transistor-Transistor Logic) family and contains four independent 2-input NAND gates in a single package.
 
-Because the NAND gate is a **Universal Logic Gate**, all other logic gates can be implemented using only NAND gates. For this reason, the 7400 IC is widely used in digital system design, logic circuits, and educational laboratories.
-
+Because the NAND gate is a Universal Logic Gate, all other logic gates can be implemented using only NAND gates. For this reason, the 7400 IC is widely used in digital system design, logic circuits, and educational laboratories.
 ---
 
 ## 📦 Basic Features
