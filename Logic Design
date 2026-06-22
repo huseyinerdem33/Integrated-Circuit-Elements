@@ -10,13 +10,13 @@ Logic Gates
 
  📚 Datasheets
 
-| IC | Logic Gate | Datasheet |
-|----|------------|-----------|
-| 7400 | NAND | 📄 [Download PDF](https://www.ti.com/lit/gpn/sn7400) |
-| 7402 | NOR | 📄 [Download PDF](https://www.ti.com/lit/gpn/sn7402) |
-| 7404 | NOT | 📄 [Download PDF](https://www.ti.com/lit/gpn/sn7404) |
-| 7408 | AND | 📄 [Download PDF](https://www.ti.com/lit/gpn/sn7408) |
-| 7432 | OR | 📄 [Download PDF](https://www.ti.com/lit/gpn/sn7432) |
+| IC | Logic Gate |                       Datasheet                       |
+|----|------------|-------------------------------------------------------| 
+| 7400 | NAND     | 📄 [Download PDF](https://www.ti.com/lit/gpn/sn7400) |
+| 7402 | NOR      | 📄 [Download PDF](https://www.ti.com/lit/gpn/sn7402) |
+| 7404 | NOT      | 📄 [Download PDF](https://www.ti.com/lit/gpn/sn7404) |
+| 7408 | AND      | 📄 [Download PDF](https://www.ti.com/lit/gpn/sn7408) |
+| 7432 | OR       | 📄 [Download PDF](https://www.ti.com/lit/gpn/sn7432) |
 
 🔷 7400 – Quad 2-Input NAND Gate
 📌 Overview
