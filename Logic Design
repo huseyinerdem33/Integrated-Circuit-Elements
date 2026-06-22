@@ -1,0 +1,64 @@
+Logic Gates 
+
+| IC Number | Gate Type      | Number of Gates | Boolean Expression |
+| --------- | -------------- | --------------- | ------------------ |
+| 7400      | NAND           | 4               | Y = (A·B)'         |
+| 7402      | NOR            | 4               | Y = (A+B)'         |
+| 7404      | NOT (Inverter) | 6               | Y = A'             |
+| 7408      | AND            | 4               | Y = A·B            |
+| 7432      | OR             | 4               | Y = A+B            |
+
+🔷 7400 – Quad 2-Input NAND Gate
+📌 Overview
+
+The 7400 IC contains four independent 2-input NAND gates. NAND is considered a universal logic gate because any digital circuit can be implemented using only NAND gates.
+
+🖼️ Logic Symbol
+A ──┐
+    ├─⊼── Y
+B ──┘
+
+📖 Boolean Expression
+Y = (A · B)'
+
+📋 Truth Table
+
+| A | B |   Y   |
+| - | - |-------|
+| 0 | 0 | 🟢 1 |
+| 0 | 1 | 🟢 1 |
+| 1 | 0 | 🟢 1 |
+| 1 | 1 | 🔴 0 |
+
+🎯 Applications
+-Digital logic circuits
+-Flip-Flops and latches
+-Control systems
+-Universal gate implementations
+
+🔷 7402 – Quad 2-Input NOR Gate
+📌 Overview
+
+The 7402 IC contains four independent 2-input NOR gates. Like NAND, NOR is also a universal logic gate.
+
+🖼️ Logic Symbol
+A ──┐
+    ├─≥1─○── Y
+B ──┘
+
+📖 Boolean Expression
+Y = (A + B)'
+
+📋 Truth Table
+| A | B |     Y |
+| - | - | ------|
+| 0 | 0 | 🟢 1 |
+| 0 | 1 | 🔴 0 |
+| 1 | 0 | 🔴 0 |
+| 1 | 1 | 🔴 0 |
+
+🎯 Applications
+-SR Latches
+-Logic control systems
+-State machines
+-Universal gate designs
