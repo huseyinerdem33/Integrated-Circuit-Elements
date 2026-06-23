@@ -74,4 +74,109 @@ Y = (A + B)'
 -Logic control systems
 -State machines
 -Universal gate designs
-![Benim Fotoğrafım](manzara.jpg)
+
+
+# ***7404 Inverter (NOT Gate)***
+
+7404 entegresi içerisinde 6 adet bağımsız NOT kapısı bulunur.
+
+Bir NOT kapısı giriş sinyalinin mantıksal tersini üretir.
+
+## Mantık Denklemi
+
+```text
+Y = ¬A
+```
+
+## Doğruluk Tablosu
+
+| A    | Y    |
+| ---- | ---- |
+| 0 🔴 | 1 🟢 |
+| 1 🟢 | 0 🔴 |
+
+## Özellikler
+
+* 6 adet NOT kapısı
+* TTL uyumlu çalışma
+* +5V besleme gerilimi
+* Düşük gecikme süresi
+* DIP-14 paket yapısı
+
+## Kullanım Alanları
+
+* Sinyal tersleme işlemleri
+* Saat (Clock) devreleri
+* Mantık fonksiyonlarının sadeleştirilmesi
+* Dijital kontrol sistemleri
+
+## 7404 Pin Dizilimi
+
+```text
+       +---U---+
+ 1A  1 |       | 14 VCC
+ 1Y  2 |       | 13 6A
+ 2A  3 | 7404  | 12 6Y
+ 2Y  4 |       | 11 5A
+ 3A  5 |       | 10 5Y
+ 3Y  6 |       |  9 4A
+ GND 7 |       |  8 4Y
+       +-------+
+```
+
+---
+
+***7408 Quad 2-Input AND Gate***
+
+7408 entegresi içerisinde 4 adet iki girişli AND kapısı bulunur.
+
+AND kapısında çıkışın 1 🟢 olması için tüm girişlerin 1 🟢 olması gerekir.
+
+## Mantık Denklemi
+
+
+Y = A · B
+
+
+ Doğruluk Tablosu
+
+| A    | B    | Y    |
+| ---- | ---- | ---- |
+| 0 🔴 | 0 🔴 | 0 🔴 |
+| 0 🔴 | 1 🟢 | 0 🔴 |
+| 1 🟢 | 0 🔴 | 0 🔴 |
+| 1 🟢 | 1 🟢 | 1 🟢 |
+
+ **Özellikler**
+
+* 4 adet iki girişli AND kapısı
+* TTL uyumlu çalışma
+* +5V besleme gerilimi
+* DIP-14 paket yapısı
+* Dijital karar ve kontrol devrelerinde yaygın kullanım
+
+ Kullanım Alanları
+
+* Karar verme devreleri
+* Güvenlik sistemleri
+* Mikrodenetleyici uygulamaları
+* Endüstriyel otomasyon sistemleri
+
+ 7408 Pin Dizilimi
+
+
+       +---U---+
+1A   1 |       | 14 VCC
+1B   2 |       | 13 4B
+1Y   3 | 7408  | 12 4A
+2A   4 |       | 11 4Y
+2B   5 |       | 10 3B
+2Y   6 |       |  9 3A
+GND  7 |       |  8 3Y
+       +-------+
+```
+
+---
+
+#
+
