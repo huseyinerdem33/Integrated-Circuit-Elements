@@ -76,43 +76,43 @@ Y = (A + B)'
 -Universal gate designs
 
 
-# ***7404 Inverter (NOT Gate)***
+🔷 7404 Inverter (NOT Gate)
+📌 Overview
 
-7404 entegresi içerisinde 6 adet bağımsız NOT kapısı bulunur.
+The 7404 IC contains six independent NOT gates (inverters).
 
-Bir NOT kapısı giriş sinyalinin mantıksal tersini üretir.
+A NOT gate produces the logical inverse of its input signal.
 
-## Mantık Denklemi
+🖼️ Logic Equation
 
-```text
 Y = ¬A
-```
 
-## Doğruluk Tablosu
+
+📋Truth Table
 
 | A    | Y    |
 | ---- | ---- |
 | 0 🔴 | 1 🟢 |
 | 1 🟢 | 0 🔴 |
 
-## Özellikler
+ Features
 
-* 6 adet NOT kapısı
-* TTL uyumlu çalışma
-* +5V besleme gerilimi
-* Düşük gecikme süresi
-* DIP-14 paket yapısı
+* 6 independent NOT gates
+* TTL-compatible operation
+* +5V supply voltage
+* Low propagation delay
+* DIP-14 package
 
-## Kullanım Alanları
+🎯Applications
 
-* Sinyal tersleme işlemleri
-* Saat (Clock) devreleri
-* Mantık fonksiyonlarının sadeleştirilmesi
-* Dijital kontrol sistemleri
+* Signal inversion
+* Clock circuits
+* Logic function simplification
+* Digital control systems
 
-## 7404 Pin Dizilimi
+7404 Pin Configuration
 
-```text
+
        +---U---+
  1A  1 |       | 14 VCC
  1Y  2 |       | 13 6A
@@ -122,47 +122,46 @@ Y = ¬A
  3Y  6 |       |  9 4A
  GND 7 |       |  8 4Y
        +-------+
-```
 
----
 
-***7408 Quad 2-Input AND Gate***
 
-7408 entegresi içerisinde 4 adet iki girişli AND kapısı bulunur.
+🔷 7408 Quad 2-Input AND Gate
+📌 Overview
 
-AND kapısında çıkışın 1 🟢 olması için tüm girişlerin 1 🟢 olması gerekir.
+The 7408 IC contains four independent 2-input AND gates.
 
-## Mantık Denklemi
+For an AND gate, the output is HIGH (1 🟢) only when all inputs are HIGH (1 🟢).
 
+🖼️ Logic Equation
 
 Y = A · B
 
 
- Doğruluk Tablosu
+ 📋Truth Table
 
-| A    | B    | Y    |
-| ---- | ---- | ---- |
+| A    | B    |   Y   |
+| ---- | ---- | ----- |
 | 0 🔴 | 0 🔴 | 0 🔴 |
 | 0 🔴 | 1 🟢 | 0 🔴 |
 | 1 🟢 | 0 🔴 | 0 🔴 |
 | 1 🟢 | 1 🟢 | 1 🟢 |
 
- **Özellikler**
+Features
 
-* 4 adet iki girişli AND kapısı
-* TTL uyumlu çalışma
-* +5V besleme gerilimi
-* DIP-14 paket yapısı
-* Dijital karar ve kontrol devrelerinde yaygın kullanım
+* 4 independent 2-input AND gates
+* TTL-compatible operation
+* +5V supply voltage
+* DIP-14 package
+* Widely used in digital decision and control circuits
 
- Kullanım Alanları
+🎯Applications
 
-* Karar verme devreleri
-* Güvenlik sistemleri
-* Mikrodenetleyici uygulamaları
-* Endüstriyel otomasyon sistemleri
+* Decision-making circuits
+* Security systems
+* Microcontroller applications
+* Industrial automation systems
 
- 7408 Pin Dizilimi
+7408 Pin Configuration
 
 
        +---U---+
@@ -174,9 +173,6 @@ Y = A · B
 2Y   6 |       |  9 3A
 GND  7 |       |  8 3Y
        +-------+
-```
 
----
 
-#
 
