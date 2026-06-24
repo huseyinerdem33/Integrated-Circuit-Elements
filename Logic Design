@@ -41,11 +41,21 @@ Y = (A · B)'
 | 1 | 1 | 🔴 0 |
 
 🎯 Applications
--Digital logic circuits
--Flip-Flops and latches
--Control systems
--Universal gate implementations
+*Digital logic circuits
+*Flip-Flops and latches
+*Control systems
+*Universal gate implementations
 
+7400 Pin Configuration
+       +---U---+
+ 1A  1 |       | 14 VCC (+5V)
+ 1B  2 |       | 13 4B
+ 1Y  3 | 7400  | 12 4A
+ 2A  4 |       | 11 4Y
+ 2B  5 |       | 10 3B
+ 2Y  6 |       |  9 3A
+ GND 7 |       |  8 3Y
+       +-------+
 
 
 🔷 7402 – Quad 2-Input NOR Gate
@@ -70,11 +80,21 @@ Y = (A + B)'
 | 1 | 1 | 🔴 0 |
 
 🎯 Applications
--SR Latches
--Logic control systems
--State machines
--Universal gate designs
+*SR Latches
+*Logic control systems
+*State machines
+*Universal gate designs
 
+7402 Pin Configuration
+       +---U---+
+ 1Y  1 |       | 14 VCC (+5V)
+ 1A  2 |       | 13 4Y
+ 1B  3 | 7402  | 12 4B
+ 2Y  4 |       | 11 4A
+ 2A  5 |       | 10 3Y
+ 2B  6 |       |  9 3B
+ GND 7 |       |  8 3A
+       +-------+
 
 🔷 7404 Inverter (NOT Gate)
 📌 Overview
@@ -165,7 +185,7 @@ Features
 
 
        +---U---+
-1A   1 |       | 14 VCC(+5V)
+1A   1 |       | 14 VCC (+5V)
 1B   2 |       | 13 4B
 1Y   3 | 7408  | 12 4A
 2A   4 |       | 11 4Y
@@ -174,5 +194,60 @@ Features
 GND  7 |       |  8 3Y
        +-------+
 
+🔷 7432 OR Gate IC
+
+📌 Overview
+
+The 7432 IC contains four independent 2-input OR gates.
+
+An OR gate produces a HIGH output when at least one of its inputs is HIGH.
+
+🖼️ Logic Equation
+Y = A + B
+
+or
+
+Y = A OR B
+
+📋 Truth Table
+| A    | B    |   Y   |
+| ---- | ---- | ----- |
+| 0 🔴 | 0 🔴 | 0 🔴 |
+| 0 🔴 | 1 🟢 | 1 🟢 |
+| 1 🟢 | 0 🟢 | 1 🟢 |
+| 1 🟢 | 1 🟢 | 1 🟢 |
+
+
+⭐ Features
+* 4 independent 2-input OR gates
+* TTL-compatible operation
+* 5V supply voltage
+* Fast switching speed
+* Low power consumption
+* DIP-14 package
+
+🎯 Applications
+* Digital logic circuits
+* Signal combining
+* Alarm and monitoring systems
+* Logic function implementation
+* Control systems
+* Microprocessor and microcontroller interfacing
+
+🔍 OR Gate Symbol
+      A ───\
+             )≥1── Y
+      B ───/
+
+7432 Pin Configuration
+       +---U---+
+ 1A  1 |       | 14 VCC (+5V)
+ 1B  2 |       | 13 4B
+ 1Y  3 |       | 12 4A
+ 2A  4 |  7432 | 11 4Y
+ 2B  5 |       | 10 3B
+ 2Y  6 |       |  9 3A
+ GND 7 |       |  8 3Y
+       +-------+
 
 
