@@ -1,0 +1,250 @@
+ Arduino Uno
+
+The Arduino Uno is one of the most popular microcontroller development boards used in electronics, robotics, automation, and embedded systems. It is based on the **ATmega328P** microcontroller and provides an easy-to-use platform for learning programming and hardware interfacing.
+
+
+
+📦 Basic Features
+
+| Feature                     | Value      |
+| --------------------------- | ---------- |
+| Microcontroller             | ATmega328P |
+| Operating Voltage           | 5V         |
+| Input Voltage (Recommended) | 7V – 12V   |
+| Digital I/O Pins            | 14         |
+| PWM Pins                    | 6          |
+| Analog Inputs               | 6          |
+| Flash Memory                | 32 KB      |
+| SRAM                        | 2 KB       |
+| EEPROM                      | 1 KB       |
+| Clock Speed                 | 16 MHz     |
+
+🔹 ATmega328P Microcontroller
+
+The main processor of the Arduino Uno. It executes uploaded programs and controls all input/output operations.
+
+🔹 Operating Voltage (5V)
+
+The board operates internally at 5 volts. Digital HIGH signals are approximately 5V.
+
+🔹 Clock Speed (16 MHz)
+
+The microcontroller executes approximately 16 million instruction cycles per second.
+
+🔹 Flash Memory (32 KB)
+
+Stores the uploaded program permanently until a new program is uploaded.
+
+🔹 SRAM (2 KB)
+
+Temporary memory used while the program is running.
+
+🔹 EEPROM (1 KB)
+
+Non-volatile memory used to store data permanently, even after power is removed.
+
+
+
+📌 Arduino Uno Pin Configuration
+
+
+                 +----------------------+
+ USB Port ------>|                      |
+ Power Jack ---->|      Arduino Uno     |
+                 |                      |
+ Analog Inputs   | A0 A1 A2 A3 A4 A5    |
+                 |                      |
+ Digital Pins    | 0 1 2 3 4 5 6 7      |
+                 | 8 9 10 11 12 13      |
+                 |                      |
+ Power Pins      | VIN GND GND 5V 3.3V  |
+                 +----------------------+
+
+
+🔌 Digital Pins (0–13)
+
+Digital pins can be configured as either inputs or outputs.
+
+
+LOW  = 0V
+HIGH = 5V
+
+
+Used for:
+
+* LEDs
+* Push buttons
+* Relays
+* Digital sensors
+
+
+
+🎚️ PWM Pins
+
+Available PWM pins:
+
+
+3, 5, 6, 9, 10, 11
+
+
+PWM (Pulse Width Modulation) allows Arduino to simulate analog output using digital pins.
+
+Example duty cycles:
+
+
+25% Duty Cycle ≈ 1.25V average
+50% Duty Cycle ≈ 2.50V average
+75% Duty Cycle ≈ 3.75V average
+
+
+Used for:
+
+* LED brightness control
+* Motor speed control
+* Servo control
+
+---
+
+📈 Analog Input Pins (A0–A5)
+
+Used for reading analog voltages.
+
+Built-in 10-bit ADC conversion:
+
+
+0V → 0
+5V → 1023
+
+
+Used for:
+
+* Temperature sensors
+* Potentiometers
+* Light sensors
+* Gas sensors
+
+
+
+🔄 UART Serial Communication
+
+| Pin | Function |
+| --- | -------- |
+| 0   | RX       |
+| 1   | TX       |
+
+RX (Receive)
+
+Receives data from external devices.
+
+TX (Transmit)
+
+Sends data to external devices.
+
+Communication example:
+
+
+Device TX ─────► Arduino RX
+Arduino TX ────► Device RX
+
+
+Used for:
+
+* Serial Monitor
+* Bluetooth modules
+* GPS modules
+* GSM modules
+
+---
+
+⚡ SPI Communication
+
+| Pin | Function |
+| --- | -------- |
+| 10  | SS       |
+| 11  | MOSI     |
+| 12  | MISO     |
+| 13  | SCK      |
+
+Pin Definitions
+
+
+MOSI = Master Out Slave In
+MISO = Master In Slave Out
+SCK  = Serial Clock
+SS   = Slave Select
+
+
+Used for:
+
+* SD Card modules
+* OLED displays
+* TFT displays
+* High-speed sensors
+
+
+
+🔗 I²C Communication
+
+| Pin | Function |
+| --- | -------- |
+| A4  | SDA      |
+| A5  | SCL      |
+
+Pin Definitions
+
+
+SDA = Serial Data
+SCL = Serial Clock
+
+
+Used for:
+
+* OLED displays
+* RTC modules
+* EEPROM chips
+* Environmental sensors
+
+Only two wires are required regardless of the number of connected devices.
+
+
+
+💡 Built-in LED
+
+Arduino Uno includes an onboard LED connected to pin 13.
+:
+digitalWrite(13, HIGH);
+
+
+Turns the built-in LED ON.
+:
+digitalWrite(13, LOW);
+
+
+Turns the built-in LED OFF.
+
+Useful for testing and debugging programs.
+
+---
+
+⚡ Advantages
+
+* Easy to learn and use
+* Low cost
+* Open-source platform
+* Large community support
+* Thousands of available libraries
+* Compatible with numerous sensors and modules
+
+---
+
+ 🧪 Common Applications
+
+* Robotics
+* Home Automation
+* IoT Systems
+* Data Logging
+* Motor Control
+* Weather Stations
+* Smart Sensors
+* Security Systems
+* Educational Projects
