@@ -1,5 +1,5 @@
 # Integrated-Circuit-Elements
-*LM555 Timer
+LM555 Timer
 
 The LM555, commonly known as the 555 Timer, is one of the most famous and widely used integrated circuits in the electronics world. It appears in both simple hobby circuits and professional applications.
 
