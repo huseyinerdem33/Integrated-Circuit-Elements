@@ -25,18 +25,21 @@ Logic Gates
 
 🔷 7400 – Quad 2-Input NAND Gate
 📌 Overview
+   ---------
 The 7400 IC contains four independent 2-input NAND gates. NAND is considered a universal logic gate because any digital circuit can be implemented using only NAND gates.
 
 🖼️ Logic Symbol
+   ------------
 A ──┐
     ├─⊼── Y
 B ──┘
 
 📖 Boolean Expression
+    -----------------
 Y = (A · B)'
 
 📋 Truth Table
-
+    ----------
 | A | B |   Y   |
 | - | - |-------|
 | 0 | 0 | 🟢 1 |
@@ -45,12 +48,14 @@ Y = (A · B)'
 | 1 | 1 | 🔴 0 |
 
 🎯 Applications
+   ------------
 *Digital logic circuits
 *Flip-Flops and latches
 *Control systems
 *Universal gate implementations
 
 7400 Pin Configuration
+----------------------
        +---U---+
  1A  1 |       | 14 VCC (+5V)
  1B  2 |       | 13 4B
