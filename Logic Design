@@ -1,4 +1,5 @@
 Logic Gates 
+-----------
 
 | IC Number | Gate Type      | Number of Gates | Boolean Expression |
 | --------- | -------------- | --------------- | ------------------ |
@@ -9,6 +10,7 @@ Logic Gates
 | 7432      | OR             | 4               | Y = A+B            |
 
  📚 Datasheets
+ --------------
 
 | IC | Logic Gate |                       Datasheet                       |
 |----|------------|-------------------------------------------------------| 
@@ -17,10 +19,11 @@ Logic Gates
 | 7404 | NOT      | 📄 [Download PDF](https://www.ti.com/lit/gpn/sn7404) |
 | 7408 | AND      | 📄 [Download PDF](https://www.ti.com/lit/gpn/sn7408) |
 | 7432 | OR       | 📄 [Download PDF](https://www.ti.com/lit/gpn/sn7432) |
+
+
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 🔷 7400 – Quad 2-Input NAND Gate
 📌 Overview
-
 The 7400 IC contains four independent 2-input NAND gates. NAND is considered a universal logic gate because any digital circuit can be implemented using only NAND gates.
 
 🖼️ Logic Symbol
@@ -60,18 +63,21 @@ Y = (A · B)'
 
 🔷 7402 – Quad 2-Input NOR Gate
 📌 Overview
-
+    -------
 The 7402 IC contains four independent 2-input NOR gates. Like NAND, NOR is also a universal logic gate.
 
 🖼️ Logic Symbol
+   -------------
 A ──┐
     ├─≥1─○── Y
 B ──┘
 
 📖 Boolean Expression
+    -----------------
 Y = (A + B)'
 
 📋 Truth Table
+    ----------
 | A | B |     Y |
 | - | - | ------|
 | 0 | 0 | 🟢 1 |
@@ -80,12 +86,14 @@ Y = (A + B)'
 | 1 | 1 | 🔴 0 |
 
 🎯 Applications
+    -----------
 *SR Latches
 *Logic control systems
 *State machines
 *Universal gate designs
 
 7402 Pin Configuration
+----------------------
        +---U---+
  1Y  1 |       | 14 VCC (+5V)
  1A  2 |       | 13 4Y
@@ -98,25 +106,25 @@ Y = (A + B)'
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 🔷 7404 Inverter (NOT Gate)
 📌 Overview
-
+   --------
 The 7404 IC contains six independent NOT gates (inverters).
 
 A NOT gate produces the logical inverse of its input signal.
 
 🖼️ Logic Equation
-
+    -------------
 Y = ¬A
 
 
 📋Truth Table
-
+   ----------
 |   A  |    Y  |
 | ---- | ----- |
 | 0 🔴 | 1 🟢 |
 | 1 🟢 | 0 🔴 |
 
  Features
-
+ --------
 * 6 independent NOT gates
 * TTL-compatible operation
 * +5V supply voltage
@@ -124,15 +132,14 @@ Y = ¬A
 * DIP-14 package
 
 🎯Applications
-
+   -----------
 * Signal inversion
 * Clock circuits
 * Logic function simplification
 * Digital control systems
 
 7404 Pin Configuration
-
-
+----------------------
        +---U---+
  1A  1 |       | 14 VCC (+5V)
  1Y  2 |       | 13 6A
@@ -145,18 +152,17 @@ Y = ¬A
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 🔷 7408 Quad 2-Input AND Gate
 📌 Overview
-
+    -------
 The 7408 IC contains four independent 2-input AND gates.
-
 For an AND gate, the output is HIGH (1 🟢) only when all inputs are HIGH (1 🟢).
 
 🖼️ Logic Equation
-
+    -------------
 Y = A · B
 
 
  📋Truth Table
-
+    ----------
 | A    | B    |   Y   |
 | ---- | ---- | ----- |
 | 0 🔴 | 0 🔴 | 0 🔴 |
@@ -165,7 +171,7 @@ Y = A · B
 | 1 🟢 | 1 🟢 | 1 🟢 |
 
 Features
-
+--------
 * 4 independent 2-input AND gates
 * TTL-compatible operation
 * +5V supply voltage
@@ -173,15 +179,14 @@ Features
 * Widely used in digital decision and control circuits
 
 🎯Applications
-
+   -----------
 * Decision-making circuits
 * Security systems
 * Microcontroller applications
 * Industrial automation systems
 
 7408 Pin Configuration
-
-
+----------------------
        +---U---+
 1A   1 |       | 14 VCC (+5V)
 1B   2 |       | 13 4B
@@ -193,14 +198,13 @@ GND  7 |       |  8 3Y
        +-------+
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 🔷 7432 OR Gate IC
-
 📌 Overview
-
+    -------
 The 7432 IC contains four independent 2-input OR gates.
-
 An OR gate produces a HIGH output when at least one of its inputs is HIGH.
 
 🖼️ Logic Equation
+    -------------
 Y = A + B
 
 or
@@ -208,6 +212,7 @@ or
 Y = A OR B
 
 📋 Truth Table
+    -----------
 | A    | B    |   Y   |
 | ---- | ---- | ----- |
 | 0 🔴 | 0 🔴 | 0 🔴 |
@@ -216,7 +221,8 @@ Y = A OR B
 | 1 🟢 | 1 🟢 | 1 🟢 |
 
 
-⭐ Features
+⭐ Features 
+    -------
 * 4 independent 2-input OR gates
 * TTL-compatible operation
 * 5V supply voltage
@@ -225,6 +231,7 @@ Y = A OR B
 * DIP-14 package
 
 🎯 Applications
+    -----------
 * Digital logic circuits
 * Signal combining
 * Alarm and monitoring systems
@@ -237,7 +244,8 @@ Y = A OR B
              )≥1── Y
       B ───/
 
-7432 Pin Configuration
+7432 Pin Configuration 
+----------------------
        +---U---+
  1A  1 |       | 14 VCC (+5V)
  1B  2 |       | 13 4B
