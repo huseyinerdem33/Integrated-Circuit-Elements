@@ -961,3 +961,85 @@ HIGH = LED OFF
 | Easier for beginners | Often used in commercial circuits |
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+# Button Controlled LED using Internal Pull-Up Resistor
+
+This project demonstrates how to control an LED using a push button with Arduino's **internal pull-up resistor**.
+
+## Project Description
+
+Instead of using an external pull-up resistor, Arduino's built-in **INPUT_PULLUP** mode is enabled. In this configuration:
+
+* The button pin normally reads **HIGH**.
+* When the button is pressed, it connects the pin to **GND**, causing it to read **LOW**.
+* The program uses an **if-else** statement to determine whether the LED should be turned on or off.
+
+
+## Logic
+
+* Button Released → Input = HIGH → LED OFF
+* Button Pressed → Input = LOW → LED ON
+
+## Learning Objectives
+
+* Using `INPUT_PULLUP`
+* Reading digital inputs
+* Using `if-else` statements
+* Controlling digital outputs
+
+/*
+==================================================
+Project Name : Button Controlled LED
+Author       : Hüseyin ERDEM
+Board        : Arduino UNO
+
+Description:
+This project demonstrates how to use the
+Arduino internal pull-up resistor.
+
+When the button is pressed:
+    LED turns ON.
+
+When the button is released:
+    LED turns OFF.
+
+The project uses an if-else statement
+to control the LED.
+==================================================
+*/
+
+// Pin connected to the push button
+const int buttonPin = 2;
+
+// Pin connected to the LED
+const int ledPin = 13;
+
+// Variable to store button state
+int buttonState = HIGH;
+
+void setup()
+{
+    // Configure the button pin using the internal pull-up resistor
+    pinMode(buttonPin, INPUT_PULLUP);
+
+    // Configure the LED pin as an output
+    pinMode(ledPin, OUTPUT);
+}
+
+void loop()
+{
+    // Read the current state of the button
+    buttonState = digitalRead(buttonPin);
+
+    // If the button is pressed (LOW)
+    if (buttonState == LOW)
+    {
+        // Turn the LED ON
+        digitalWrite(ledPin, HIGH);
+    }
+    else
+    {
+        // Otherwise, turn the LED OFF
+        digitalWrite(ledPin, LOW);
+    }
+}
