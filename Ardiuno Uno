@@ -719,3 +719,169 @@ Mastering these commands will enable you to build projects involving:
 * 📶 IoT Applications
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+# Arduino Example Projects
+
+This repository contains beginner-friendly Arduino projects written in C++ using the Arduino IDE.
+
+## Projects Included
+
+- LED Running Light (Knight Rider Effect)
+- Traffic Light System with Pedestrian Crossing
+
+## Requirements
+
+- Arduino UNO (or compatible board)
+- Arduino IDE
+- LEDs
+- 330Ω Resistors
+- Breadboard
+- Jumper Wires
+
+## Author
+
+Hüseyin ERDEM
+
+## License
+
+This project is open-source and available for educational purposes.
+
+/*
+==================================================
+Project Name : LED Running Light
+Author       : Hüseyin ERDEM
+Board        : Arduino UNO
+Description  :
+This project creates a running LED animation.
+The LEDs move from left to right and then
+back from right to left repeatedly.
+==================================================
+*/
+
+// Store all LED pin numbers in an array
+const byte ledPins[] = {2, 3, 4, 5, 6, 7, 8, 9};
+
+// Calculate the number of LEDs automatically
+const byte ledCount = sizeof(ledPins) / sizeof(ledPins[0]);
+
+// Delay time between LEDs
+const int speedDelay = 120;
+
+void setup()
+{
+    // Configure every LED pin as OUTPUT
+    for (byte i = 0; i < ledCount; i++)
+    {
+        pinMode(ledPins[i], OUTPUT);
+    }
+}
+
+void loop()
+{
+    // Move LEDs from left to right
+    for (byte i = 0; i < ledCount; i++)
+    {
+        digitalWrite(ledPins[i], HIGH); // Turn ON current LED
+        delay(speedDelay);              // Wait
+        digitalWrite(ledPins[i], LOW);  // Turn OFF current LED
+    }
+
+    // Move LEDs from right to left
+    for (int i = ledCount - 2; i > 0; i--)
+    {
+        digitalWrite(ledPins[i], HIGH); // Turn ON current LED
+        delay(speedDelay);              // Wait
+        digitalWrite(ledPins[i], LOW);  // Turn OFF current LED
+    }
+}
+
+/*
+==================================================
+Project Name : Traffic Light System with Pedestrian Crossing
+Author       : Hüseyin ERDEM
+Board        : Arduino UNO
+
+Description:
+This Arduino project simulates a real-world traffic
+light system with pedestrian crossing signals.
+
+Operation:
+1. Vehicles receive a green light and pedestrians wait.
+2. Vehicles receive a yellow light as a warning.
+3. Vehicles stop at the red light.
+4. Pedestrians receive a green light to cross.
+5. The cycle repeats continuously.
+==================================================
+*/
+
+// Vehicle traffic light pins
+const int vehicleRed = 2;
+const int vehicleYellow = 3;
+const int vehicleGreen = 4;
+
+// Pedestrian traffic light pins
+const int pedestrianRed = 5;
+const int pedestrianGreen = 6;
+
+void setup()
+{
+    // Configure vehicle LEDs as outputs
+    pinMode(vehicleRed, OUTPUT);
+    pinMode(vehicleYellow, OUTPUT);
+    pinMode(vehicleGreen, OUTPUT);
+
+    // Configure pedestrian LEDs as outputs
+    pinMode(pedestrianRed, OUTPUT);
+    pinMode(pedestrianGreen, OUTPUT);
+}
+
+void loop()
+{
+    // ===============================
+    // Vehicles can move
+    // ===============================
+    digitalWrite(vehicleGreen, HIGH);
+    digitalWrite(vehicleYellow, LOW);
+    digitalWrite(vehicleRed, LOW);
+
+    digitalWrite(pedestrianGreen, LOW);
+    digitalWrite(pedestrianRed, HIGH);
+
+    delay(5000);
+
+    // ===============================
+    // Vehicle warning phase
+    // ===============================
+    digitalWrite(vehicleGreen, LOW);
+    digitalWrite(vehicleYellow, HIGH);
+
+    delay(2000);
+
+    // ===============================
+    // Vehicles must stop
+    // ===============================
+    digitalWrite(vehicleYellow, LOW);
+    digitalWrite(vehicleRed, HIGH);
+
+    delay(1000);
+
+    // ===============================
+    // Pedestrians can cross
+    // ===============================
+    digitalWrite(pedestrianRed, LOW);
+    digitalWrite(pedestrianGreen, HIGH);
+
+    delay(5000);
+
+    // ===============================
+    // Pedestrians must stop
+    // ===============================
+    digitalWrite(pedestrianGreen, LOW);
+    digitalWrite(pedestrianRed, HIGH);
+
+    delay(1000);
+
+    // The loop repeats automatically
+}
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
