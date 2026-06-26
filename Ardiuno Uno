@@ -885,3 +885,79 @@ void loop()
 }
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+# RGB LED: Common Anode vs Common Cathode
+
+## What is an RGB LED?
+
+An RGB LED contains three LEDs inside a single package:
+
+- Red (R)
+- Green (G)
+- Blue (B)
+
+By adjusting the brightness of each color, millions of different colors can be created.
+
+---
+
+## Common Cathode RGB LED
+
+In a **Common Cathode** RGB LED:
+
+- All negative terminals are connected together.
+- The common pin is connected to **GND**.
+- A color turns **ON** when its Arduino pin is set to **HIGH**.
+
+### Connection
+
+Common Pin → GND
+
+| Color | Arduino Pin |
+|--------|-------------|
+| Red | D9 |
+| Green | D10 |
+| Blue | D11 |
+
+Logic:
+
+HIGH = LED ON
+
+LOW = LED OFF
+
+---
+
+## Common Anode RGB LED
+
+In a **Common Anode** RGB LED:
+
+- All positive terminals are connected together.
+- The common pin is connected to **+5V**.
+- A color turns **ON** when its Arduino pin is set to **LOW**.
+
+### Connection
+
+Common Pin → +5V
+
+| Color | Arduino Pin |
+|--------|-------------|
+| Red | D9 |
+| Green | D10 |
+| Blue | D11 |
+
+Logic:
+
+LOW = LED ON
+
+HIGH = LED OFF
+
+---
+
+## Main Difference
+
+|    Common Cathode    |    Common Anode    |
+|----------------------|-----------------------------------|
+| Common pin → GND     |            Common pin → +5V       |
+| HIGH turns LED ON    |            LOW turns LED ON       |
+| Easier for beginners | Often used in commercial circuits |
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
