@@ -1263,21 +1263,208 @@ Serial.begin(9600);
 
 In this project, the correct baud rate is **9600 Baud**.
 
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+# Arduino `map()` Function
+
+
+The `map()` function is used to convert a number from one range to another. It is especially useful when working with analog sensors such as potentiometers, joysticks, or light sensors.
+
+For example, the Arduino's `analogRead()` function returns values between **0 and 1023**. If your application requires a different range, such as **0 to 255** for LED brightness or **0 to 180** for servo motors, the `map()` function can perform this conversion.
+
 ---
 
-# Conclusion
+# Syntax
 
-This project demonstrates the basics of reading analog input values and displaying them through the Arduino Serial Monitor.
+```cpp
+map(value, fromLow, fromHigh, toLow, toHigh);
+```
 
-By completing this example, you will learn:
+ Parameters
 
-- How to read analog values using `analogRead()`
-- How to initialize serial communication with `Serial.begin()`
-- How to display data using `Serial.println()`
-- How to monitor sensor values in real time
-- How to use the Serial Monitor for debugging and data visualization
+|  Parameter |             Description            |
+|------------|------------------------------------|
+| `value`    |        The value to convert.       |
+| `fromLow`  | Lower limit of the original range. |
+| `fromHigh` | Upper limit of the original range. |
+| `toLow`    |  Lower limit of the target range.  |
+| `toHigh`   |  Upper limit of the target range.  |
 
-This example serves as a fundamental building block for many Arduino projects involving analog sensors and real-time data monitoring.
+------------------
 
----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# Return Value
+
+The function returns a value that has been linearly mapped from one range to another.
+
+----------------
+
+# Example Code
+
+```cpp
+const int potentiometer = A0;
+
+void setup()
+{
+    Serial.begin(9600);
+}
+
+void loop()
+{
+    int sensorValue = analogRead(potentiometer);
+
+    int mappedValue = map(sensorValue, 0, 1023, 0, 255);
+
+    Serial.print("Analog Value: ");
+    Serial.print(sensorValue);
+
+    Serial.print("   Mapped Value: ");
+    Serial.println(mappedValue);
+
+    delay(500);
+}
+```
+
+--------------------------
+
+# Code Explanation
+
+## 1. Defining the Analog Pin
+
+```cpp
+const int potentiometer = A0;
+```
+
+The potentiometer is connected to the **A0** analog input pin.
+
+-----------------------------------------------
+
+## 2. Initializing Serial Communication
+
+```cpp
+Serial.begin(9600);
+```
+
+Starts serial communication at **9600 Baud**, allowing data to be displayed in the Serial Monitor.
+
+----------------------------------------
+
+## 3. Reading the Analog Value
+
+```cpp
+int sensorValue = analogRead(potentiometer);
+```
+
+Reads the analog value from the potentiometer.
+
+Possible values:
+
+- Minimum: **0**
+- Maximum: **1023**
+
+----------------------------------------
+
+## 4. Mapping the Value
+
+```cpp
+int mappedValue = map(sensorValue, 0, 1023, 0, 255);
+```
+
+This converts the value from:
+
+```
+0 → 1023
+```
+
+to
+
+```
+0 → 255
+```
+
+Example conversions:
+
+| Analog Value | Mapped Value |
+|-------------:|-------------:|
+| 0 | 0 |
+| 256 | 64 |
+| 512 | 128 |
+| 768 | 191 |
+| 1023 | 255 |
+
+-------------------------------------
+
+## 5. Displaying the Results
+
+```cpp
+Serial.print("Analog Value: ");
+Serial.print(sensorValue);
+
+Serial.print("   Mapped Value: ");
+Serial.println(mappedValue);
+```
+
+The Serial Monitor displays both the original analog value and the mapped value.
+
+Example output:
+
+```
+Analog Value: 0     Mapped Value: 0
+Analog Value: 215   Mapped Value: 53
+Analog Value: 512   Mapped Value: 128
+Analog Value: 740   Mapped Value: 184
+Analog Value: 1023  Mapped Value: 255
+```
+
+-------------------------------------
+
+# Program Flow
+
+```
+Arduino Starts
+      │
+      ▼
+Initialize Serial Communication
+      │
+      ▼
+Read Analog Value (0–1023)
+      │
+      ▼
+Convert Value Using map()
+      │
+      ▼
+Display Original and Mapped Values
+      │
+      ▼
+Repeat Continuously
+```
+
+-----------------------------------------------
+
+# Common Applications of `map()`
+
+The `map()` function is widely used in Arduino projects, including:
+
+- Controlling LED brightness (0–255)
+- Rotating servo motors (0–180°)
+- Scaling joystick values
+- Converting sensor readings
+- Motor speed control using PWM
+- Robotics and automation projects
+
+---
+
+# Notes
+
+- The `map()` function performs **linear scaling** between two ranges.
+- It **does not constrain** values. If the input exceeds the original range, the output may also exceed the target range.
+- To keep values within a specific range, combine `map()` with the `constrain()` function.
+
+Example:
+
+```cpp
+sensorValue = constrain(sensorValue, 0, 1023);
+int mappedValue = map(sensorValue, 0, 1023, 0, 255);
+```
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
