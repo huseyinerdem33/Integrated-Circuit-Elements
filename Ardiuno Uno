@@ -1384,8 +1384,8 @@ to
 Example conversions:
 
 | Analog Value | Mapped Value |
-|-------------:|-------------:|
-| 0 | 0 |
+|--------------|--------------|
+| 0            |  0          |
 | 256 | 64 |
 | 512 | 128 |
 | 768 | 191 |
@@ -1465,6 +1465,232 @@ Example:
 sensorValue = constrain(sensorValue, 0, 1023);
 int mappedValue = map(sensorValue, 0, 1023, 0, 255);
 ```
+# 💡 Arduino `map()` Function Example: LED Blink Speed Control
+
+## Project Overview
+
+This project demonstrates how to use the **Arduino `map()` function** to control an LED's blinking speed based on the value read from a potentiometer.
+
+The potentiometer is connected to the **A0 analog input**, and the LED is connected to **digital pin 9**. As the potentiometer is rotated, the analog value changes between **0 and 1023**. The `map()` function converts this value into a delay range of **0 to 2046 milliseconds**, allowing the LED to blink faster or slower.
+
+---
+
+# Arduino Code
+
+```cpp
+const int analogGiris = A0;
+const int ledPin = 9;
+
+void setup()
+{
+    pinMode(analogGiris, INPUT);
+    Serial.begin(9600);
+    pinMode(ledPin, OUTPUT);
+}
+
+void loop()
+{
+    int deger = analogRead(analogGiris);
+
+    int ledDeger = map(deger, 0, 1023, 0, 2046);
+
+    digitalWrite(ledPin, HIGH);
+    delay(ledDeger);
+
+    digitalWrite(ledPin, LOW);
+    delay(ledDeger);
+}
+```
+
+---
+
+# Code Explanation
+
+## 1. Defining the Pins
+
+```cpp
+const int analogGiris = A0;
+const int ledPin = 9;
+```
+
+- `analogGiris` represents the **A0 analog input** where the potentiometer is connected.
+- `ledPin` represents **digital pin 9**, where the LED is connected.
+
+---
+
+## 2. The `setup()` Function
+
+```cpp
+void setup()
+{
+    pinMode(analogGiris, INPUT);
+    Serial.begin(9600);
+    pinMode(ledPin, OUTPUT);
+}
+```
+
+The `setup()` function runs only once when the Arduino starts.
+
+### `pinMode(analogGiris, INPUT);`
+
+Configures the A0 pin as an input.
+
+### `Serial.begin(9600);`
+
+Starts serial communication at **9600 Baud**.
+
+### `pinMode(ledPin, OUTPUT);`
+
+Configures digital pin **9** as an output so the LED can be controlled.
+
+---
+
+## 3. Reading the Potentiometer
+
+```cpp
+int deger = analogRead(analogGiris);
+```
+
+Reads the analog value from the potentiometer.
+
+Possible values:
+
+| Potentiometer Position  |    Analog Value   |
+|-------------------------|-------------------|
+|        Minimum          |          0        |
+|        Middle           | Approximately 512 |
+|        Maximum          |         1023      |
+
+---
+
+## 4. Using the `map()` Function
+
+```cpp
+int ledDeger = map(deger, 0, 1023, 0, 2046);
+```
+
+The `map()` function converts the potentiometer value from:
+
+```
+0 → 1023
+```
+
+to
+
+```
+0 → 2046 milliseconds
+```
+
+Example conversions:
+
+| Analog Value | Delay (ms) |
+|-------------:|-----------:|
+| 0 | 0 |
+| 256 | 512 |
+| 512 | 1024 |
+| 768 | 1536 |
+| 1023 | 2046 |
+
+As the potentiometer rotates, the LED delay changes proportionally.
+
+---
+
+## 5. Turning the LED On
+
+```cpp
+digitalWrite(ledPin, HIGH);
+```
+
+Turns the LED **ON**.
+
+---
+
+## 6. Waiting
+
+```cpp
+delay(ledDeger);
+```
+
+Keeps the LED ON for the mapped delay time.
+
+---
+
+## 7. Turning the LED Off
+
+```cpp
+digitalWrite(ledPin, LOW);
+```
+
+Turns the LED **OFF**.
+
+---
+
+## 8. Waiting Again
+
+```cpp
+delay(ledDeger);
+```
+
+Keeps the LED OFF for the same amount of time.
+
+The entire process repeats continuously.
+
+---
+
+# Program Flow
+
+```text
+Arduino Starts
+      │
+      ▼
+Initialize Pins
+      │
+      ▼
+Read Potentiometer Value
+      │
+      ▼
+Map Value (0–1023 → 0–2046 ms)
+      │
+      ▼
+Turn LED ON
+      │
+      ▼
+Wait
+      │
+      ▼
+Turn LED OFF
+      │
+      ▼
+Wait
+      │
+      ▼
+Repeat Forever
+```
+
+---
+
+# How It Works
+
+- Rotating the potentiometer changes the analog value.
+- The `map()` function converts this value into a delay time.
+- Smaller delay values make the LED blink **faster**.
+- Larger delay values make the LED blink **slower**.
+
+This demonstrates how `map()` can transform sensor readings into useful output values for controlling hardware.
+
+---
+
+# Applications
+
+This technique is commonly used in:
+
+- LED blink speed control
+- PWM brightness adjustment
+- Servo motor angle control
+- DC motor speed control
+- Robotics projects
+- Sensor calibration
+- Interactive Arduino projects
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
