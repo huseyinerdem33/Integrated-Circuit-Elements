@@ -1046,3 +1046,238 @@ void loop()
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+Analog Input and Serial Monitor (Arduino)
+
+Functions Used
+
+|     Function        |                        Description                        |
+|---------------------|-----------------------------------------------------------|
+| `pinMode()`         |          Configures a pin as an input or output.          |
+| `analogRead()`      |           Reads an analog value between 0 and 1023.       |
+| `Serial.begin()`    |             Initializes serial communication.             |
+| `Serial.println()`  | Sends data to the Serial Monitor and moves to a new line. |
+
+
+ Arduino Code
+
+```cpp
+const int analogInput = A0;
+
+void setup()
+{
+    pinMode(analogInput, INPUT);
+    Serial.begin(9600);
+}
+
+void loop()
+{
+    int value = analogRead(analogInput);
+
+    Serial.println("Value:");
+    Serial.println(value);
+}
+
+
+-----------------------------------------
+
+# Code Explanation
+
+## 1. Defining the Analog Input Pin
+
+```cpp
+const int analogInput = A0;
+```
+
+- The `const` keyword defines a constant variable.
+- `analogInput` represents the **A0** analog pin.
+- Using a named constant improves code readability and makes maintenance easier.
+
+---
+
+## 2. The `setup()` Function
+
+```cpp
+void setup()
+{
+    pinMode(analogInput, INPUT);
+    Serial.begin(9600);
+}
+```
+
+The `setup()` function runs **only once** when the Arduino starts.
+-------------------------------
+
+### `pinMode(analogInput, INPUT);`
+
+This line configures the A0 pin as an input.
+
+> **Note:** When using `analogRead()`, calling `pinMode()` is not strictly required because analog pins are inputs by default. However, including it makes the code easier to understand, especially for beginners.
+--------------------------------
+
+### `Serial.begin(9600);`
+
+Initializes serial communication between the Arduino and the computer.
+
+- Communication speed: **9600 Baud**
+
+The **Serial Monitor** must also be set to **9600 Baud**.
+
+---
+------------------------------------
+## 3. The `loop()` Function
+
+```cpp
+void loop()
+{
+```
+
+The `loop()` function runs continuously as long as the Arduino is powered.
+
+---
+-------------------------------------------
+## 4. Reading the Analog Value
+
+```cpp
+int value = analogRead(analogInput);
+```
+
+This line reads the voltage from the A0 pin.
+
+The Arduino's built-in **10-bit Analog-to-Digital Converter (ADC)** converts the analog voltage into a digital value.
+
+| Voltage   |    Digital Value  |
+|-----------|-------------------|
+|    0 V    |         0         |
+|    2.5 V  | Approximately 512 |
+|    5 V    |        1023       |
+
+---------------------------
+
+## 5. Sending a Label to the Serial Monitor
+
+```cpp
+Serial.println("Value:");
+```
+
+This prints the text **"Value:"** to the Serial Monitor.
+
+Output:
+
+```
+Value:
+```
+
+---
+
+## 6. Displaying the Analog Value
+
+```cpp
+Serial.println(value);
+```
+
+This prints the analog value read from the A0 pin.
+
+Example output:
+
+```
+Value:
+135
+
+Value:
+428
+
+Value:
+512
+
+Value:
+790
+
+Value:
+1023
+```
+
+As the potentiometer is rotated or the sensor value changes, the displayed values update in real time.
+
+---
+--------------------------------------------
+# Program Flow
+
+```
+Arduino Starts
+      │
+      ▼
+setup() executes
+      │
+      ▼
+Serial communication starts
+      │
+      ▼
+loop() runs continuously
+      │
+      ▼
+Read analog value from A0
+      │
+      ▼
+Display the value on the Serial Monitor
+      │
+      ▼
+Repeat continuously
+```
+
+-------------------------------------
+
+# What is Analog Input?
+
+The Arduino Uno provides **A0–A5** pins for reading analog signals.
+
+These pins can be connected to devices such as:
+
+- Potentiometers
+- LDR (Light Dependent Resistor)
+- LM35 Temperature Sensor
+- Gas Sensors
+- Humidity Sensors
+- Pressure Sensors
+- Analog Joysticks
+
+The `analogRead()` function returns values between **0 and 1023**, thanks to the Arduino Uno's **10-bit Analog-to-Digital Converter (ADC)**.
+
+--------------------------------------
+
+# What is the Serial Monitor?
+
+The **Serial Monitor** is a built-in tool in the Arduino IDE that displays data sent from the Arduino in real time.
+
+It is commonly used for:
+
+- Monitoring sensor values
+- Testing programs
+- Debugging code
+- Exchanging data between the Arduino and the computer
+
+When opening the Serial Monitor, make sure the baud rate matches the value specified in:
+
+```cpp
+Serial.begin(9600);
+```
+
+In this project, the correct baud rate is **9600 Baud**.
+
+---
+
+# Conclusion
+
+This project demonstrates the basics of reading analog input values and displaying them through the Arduino Serial Monitor.
+
+By completing this example, you will learn:
+
+- How to read analog values using `analogRead()`
+- How to initialize serial communication with `Serial.begin()`
+- How to display data using `Serial.println()`
+- How to monitor sensor values in real time
+- How to use the Serial Monitor for debugging and data visualization
+
+This example serves as a fundamental building block for many Arduino projects involving analog sensors and real-time data monitoring.
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
