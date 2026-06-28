@@ -2525,5 +2525,147 @@ Repeat Forever
 > The communication protocol is still I2C.
 > ```
 
+# 📟 LCD Menu System with a Potentiometer (Arduino)
+
+## 📖 Introduction
+
+This project demonstrates how to control a **16×2 I2C LCD display** using a **potentiometer** connected to an Arduino.
+
+The potentiometer is connected to the **A0 analog input**, where the Arduino continuously reads the analog voltage (0–1023). The measured value is then mapped into several menu options using the `map()` function.
+
+A `switch-case` statement determines which message should be displayed on the LCD based on the potentiometer position. As the potentiometer is rotated, the displayed text changes automatically, creating a simple menu navigation system.
+
+This project demonstrates the following Arduino concepts:
+
+- Reading analog values with `analogRead()`
+- Using the `map()` function
+- Working with the `switch-case` statement
+- Displaying text on an I2C LCD
+- Creating a simple menu controlled by a potentiometer
+
+---
+
+## 🔧 Hardware Required
+
+| Component | Quantity |
+|:----------|:--------:|
+| Arduino Uno (or compatible) | 1 |
+| 16×2 I2C LCD Display | 1 |
+| 10kΩ Potentiometer | 1 |
+| Jumper Wires | Several |
+
+---
+
+## 📚 Required Libraries
+
+```cpp
+#include <Wire.h>
+#include <LiquidCrystal_I2C.h>
+```
+
+- **Wire.h** enables I2C communication.
+- **LiquidCrystal_I2C.h** controls the LCD display.
+
+------------------------------------------------------------------------
+
+# 💻 Example Code
+
+```cpp
+#include <Wire.h>
+#include <LiquidCrystal_I2C.h>
+
+LiquidCrystal_I2C lcd(0x27, 16, 2);
+
+void setup()
+{
+    lcd.init();
+    lcd.backlight();
+}
+
+void loop()
+{
+    // Read the potentiometer value
+    int analogValue = analogRead(A0);
+
+    // Convert 0–1023 into 5 menu options (0–4)
+    int menu = map(analogValue, 0, 1023, 0, 4);
+
+    switch (menu)
+    {
+        case 0:
+            lcd.clear();
+            lcd.setCursor(3, 0);
+            lcd.print("Hello!");
+            break;
+
+        case 1:
+            lcd.clear();
+            lcd.setCursor(4, 0);
+            lcd.print("Arduino");
+            break;
+
+        case 2:
+            lcd.clear();
+            lcd.setCursor(3, 0);
+            lcd.print("I2C LCD");
+            break;
+
+        case 3:
+            lcd.clear();
+            lcd.setCursor(5, 0);
+            lcd.print("Menu 4");
+            break;
+
+        case 4:
+            lcd.clear();
+            lcd.setCursor(4, 0);
+            lcd.print("Goodbye");
+            break;
+
+        default:
+            lcd.clear();
+            break;
+    }
+
+    delay(250);
+}
+```
+
+----------------------------------------------------------------
+
+## ⚙️ How It Works
+
+1. The Arduino reads the potentiometer value from **A0**.
+2. The value ranges from **0 to 1023**.
+3. The `map()` function converts this range into **0–4**.
+4. The `switch-case` statement selects the corresponding menu.
+5. The LCD is cleared before displaying the new message.
+6. The selected text appears on the screen.
+
+---
+
+## 📺 Example Output
+
+| Potentiometer Position | LCD Display |
+|:-----------------------:|:------------|
+| 0 | **Hello!** |
+| 1 | **Arduino** |
+| 2 | **I2C LCD** |
+| 3 | **Menu 4** |
+| 4 | **Goodbye** |
+
+---
+
+## 💡 Summary
+
+This project demonstrates how to combine:
+
+- Analog input (`analogRead()`)
+- Data mapping (`map()`)
+- Decision making (`switch-case`)
+- LCD text display
+- I2C communication
+
+to create a simple interactive menu system controlled by a potentiometer.
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
