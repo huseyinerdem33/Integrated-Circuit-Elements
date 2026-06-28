@@ -1958,4 +1958,312 @@ This project demonstrates the basic use of a buzzer and can be extended for many
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+# 📟 SH1106 OLED Display with Arduino
 
+> This example demonstrates how to display two lines of text on a **1.3" SH1106 I2C OLED display** using the **U8g2** library.
+
+---
+
+# 📂 Required Libraries
+
+| 📚 Library | 📝 Description |
+|:-----------|:---------------|
+| `Arduino.h` | Provides the core Arduino functions. |
+| `U8g2lib.h` | Controls the SH1106 OLED display. |
+| `Wire.h` | Enables I2C communication. |
+
+```cpp
+#include <Arduino.h>
+#include <U8g2lib.h>
+#include <Wire.h>
+```
+
+---
+
+# 🖥️ Creating the OLED Object
+
+```cpp
+U8G2_SH1106_128X64_NONAME_F_HW_I2C u8g2(
+    U8G2_R0,
+    /* reset=*/ U8X8_PIN_NONE
+);
+```
+
+## Description
+
+| Parameter | Description |
+|:----------|:------------|
+| `U8G2_SH1106_128X64_NONAME_F_HW_I2C` | SH1106 OLED driver for a 128×64 display |
+| `U8G2_R0` | No screen rotation (0° orientation) |
+| `U8X8_PIN_NONE` | No reset pin is used |
+
+---
+
+# ⚙️ setup()
+
+```cpp
+void setup()
+{
+    u8g2.begin();
+    u8g2.enableUTF8Print();
+}
+```
+
+## 🔹 `u8g2.begin();`
+
+Initializes the OLED display.
+
+- ✅ Starts I2C communication.
+- ✅ Allocates the display buffer.
+- ✅ Prepares the display for use.
+
+---
+
+## 🔹 `u8g2.enableUTF8Print();`
+
+Enables UTF-8 character support.
+
+This allows special characters such as:
+
+```text
+Ç  Ğ  İ  Ö  Ş  Ü
+```
+
+to be displayed correctly.
+
+---
+
+# 🔄 loop()
+
+```cpp
+void loop()
+{
+    u8g2.clearBuffer();
+
+    u8g2.setFont(u8g2_font_ncenB14_tr);
+
+    u8g2.setCursor(0,24);
+    u8g2.print("Huseyin");
+
+    u8g2.setCursor(0,50);
+    u8g2.print("ERDEM");
+
+    u8g2.sendBuffer();
+
+    delay(1000);
+}
+```
+
+---
+
+# 🧹 clearBuffer()
+
+```cpp
+u8g2.clearBuffer();
+```
+
+Clears the **display buffer** stored in memory.
+
+> The physical OLED screen is **not updated immediately**. Only the buffer is cleared.
+
+---
+
+# 🔤 setFont()
+
+```cpp
+u8g2.setFont(u8g2_font_ncenB14_tr);
+```
+
+Selects the font used for drawing text.
+
+Features of this font:
+
+- Supports Turkish characters
+- Bold style
+- Approximately **14 pixels** high
+
+---
+
+# 📍 setCursor()
+
+```cpp
+u8g2.setCursor(x, y);
+```
+
+Sets the starting position of the text.
+
+| Parameter | Description |
+|:----------|:------------|
+| `x` | Horizontal position |
+| `y` | Vertical position |
+
+### First Line
+
+```cpp
+u8g2.setCursor(0,24);
+```
+
+```
+X = 0
+Y = 24
+```
+
+---
+
+### Second Line
+
+```cpp
+u8g2.setCursor(0,50);
+```
+
+```
+X = 0
+Y = 50
+```
+
+---
+
+# 📝 print()
+
+```cpp
+u8g2.print("Huseyin");
+```
+
+Writes the text **"Huseyin"** into the display buffer.
+
+```cpp
+u8g2.print("ERDEM");
+```
+
+Writes **"ERDEM"** on the second line.
+
+---
+
+# 📤 sendBuffer()
+
+```cpp
+u8g2.sendBuffer();
+```
+
+Transfers everything stored in the buffer to the OLED display.
+
+### Display Update Process
+
+```text
+clearBuffer()
+
+      ↓
+
+Draw Text
+
+      ↓
+
+sendBuffer()
+
+      ↓
+
+OLED Display Updated
+```
+
+Using a buffer prevents visible screen flickering.
+
+---
+
+# ⏳ delay()
+
+```cpp
+delay(1000);
+```
+
+Pauses the program for **1000 milliseconds (1 second).**
+
+---
+
+# 🔄 Program Flow
+
+```text
+          Start
+            │
+            ▼
+   Initialize OLED
+            │
+            ▼
+    Clear Buffer
+            │
+            ▼
+      Select Font
+            │
+            ▼
+    Print "Huseyin"
+            │
+            ▼
+     Print "ERDEM"
+            │
+            ▼
+    Update Display
+            │
+            ▼
+      Wait 1 Second
+            │
+            ▼
+       Repeat Forever
+```
+
+---
+
+# 📺 OLED Output
+
+```text
++----------------------------+
+|                            |
+| Huseyin                    |
+|                            |
+| ERDEM                      |
+|                            |
++----------------------------+
+```
+
+---
+
+# 📌 Functions Used
+
+| Function | Purpose |
+|:----------|:--------|
+| `begin()` | Initializes the OLED display. |
+| `enableUTF8Print()` | Enables UTF-8 character support. |
+| `clearBuffer()` | Clears the display buffer. |
+| `setFont()` | Selects the font. |
+| `setCursor()` | Sets the text position. |
+| `print()` | Writes text to the buffer. |
+| `sendBuffer()` | Sends the buffer to the OLED display. |
+| `delay()` | Pauses the program for a specified time. |
+
+---
+
+# 💡 Summary
+
+The program follows the sequence below:
+
+```text
+setup()
+
+├── Initialize OLED
+└── Enable UTF-8 Support
+
+↓
+
+loop()
+
+├── Clear Buffer
+├── Select Font
+├── Print First Line
+├── Print Second Line
+├── Update OLED Display
+└── Wait 1 Second
+
+↓
+
+Repeat Forever
+```
+
+> **Result:** The program continuously displays **"Huseyin"** and **"ERDEM"** on two separate lines of the SH1106 OLED display.
