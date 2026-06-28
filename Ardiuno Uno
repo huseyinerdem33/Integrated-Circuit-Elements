@@ -2267,3 +2267,45 @@ Repeat Forever
 ```
 
 > **Result:** The program continuously displays **"Huseyin"** and **"ERDEM"** on two separate lines of the SH1106 OLED display.
+
+> [!IMPORTANT]
+> ## 🔌 I2C Pins: SDA and SCL
+>
+> OLED displays using the **I2C communication protocol** require only two signal lines:
+>
+> | Pin | Full Name | Function |
+> |:----|:----------|:---------|
+> | **SDA** | Serial Data | Transfers data between the microcontroller and the OLED display. |
+> | **SCL** | Serial Clock | Provides the clock signal that synchronizes data transmission. |
+>
+> ### ⚠️ Important Note About **SCL** and **SCK**
+>
+> Some OLED modules label the clock pin as **SCK** instead of **SCL**.
+>
+> **This does NOT mean the display uses the SPI protocol.**
+>
+> On many manufacturers' boards, **SCK is simply another name for the I2C clock pin (SCL)** due to PCB labeling conventions or to keep the same board design compatible with both SPI and I2C versions.
+>
+> Therefore:
+>
+> ```text
+> SCL  =  SCK   (on many I2C OLED modules)
+> ```
+>
+> **Always check the display module's documentation or pin labels before wiring.** If the module is an **I2C version**, the pin labeled **SCK** should be connected to the microcontroller's **SCL** pin.
+>
+> ✅ **Summary**
+>
+> ```text
+> I2C Communication
+>
+> SDA  → Data Line
+> SCL  → Clock Line
+>
+> Some manufacturers print:
+>
+> SCK = SCL
+>
+> This is only a different label.
+> The communication protocol is still I2C.
+> ```
