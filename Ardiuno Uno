@@ -3187,3 +3187,333 @@ Example output:
 ```
 
 ---
+# Program Flow
+
+```text
+      Temperature Sensor
+              │
+              ▼
+        analogRead()
+              │
+              ▼
+       ADC Value (0–1023)
+              │
+              ▼
+      Voltage Calculation
+              │
+              ▼
+    Temperature Calculation
+              │
+              ▼
+     Serial.println()
+              │
+              ▼
+       Serial Monitor
+```
+
+---
+
+# Issues in the Code
+
+## 1. `sensorPin` is Not Defined
+
+The program will not compile because `sensorPin` has not been declared.
+
+Add:
+
+```cpp
+const int sensorPin = A0;
+```
+
+---
+
+## 2. Typographical Error
+
+Incorrect:
+
+```cpp
+Serila.println(sicaklik);
+```
+
+Correct:
+
+```cpp
+Serial.println(sicaklik);
+```
+
+---
+
+## 3. No Delay Between Readings
+
+Without a delay, the Arduino prints thousands of values per second, making the Serial Monitor difficult to read.
+
+A small delay is recommended:
+
+```cpp
+delay(500);
+```
+
+or
+
+```cpp
+delay(1000);
+```
+
+---
+
+# Corrected Code
+
+```cpp
+const int sensorPin = A0;
+
+int sensorDeger = 0;
+float gerilim = 0;
+float sicaklik = 0;
+
+void setup() {
+    Serial.begin(9600);
+}
+
+void loop() {
+
+    sensorDeger = analogRead(sensorPin);
+
+    gerilim = (sensorDeger / 1024.0) * 5000.0;
+
+    sicaklik = gerilim / 10.0;
+
+    Serial.println(sicaklik);
+
+    delay(500);
+}
+```
+
+---
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+# 💡 LDR (Light Dependent Resistor) with Arduino
+
+An **LDR (Light Dependent Resistor)**, also known as a **photoresistor**, is an electronic component whose resistance changes according to the intensity of light falling on its surface.
+
+When the surrounding environment becomes brighter, the resistance of the LDR decreases. In darker conditions, its resistance increases. This property makes the LDR an ideal sensor for applications involving light detection and automatic lighting systems.
+
+---
+
+# What is an LDR?
+
+An LDR is a passive analog sensor that converts changes in light intensity into changes in electrical resistance.
+
+Unlike digital sensors, an LDR does not directly produce digital values. Instead, it is commonly connected as part of a **voltage divider**, allowing a microcontroller such as an Arduino to measure the resulting analog voltage.
+
+---
+
+# Key Features
+
+| Feature | Description |
+|----------|-------------|
+| Sensor Type | Analog Light Sensor |
+| Output | Analog Voltage |
+| Operating Voltage | 3.3V – 5V (depends on the circuit) |
+| Measurement | Light Intensity |
+| Response Time | Moderate |
+| Cost | Low |
+| Interface | Analog Input |
+
+---
+
+# Working Principle
+
+The resistance of an LDR changes depending on the amount of light.
+
+```text
+Bright Light
+      ↓
+Low Resistance
+      ↓
+Higher Output Voltage (Voltage Divider)
+      ↓
+Higher ADC Value
+
+Darkness
+      ↓
+High Resistance
+      ↓
+Lower Output Voltage
+      ↓
+Lower ADC Value
+```
+
+> **Note:** Depending on how the voltage divider is wired, the output behavior may be reversed.
+
+---
+
+# Pin Connection
+
+An LDR itself has only **two terminals** because it is simply a variable resistor.
+
+A common Arduino circuit uses a **10kΩ resistor** to create a voltage divider.
+
+```text
+          5V
+           │
+          LDR
+           │
+           ├──────── A0
+           │
+         10kΩ
+           │
+          GND
+```
+
+---
+
+# Arduino Wiring
+
+| Component | Arduino Pin |
+|------------|-------------|
+| LDR | 5V |
+| Junction (LDR + 10kΩ) | A0 |
+| 10kΩ Resistor | GND |
+
+---
+
+# How Arduino Reads an LDR
+
+The Arduino measures the analog voltage from the voltage divider.
+
+```text
+LDR
+ │
+ ▼
+Voltage Divider
+ │
+ ▼
+Analog Voltage
+ │
+ ▼
+Arduino ADC
+ │
+ ▼
+Digital Value (0–1023)
+ │
+ ▼
+Serial Monitor
+```
+
+---
+
+# Reading the Sensor
+
+The analog input is read using:
+
+```cpp
+int lightValue = analogRead(A0);
+```
+
+The returned value ranges from:
+
+```text
+0 → 1023
+```
+
+Typical values:
+
+| ADC Value | Light Level |
+|-----------|-------------|
+| 0–200 | Very Dark |
+| 200–500 | Dim Light |
+| 500–800 | Indoor Lighting |
+| 800–1023 | Bright Light |
+
+These ranges may vary depending on the specific LDR and resistor used.
+
+---
+
+# Example Arduino Code
+
+```cpp
+const int ldrPin = A0;
+
+int lightValue = 0;
+
+void setup()
+{
+    Serial.begin(9600);
+}
+
+void loop()
+{
+    lightValue = analogRead(ldrPin);
+
+    Serial.print("Light Level: ");
+    Serial.println(lightValue);
+
+    delay(500);
+}
+```
+
+---
+
+# Program Explanation
+
+### Declare the Sensor Pin
+
+```cpp
+const int ldrPin = A0;
+```
+
+Defines the analog pin connected to the LDR.
+
+---
+
+### Create a Variable
+
+```cpp
+int lightValue = 0;
+```
+
+Stores the analog reading from the sensor.
+
+---
+
+### Initialize Serial Communication
+
+```cpp
+Serial.begin(9600);
+```
+
+Starts communication with the Serial Monitor.
+
+---
+
+### Read the Sensor
+
+```cpp
+lightValue = analogRead(ldrPin);
+```
+
+Reads the analog voltage produced by the voltage divider.
+
+---
+
+### Print the Result
+
+```cpp
+Serial.println(lightValue);
+```
+
+Displays the measured light intensity.
+
+---
+
+### Delay
+
+```cpp
+delay(500);
+```
+
+Updates the measurement every half second.
+
+---
+
