@@ -2908,4 +2908,282 @@ void loop() {
     delay(1000);
 }
 ```
+# 🌡️ Reading an Analog Temperature Sensor with Arduino
 
+In this example, the Arduino reads an analog temperature sensor (such as the **LM35**) through one of its analog input pins.
+
+The program follows a simple workflow:
+
+1. Read the analog sensor value.
+2. Convert the ADC value into voltage.
+3. Convert the voltage into temperature.
+4. Display the result on the Serial Monitor.
+
+---
+
+# Source Code
+
+```cpp
+int sensorDeger = 0;
+float gerilim = 0;
+float sicaklik = 0;
+
+void setup() {
+    Serial.begin(9600);
+}
+
+void loop() {
+
+    sensorDeger = analogRead(sensorPin);
+
+    gerilim = (sensorDeger / 1024.0) * 5000.0;
+
+    sicaklik = gerilim / 10.0;
+
+    Serila.println(sicaklik);
+
+}
+```
+
+---
+
+# Line-by-Line Explanation
+
+## 1. Variable for the Sensor Reading
+
+```cpp
+int sensorDeger = 0;
+```
+
+This variable stores the analog value read from the sensor.
+
+The Arduino Uno uses a **10-bit Analog-to-Digital Converter (ADC)**.
+
+Therefore, the ADC can produce values between:
+
+```
+0 → 1023
+```
+
+Example:
+
+| Analog Value | Description |
+|--------------|-------------|
+| 0 | 0 Volts |
+| 512 | Approximately 2.5 Volts |
+| 1023 | Approximately 5 Volts |
+
+---
+
+## 2. Voltage Variable
+
+```cpp
+float gerilim = 0;
+```
+
+The analog reading will later be converted into a voltage value (in millivolts).
+
+Why use a **float**?
+
+Because the calculated voltage is usually not an integer.
+
+For example:
+
+```
+2.73 Volts
+```
+
+Floating-point variables preserve decimal precision.
+
+---
+
+## 3. Temperature Variable
+
+```cpp
+float sicaklik = 0;
+```
+
+After calculating the voltage, it is converted into temperature and stored in this variable.
+
+Example:
+
+```
+24.7 °C
+```
+
+---
+
+# The `setup()` Function
+
+```cpp
+void setup()
+{
+    Serial.begin(9600);
+}
+```
+
+The `setup()` function runs **only once** when the Arduino powers on or resets.
+
+Inside it,
+
+```cpp
+Serial.begin(9600);
+```
+
+initializes serial communication at **9600 baud**.
+
+This allows the Arduino to send data to the **Serial Monitor** on your computer.
+
+---
+
+# The `loop()` Function
+
+```cpp
+void loop()
+```
+
+The `loop()` function runs continuously as long as the Arduino is powered.
+
+The program repeatedly performs the following steps:
+
+```
+Read Sensor
+      ↓
+Calculate Voltage
+      ↓
+Calculate Temperature
+      ↓
+Print to Serial Monitor
+      ↓
+Repeat
+```
+
+---
+
+# Reading the Analog Input
+
+```cpp
+sensorDeger = analogRead(sensorPin);
+```
+
+This line reads the analog value from the specified input pin.
+
+For example,
+
+if **2 Volts** is applied to **A0**,
+
+the ADC will return approximately
+
+```
+409
+```
+
+> **Note:** The variable `sensorPin` has not been declared in the code. It should be defined before use:
+
+```cpp
+const int sensorPin = A0;
+```
+
+---
+
+# Voltage Calculation
+
+```cpp
+gerilim = (sensorDeger / 1024.0) * 5000.0;
+```
+
+This converts the ADC reading into **millivolts (mV)**.
+
+The conversion formula is:
+
+```
+Voltage = ADC × Reference Voltage / ADC Resolution
+```
+
+For this example:
+
+```
+Reference Voltage = 5000 mV
+ADC Resolution = 1024
+```
+
+Example:
+
+```
+ADC = 512
+```
+
+Calculation:
+
+```
+512 / 1024 = 0.5
+
+0.5 × 5000
+
+=
+
+2500 mV
+```
+
+---
+
+# Temperature Calculation
+
+```cpp
+sicaklik = gerilim / 10.0;
+```
+
+This formula is specifically valid for the **LM35 temperature sensor**.
+
+The LM35 outputs:
+
+```
+10 mV per 1°C
+```
+
+Example:
+
+```
+250 mV
+```
+
+Calculation:
+
+```
+250 / 10
+
+=
+
+25°C
+```
+
+---
+
+# Printing the Temperature
+
+The code currently contains the following line:
+
+```cpp
+Serila.println(sicaklik);
+```
+
+There is a typo.
+
+The correct statement is:
+
+```cpp
+Serial.println(sicaklik);
+```
+
+This prints the calculated temperature to the Serial Monitor.
+
+Example output:
+
+```
+24.80
+24.81
+24.80
+24.82
+```
+
+---
