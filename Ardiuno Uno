@@ -3516,4 +3516,1208 @@ delay(500);
 Updates the measurement every half second.
 
 ---
+# Automatic LED Control Example
+
+The following example turns on an LED when it becomes dark.
+
+```cpp
+const int ldrPin = A0;
+const int ledPin = 13;
+
+void setup()
+{
+    pinMode(ledPin, OUTPUT);
+}
+
+void loop()
+{
+    int lightValue = analogRead(ldrPin);
+
+    if(lightValue < 300)
+    {
+        digitalWrite(ledPin, HIGH);
+    }
+    else
+    {
+        digitalWrite(ledPin, LOW);
+    }
+}
+```
+
+---
+
+# Program Flow
+
+```text
+        LDR
+         │
+         ▼
+Voltage Divider
+         │
+         ▼
+ analogRead()
+         │
+         ▼
+ ADC Value
+         │
+         ▼
+Compare with Threshold
+         │
+         ▼
+ LED ON / OFF
+```
+
+---
+
+# Advantages
+
+- ✅ Simple to use
+- ✅ Very inexpensive
+- ✅ Ideal for beginner Arduino projects
+- ✅ No communication protocol required
+- ✅ Low power consumption
+- ✅ Suitable for automatic lighting systems
+
+---
+
+# Limitations
+
+- ❌ Lower accuracy than digital light sensors
+- ❌ Sensitive to electrical noise
+- ❌ Slower response compared to photodiodes
+- ❌ Performance may vary between different LDR models
+
+---
+
+# Common Applications
+
+LDRs are widely used in:
+
+- 💡 Automatic street lighting
+- 🏠 Smart home lighting systems
+- 🌞 Solar tracking systems
+- 📱 Ambient light detection
+- 🚨 Security systems
+- 🌱 Smart agriculture
+- 🤖 Robotics
+- 📚 Arduino learning projects
+
+---
+
+# Comparison with Other Light Sensors
+
+| Feature | LDR | Photodiode | BH1750 |
+|----------|-----|------------|---------|
+| Output | Analog | Analog | Digital |
+| Accuracy | Moderate | High | Very High |
+| Cost | Very Low | Moderate | Moderate |
+| Interface | Analog | Analog | I²C |
+| Ease of Use | Very Easy | Moderate | Easy |
+| Light Measurement | Relative | Relative | Lux (Absolute) |
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+30.06.2026
+
+<div align="center">
+
+# 🌈 Arduino TCS3200 Color Sensor
+## A Complete Technical Guide from Hardware to Mathematics
+
+<p align="center">
+
+![Arduino](https://img.shields.io/badge/Arduino-Uno-00979D?style=for-the-badge&logo=arduino)
+![Language](https://img.shields.io/badge/Language-C++-00599C?style=for-the-badge&logo=cplusplus)
+![Sensor](https://img.shields.io/badge/Sensor-TCS3200-32CD32?style=for-the-badge)
+![Platform](https://img.shields.io/badge/Platform-Arduino_IDE-00979D?style=for-the-badge&logo=arduino)
+![License](https://img.shields.io/badge/License-MIT-red?style=for-the-badge)
+![Status](https://img.shields.io/badge/Status-Completed-success?style=for-the-badge)
+
+---
+
+# 📚 Arduino TCS3200 Color Sensor
+### Complete Technical Documentation
+
+*A beginner-friendly and engineering-oriented guide explaining not only **how** the code works, but **why** it works.*
+
+</div>
+
+---
+
+# 📑 Table of Contents
+
+- [Introduction](#-introduction)
+- [Project Objectives](#-project-objectives)
+- [What is the TCS3200?](#-what-is-the-tcs3200)
+- [Why This Sensor is Different](#-why-this-sensor-is-different)
+- [Applications](#-applications)
+- [Hardware Overview](#-hardware-overview)
+- [Understanding Light and Color](#-understanding-light-and-color)
+- [Inside the TCS3200](#-inside-the-tcs3200)
+- [Photodiodes Explained](#-photodiodes-explained)
+- [Current-to-Frequency Converter](#-current-to-frequency-converter)
+- [Sensor Output Signal](#-sensor-output-signal)
+- [Project Workflow](#-project-workflow)
+
+---
+
+# 🌍 Introduction
+
+Color detection is one of the most important technologies used in modern embedded systems.
+
+Today, color sensors can be found almost everywhere:
+
+- 🏭 Industrial automation
+- 🤖 Robotics
+- 📦 Product sorting systems
+- 🚗 Autonomous vehicles
+- 🧪 Laboratory instruments
+- 📷 Camera calibration
+- 🎨 Color quality inspection
+- 🍎 Food processing
+
+Instead of relying on human vision, electronic systems use specialized sensors capable of measuring light with remarkable precision.
+
+One of the most popular sensors for Arduino beginners is the **TCS3200 Color Sensor**.
+
+Unlike many analog sensors, the TCS3200 does **not** output a voltage.
+
+Instead, it converts light intensity into a digital square wave whose **frequency** changes according to the detected color.
+
+This makes the sensor very resistant to electrical noise and allows microcontrollers to measure color using precise timing techniques.
+
+---
+
+# 🎯 Project Objectives
+
+The purpose of this project is much more than simply reading RGB values.
+
+By completing this project you will understand:
+
+✅ Digital Electronics
+
+✅ Frequency Measurement
+
+✅ Time Measurement
+
+✅ RGB Color Detection
+
+✅ Embedded Programming
+
+✅ Arduino GPIO
+
+✅ Square Wave Signals
+
+✅ Serial Communication
+
+✅ Timing Mathematics
+
+✅ Sensor Calibration
+
+---
+
+# 🧩 What is the TCS3200?
+
+The **TCS3200** (also sold as **TCS230**) is a programmable color recognition sensor developed around an array of photodiodes and an integrated current-to-frequency converter.
+
+Unlike analog color sensors, the TCS3200 outputs a **digital square wave**.
+
+The frequency of this wave changes depending on how much light reaches the sensor.
+
+Simply speaking:
+
+More Light
+↓
+
+More Electrical Current
+↓
+
+Higher Frequency
+
+↓
+
+Arduino Measures Frequency
+
+↓
+
+Color Information
+
+---
+
+# 💡 Why This Sensor is Different
+
+Many sensors generate an analog voltage.
+
+Example:
+
+```
+Dark ---------------> Bright
+
+0.3V -------------> 4.6V
+```
+
+The Arduino converts this voltage using its ADC.
+
+The TCS3200 follows a completely different philosophy.
+
+Instead of voltage, it generates a digital pulse train.
+
+Example:
+
+```
+Low Light
+
+____----____----____----
+
+
+
+High Light
+
+__--__--__--__--__--
+```
+
+Notice how the pulses become closer together.
+
+This means:
+
+- Higher frequency
+- Shorter period
+- More detected light
+
+This digital approach provides excellent immunity against electrical noise.
+
+---
+
+# 🎨 Understanding Light and Color
+
+Before discussing electronics, we need to understand color itself.
+
+Visible light is electromagnetic radiation with wavelengths approximately between
+
+```
+380 nm
+↓
+
+750 nm
+```
+
+Different wavelengths correspond to different colors.
+
+| Color | Approximate Wavelength |
+|---------|----------------------:|
+| Violet | 380–450 nm |
+| Blue | 450–495 nm |
+| Green | 495–570 nm |
+| Yellow | 570–590 nm |
+| Orange | 590–620 nm |
+| Red | 620–750 nm |
+
+When white light strikes an object:
+
+- some wavelengths are absorbed
+- others are reflected
+
+The reflected wavelengths determine the color that we perceive.
+
+Example:
+
+A red apple absorbs
+
+- Blue
+- Green
+
+and reflects
+
+- Red
+
+Therefore the sensor receives mostly red light.
+
+---
+
+# ⚙ Hardware Overview
+
+The TCS3200 module usually contains:
+
+```
++--------------------------------+
+|            TCS3200             |
+|                                |
+|  Photodiode Array              |
+|                                |
+|  Color Filters                 |
+|                                |
+|  Frequency Converter           |
+|                                |
+|  Output Driver                 |
++--------------------------------+
+```
+
+The module also contains
+
+- White LEDs
+- Pin headers
+- Power regulation
+- Frequency scaling pins
+
+---
+
+# 🔬 Inside the TCS3200
+
+Internally the sensor contains **64 photodiodes**.
+
+```
+64 Total Photodiodes
+
+16 Red
+
+16 Green
+
+16 Blue
+
+16 Clear (No Filter)
+```
+
+Why four different groups?
+
+Because each photodiode responds differently depending on its optical filter.
+
+The sensor does **not** activate all photodiodes simultaneously.
+
+Instead, the Arduino selects which group should become active by controlling two digital pins:
+
+```
+S2
+
+S3
+```
+
+These pins act like electronic switches inside the chip.
+
+---
+
+# 🔍 Photodiodes Explained
+
+A photodiode is a semiconductor device that converts light into electrical current.
+
+Think of it as a tiny solar panel.
+
+No light
+
+↓
+
+Almost no current
+
+More light
+
+↓
+
+More electrons
+
+↓
+
+More current
+
+Unlike an LDR (Light Dependent Resistor), a photodiode reacts extremely quickly.
+
+Response times are often measured in nanoseconds.
+
+This makes photodiodes ideal for high-speed sensing applications.
+
+---
+
+# ⚡ Current-to-Frequency Converter
+
+This is the most fascinating component of the TCS3200.
+
+Instead of sending an analog voltage, the sensor measures the current generated by the photodiodes.
+
+Then an internal oscillator converts that current into frequency.
+
+The process is:
+
+```
+Light
+
+↓
+
+Photodiode
+
+↓
+
+Electrical Current
+
+↓
+
+Current-to-Frequency Converter
+
+↓
+
+Digital Square Wave
+
+↓
+
+Arduino
+```
+
+Notice something important.
+
+The Arduino never measures light directly.
+
+It only measures **time**.
+
+Later in this guide, we will prove mathematically why measuring time is enough to calculate frequency.
+
+---
+
+# 📈 Sensor Output Signal
+
+The sensor produces a digital square wave.
+
+```
+HIGH ─────┐      ┌──────┐
+           │      │      │
+LOW  ______└──────┘______└────
+
+<------ Period ------>
+```
+
+Two important quantities describe this signal.
+
+### Period (T)
+
+The time required to complete one cycle.
+
+Usually measured in:
+
+- microseconds (μs)
+- milliseconds (ms)
+
+### Frequency (f)
+
+The number of cycles completed every second.
+
+Measured in:
+
+```
+Hertz (Hz)
+```
+
+These two quantities are directly related.
+
+```
+Frequency = 1 / Period
+```
+
+This simple equation explains the entire operating principle of the TCS3200.
+
+It is one of the most important formulas in electronics.
+
+Later, we will derive it mathematically and implement it in Arduino code.
+
+---
+
+# 🔄 Project Workflow
+
+```
+Object
+
+↓
+
+White LEDs illuminate object
+
+↓
+
+Object reflects light
+
+↓
+
+Photodiodes receive light
+
+↓
+
+Electrical current generated
+
+↓
+
+Current converted into frequency
+
+↓
+
+Arduino measures pulse width
+
+↓
+
+RGB values calculated
+
+↓
+
+Serial Monitor displays data
+```
+
+---
+
+# 📌 Key Takeaways
+
+By now you should understand that:
+
+- The TCS3200 does **not** output RGB values directly.
+- It outputs a frequency proportional to light intensity.
+- Photodiodes convert light into electrical current.
+- An internal converter transforms current into digital pulses.
+- Arduino measures pulse timing rather than voltage.
+- Frequency measurement is the foundation of color detection.
+
+---
+
+# 💻 Complete Source Code
+
+```cpp
+#define s0 8
+#define s1 9
+#define s2 10
+#define s3 11
+#define sensorPin 12
+
+int red = 0;
+int green = 0;
+int blue = 0;
+
+void setup()
+{
+    pinMode(s0, OUTPUT);
+    pinMode(s1, OUTPUT);
+    pinMode(s2, OUTPUT);
+    pinMode(s3, OUTPUT);
+
+    pinMode(sensorPin, INPUT);
+
+    digitalWrite(s0, HIGH);
+    digitalWrite(s1, LOW);
+
+    Serial.begin(9600);
+}
+
+void loop()
+{
+    digitalWrite(s2, LOW);
+    digitalWrite(s3, LOW);
+
+    red = pulseIn(sensorPin, LOW);
+
+    Serial.print("Red = ");
+    Serial.println(red);
+
+    delay(100);
+}
+```
+
+---
+
+# 🏗 Program Structure
+
+Every Arduino program contains two mandatory functions.
+
+```cpp
+void setup()
+{
+
+}
+
+void loop()
+{
+
+}
+```
+
+Think about them like this.
+
+```
+Power ON
+
+↓
+
+setup()
+
+↓
+
+loop()
+
+↓
+
+loop()
+
+↓
+
+loop()
+
+↓
+
+loop()
+
+↓
+
+Forever...
+```
+
+Unlike desktop applications, Arduino programs never terminate.
+
+The microcontroller continuously executes the `loop()` function until power is removed.
+
+---
+
+# 🌍 Global Variables
+
+```cpp
+int red = 0;
+int green = 0;
+int blue = 0;
+```
+
+These variables are called **global variables** because they are declared outside every function.
+
+Global variables are stored inside the Arduino's SRAM.
+
+Memory layout looks approximately like this.
+
+```
+Flash Memory
+│
+├── Program Code
+│
+├── Constants
+│
+└──────────────────────
+
+SRAM
+│
+├── Global Variables
+│
+├── Stack
+│
+└── Heap
+
+EEPROM
+│
+└── Permanent Storage
+```
+
+Unlike local variables, global variables remain alive during the entire execution of the program.
+
+---
+
+# 🔹 Understanding `#define`
+
+One of the first things beginners notice is this:
+
+```cpp
+#define s0 8
+```
+
+Many people believe this creates a variable.
+
+It does **not**.
+
+`#define` is handled by the **C Preprocessor** before compilation begins.
+
+Suppose your code contains
+
+```cpp
+digitalWrite(s0, HIGH);
+```
+
+Before the compiler even sees the program, it becomes
+
+```cpp
+digitalWrite(8, HIGH);
+```
+
+The compiler never sees the name `s0`.
+
+It only sees the number **8**.
+
+---
+
+# Why Not Write Numbers Directly?
+
+Instead of
+
+```cpp
+digitalWrite(8, HIGH);
+```
+
+we write
+
+```cpp
+digitalWrite(s0, HIGH);
+```
+
+because
+
+- easier to read
+- easier to modify
+- easier to maintain
+
+Imagine changing pin 8 to pin 4.
+
+Without macros
+
+```
+8
+
+8
+
+8
+
+8
+
+8
+
+8
+
+8
+```
+
+Every occurrence must be edited manually.
+
+With macros
+
+```cpp
+#define s0 4
+```
+
+Only one line changes.
+
+---
+
+# 📌 GPIO Pins
+
+GPIO means
+
+```
+General Purpose Input Output
+```
+
+Each Arduino digital pin can become either
+
+```
+INPUT
+
+or
+
+OUTPUT
+```
+
+The direction is selected using
+
+```cpp
+pinMode()
+```
+
+---
+
+# ⚙ Understanding `setup()`
+
+The setup function runs only once.
+
+```cpp
+void setup()
+{
+    ...
+}
+```
+
+Its purpose is to initialize hardware.
+
+Examples include
+
+- configuring GPIO
+- starting Serial communication
+- initializing sensors
+- enabling interrupts
+
+Never place repetitive sensor measurements here.
+
+Those belong inside `loop()`.
+
+---
+
+# 🧠 pinMode()
+
+One of the most important Arduino functions.
+
+```cpp
+pinMode(s0, OUTPUT);
+```
+
+Conceptually it means
+
+```
+Arduino
+
+↓
+
+Configure Pin
+
+↓
+
+Output Mode
+```
+
+Internally something much more interesting happens.
+
+The ATmega328P microcontroller contains registers called
+
+```
+DDRB
+
+DDRC
+
+DDRD
+```
+
+These registers determine whether each pin behaves as
+
+```
+Input
+
+or
+
+Output
+```
+
+When you call
+
+```cpp
+pinMode(8, OUTPUT);
+```
+
+Arduino modifies one bit inside the corresponding DDR register.
+
+This happens entirely in hardware.
+
+---
+
+# ⚡ digitalWrite()
+
+After configuring the pin as OUTPUT,
+
+we can control its voltage.
+
+```cpp
+digitalWrite(s0, HIGH);
+```
+
+means
+
+```
+Output Voltage = 5V
+```
+
+while
+
+```cpp
+digitalWrite(s0, LOW);
+```
+
+means
+
+```
+Output Voltage = 0V
+```
+
+Notice something important.
+
+The Arduino is **not sending data** to the sensor.
+
+It is simply changing voltage levels.
+
+The sensor interprets these voltages as commands.
+
+---
+
+# 🎛 Frequency Scaling
+
+The TCS3200 includes programmable frequency scaling.
+
+Two control pins determine the output frequency.
+
+| S0 | S1 | Output Frequency |
+|----|----|-----------------|
+| LOW | LOW | Power Down |
+| LOW | HIGH | 2% |
+| HIGH | LOW | 20% |
+| HIGH | HIGH | 100% |
+
+Your code contains
+
+```cpp
+digitalWrite(s0, HIGH);
+digitalWrite(s1, LOW);
+```
+
+Therefore
+
+```
+Output Frequency
+
+↓
+
+20%
+```
+
+Why?
+
+Because extremely high frequencies become difficult to measure accurately.
+
+Reducing the frequency increases stability.
+
+---
+
+# 🖥 Serial Communication
+
+```cpp
+Serial.begin(9600);
+```
+
+This initializes the UART peripheral.
+
+UART stands for
+
+```
+Universal Asynchronous
+Receiver
+Transmitter
+```
+
+It allows two devices
+
+```
+Arduino
+
+↓
+
+USB Interface
+
+↓
+
+Computer
+```
+
+to exchange information.
+
+---
+
+# What Does 9600 Mean?
+
+```
+9600 bits
+
+per second
+```
+
+This value is called the
+
+```
+Baud Rate
+```
+
+Both devices must use exactly the same baud rate.
+
+Otherwise,
+
+communication fails.
+
+---
+
+# 🔄 Understanding loop()
+
+After setup finishes,
+
+Arduino repeatedly executes
+
+```cpp
+loop();
+```
+
+forever.
+
+Imagine
+
+```
+while(true)
+{
+
+loop();
+
+}
+```
+
+That is essentially how Arduino works internally.
+
+---
+
+# 🎨 Selecting the Red Filter
+
+```cpp
+digitalWrite(s2, LOW);
+digitalWrite(s3, LOW);
+```
+
+These two pins select which photodiodes become active.
+
+| S2 | S3 | Active Filter |
+|----|----|--------------|
+| LOW | LOW | Red |
+| LOW | HIGH | Blue |
+| HIGH | HIGH | Green |
+| HIGH | LOW | Clear |
+
+In this example,
+
+only
+
+```
+Red Photodiodes
+```
+
+are enabled.
+
+The remaining photodiodes remain inactive.
+
+---
+
+# 📺 Printing Data
+
+```cpp
+Serial.print("Red = ");
+Serial.println(red);
+```
+
+Suppose
+
+```
+red = 142
+```
+
+The serial monitor receives
+
+```
+Red = 142
+```
+
+The difference between
+
+```cpp
+print()
+```
+
+and
+
+```cpp
+println()
+```
+
+is
+
+```
+println()
+
+↓
+
+adds a newline
+```
+
+while
+
+```
+print()
+
+↓
+
+stays on the same line
+```
+
+---
+
+# ⏳ delay()
+
+Finally,
+
+```cpp
+delay(100);
+```
+
+tells the processor to wait
+
+```
+100 milliseconds
+```
+
+During this time
+
+the CPU performs **no useful work**.
+
+This is called
+
+```
+Blocking Delay
+```
+
+In advanced embedded systems,
+
+blocking delays are often replaced by
+
+- timers
+- interrupts
+- millis()
+
+which allow multitasking.
+
+---
+
+# 📌 Execution Flow
+
+The entire program can be summarized like this.
+
+```
+Power ON
+
+↓
+
+Configure Pins
+
+↓
+
+Configure Sensor
+
+↓
+
+Start UART
+
+↓
+
+Select Color Filter
+
+↓
+
+Measure Pulse
+
+↓
+
+Store Result
+
+↓
+
+Print Result
+
+↓
+
+Wait
+
+↓
+
+Repeat Forever
+```
+
+---
 
