@@ -5320,32 +5320,6 @@ Referring back to the hardware breakdown in `Ekran görüntüsü 2026-07-04 0920
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-
----
-
-# Table of Contents
-
-- Introduction
-- Evolution of Wireless Communication in Embedded Systems
-- HC-05 Bluetooth Module
-- HC-06 Bluetooth Module
-- nRF24L01 RF Transceiver
-- Communication Protocol Comparison
-- Hardware Architecture
-- Technical Specifications
-- Advantages and Limitations
-- Arduino Integration
-- Power Consumption Analysis
-- Communication Performance
-- Security Considerations
-- Real-World Applications
-- HC-05 vs HC-06 vs nRF24L01
-- Future Technologies
-- Conclusion
-- References
-
----
-
 # Introduction
 
 Wireless communication has become one of the most fundamental components of embedded systems and Internet of Things (IoT) architectures. Among the numerous communication modules available for Arduino-based systems, the HC-05, HC-06, and nRF24L01 remain the most widely adopted because of their affordability, reliability, and ease of integration.
@@ -5695,6 +5669,346 @@ Modern embedded systems are increasingly transitioning toward:
 Nevertheless, HC-05, HC-06, and nRF24L01 remain indispensable educational tools due to their simplicity, affordability, and extensive ecosystem support.
 
 For undergraduate engineering education, these modules provide an excellent foundation for understanding wireless communication principles before advancing to more sophisticated IoT technologies.
+
+# Introduction
+
+The rapid expansion of the Internet of Things (IoT) has significantly increased the demand for low-cost, internet-enabled embedded devices. Among the many wireless microcontrollers available today, the **ESP8266** has become one of the most influential technologies in modern electronics.
+
+Released by Espressif Systems in 2014, the ESP8266 revolutionized embedded development by integrating a complete Wi-Fi subsystem and a programmable microcontroller into a single, inexpensive chip. This innovation dramatically lowered the barrier to entry for IoT projects, making wireless communication accessible to students, hobbyists, researchers, and industry professionals alike.
+
+A popular development board built around this chip is the **NodeMCU**, which simplifies programming and hardware interfacing by adding USB connectivity, voltage regulation, and user-friendly pin headers.
+
+This article explores the architecture, capabilities, programming methods, and real-world applications of both ESP8266 and NodeMCU from an academic and practical perspective.
+
+---
+
+# The Evolution of Wi-Fi Microcontrollers
+
+Wireless microcontrollers have evolved considerably over the past decade.
+
+| Generation | Technology | Primary Application |
+|------------|------------|---------------------|
+| Arduino Uno | No Wireless | Embedded Control |
+| HC-05 Bluetooth | Bluetooth Classic | Local Communication |
+| ESP8266 | Wi-Fi | Internet of Things |
+| ESP32 | Wi-Fi + Bluetooth | Advanced IoT |
+| Raspberry Pi Pico W | Wi-Fi | Embedded Linux Integration |
+
+The ESP8266 marked a turning point by integrating networking capabilities directly into a microcontroller platform.
+
+---
+
+# What is ESP8266?
+
+The **ESP8266** is a low-cost, highly integrated **32-bit Wi-Fi-enabled microcontroller** developed by **Espressif Systems**.
+
+Unlike traditional Arduino boards, which require an external Wi-Fi module, the ESP8266 incorporates:
+
+- A programmable CPU
+- IEEE 802.11 b/g/n Wi-Fi
+- TCP/IP networking stack
+- Flash memory interface
+- GPIO controller
+- Analog-to-Digital Converter (ADC)
+- Multiple communication peripherals
+
+This integration allows a single chip to perform sensing, processing, and wireless communication simultaneously.
+
+---
+
+# ESP8266 Architecture
+
+The ESP8266 is built around the **Tensilica L106** processor.
+
+## Core Components
+
+- 32-bit RISC CPU
+- Wi-Fi MAC
+- Baseband Processor
+- RF Front-End
+- TCP/IP Stack
+- GPIO Controller
+- SPI Controller
+- UART Controller
+- PWM Generator
+- ADC
+- Watchdog Timer
+
+The Wi-Fi subsystem operates independently of the application processor, enabling efficient network communication without excessive CPU overhead.
+
+---
+
+# Technical Specifications
+
+| Feature | Specification |
+|----------|---------------|
+| CPU | Tensilica L106 |
+| Clock Speed | 80 MHz (default) / 160 MHz (overclock) |
+| Architecture | 32-bit RISC |
+| Wi-Fi | IEEE 802.11 b/g/n |
+| Flash Memory | External SPI Flash |
+| SRAM | 160 KB |
+| GPIO Pins | Up to 17 |
+| ADC | 10-bit |
+| Operating Voltage | 3.3V |
+| Communication | UART, SPI, I2C (software), PWM |
+| Security | WPA/WPA2 |
+
+---
+
+# GPIO and Peripheral Interfaces
+
+ESP8266 provides several hardware interfaces that allow communication with external sensors and peripherals.
+
+## Supported Interfaces
+
+- GPIO
+- UART
+- SPI
+- I2C (software implementation)
+- PWM
+- ADC
+- Interrupts
+
+These interfaces make the ESP8266 suitable for a wide variety of embedded applications.
+
+---
+
+# Memory Organization
+
+The ESP8266 utilizes both internal and external memory.
+
+| Memory Type | Purpose |
+|--------------|----------|
+| ROM | Bootloader |
+| SRAM | Program Execution |
+| Flash | User Programs |
+| EEPROM Emulation | Configuration Storage |
+
+Unlike AVR-based Arduino boards, EEPROM is emulated within flash memory.
+
+---
+
+# Power Management
+
+One of the ESP8266's strengths is its energy efficiency.
+
+## Operating Modes
+
+- Active Mode
+- Modem Sleep
+- Light Sleep
+- Deep Sleep
+
+Deep Sleep significantly reduces current consumption, making the ESP8266 suitable for battery-powered IoT devices.
+
+---
+
+# Communication Protocols
+
+The ESP8266 supports numerous networking protocols.
+
+- HTTP
+- HTTPS
+- TCP
+- UDP
+- MQTT
+- WebSocket
+- DNS
+- FTP
+- SNTP
+
+These protocols enable seamless communication with cloud services, mobile applications, and web servers.
+
+---
+
+# What is NodeMCU?
+
+NodeMCU is an open-source development board based on the ESP8266 chip.
+
+Unlike the bare ESP8266 module, NodeMCU includes additional hardware that simplifies development.
+
+## Main Components
+
+- ESP8266 Microcontroller
+- USB-to-Serial Converter
+- Voltage Regulator
+- Reset Button
+- Flash Button
+- Breadboard-Friendly Headers
+- Power Indicator LED
+
+These additions eliminate the need for external programming hardware.
+
+---
+
+# NodeMCU Hardware Architecture
+
+```
+USB Port
+    │
+USB-to-UART Converter
+    │
+Voltage Regulator
+    │
+ESP8266
+    │
+GPIO Pins
+```
+
+The integrated USB interface enables direct programming through a standard USB cable.
+
+---
+
+# ESP8266 vs NodeMCU
+
+| Feature | ESP8266 Module | NodeMCU |
+|----------|----------------|----------|
+| Microcontroller | Yes | Yes |
+| USB Interface | No | Yes |
+| Voltage Regulator | No | Yes |
+| Breadboard Friendly | Limited | Yes |
+| Programming | External Adapter | USB |
+| Ease of Use | Intermediate | Beginner-Friendly |
+
+It is important to note that **NodeMCU is not a different microcontroller**; it is a development board built around the ESP8266 chip.
+
+---
+
+# Programming ESP8266
+
+The ESP8266 can be programmed using several environments.
+
+- Arduino IDE
+- PlatformIO
+- ESP-IDF
+- MicroPython
+- Lua (original NodeMCU firmware)
+
+Among these, the Arduino IDE remains the most widely used due to its simplicity and extensive library support.
+
+---
+
+# Programming NodeMCU
+
+Programming NodeMCU follows the same process as programming the ESP8266.
+
+Typical workflow:
+
+1. Install the ESP8266 board package in Arduino IDE.
+2. Select the appropriate NodeMCU board.
+3. Connect the board via USB.
+4. Compile and upload the sketch.
+
+The integrated USB-to-UART converter handles firmware uploading automatically.
+
+---
+
+# Arduino IDE Integration
+
+To program ESP8266 or NodeMCU using Arduino IDE:
+
+1. Open **Preferences**.
+2. Add the ESP8266 Board Manager URL.
+3. Install the ESP8266 package via Board Manager.
+4. Select **NodeMCU 1.0 (ESP-12E Module)** or the appropriate ESP8266 board.
+5. Choose the correct COM port.
+6. Upload the sketch.
+
+This workflow enables developers familiar with Arduino to transition easily to Wi-Fi-enabled embedded systems.
+
+---
+
+# Advantages
+
+## ESP8266
+
+- Extremely affordable
+- Integrated Wi-Fi
+- Large developer community
+- Rich software ecosystem
+- Supports cloud communication
+- Low power consumption
+
+## NodeMCU
+
+- Easy programming via USB
+- Built-in voltage regulation
+- Breadboard compatible
+- Beginner-friendly
+- Rapid prototyping
+
+---
+
+# Limitations
+
+## ESP8266
+
+- Single-core processor
+- Limited RAM
+- Only one analog input
+- 3.3V logic (not 5V tolerant)
+
+## NodeMCU
+
+- Larger physical size
+- Slightly higher power consumption due to onboard components
+- Fewer accessible GPIOs compared to the bare chip
+
+---
+
+# Practical Applications
+
+ESP8266 and NodeMCU are widely used in:
+
+- Smart Home Systems
+- IoT Sensors
+- Weather Stations
+- Home Automation
+- Industrial Monitoring
+- Wi-Fi Data Logging
+- Remote Control Systems
+- Smart Agriculture
+- Robotics
+- Energy Monitoring
+- Environmental Monitoring
+- MQTT-Based IoT Networks
+
+---
+
+# Security Considerations
+
+The ESP8266 supports modern wireless security standards.
+
+Supported features include:
+
+- WPA
+- WPA2
+- TLS/SSL
+- HTTPS
+- Secure TCP Connections
+
+Developers should avoid transmitting sensitive information over unencrypted HTTP whenever possible.
+
+---
+
+# Future Developments
+
+Although the ESP8266 remains highly relevant for education and cost-sensitive projects, newer microcontrollers offer expanded capabilities.
+
+Successor platforms include:
+
+- ESP32
+- ESP32-S2
+- ESP32-C3
+- ESP32-S3
+- ESP32-C6
+
+These devices introduce Bluetooth, multiple CPU cores, enhanced security, and improved energy efficiency.
+
+Nevertheless, the ESP8266 continues to be an outstanding platform for learning embedded networking and IoT fundamentals.
+
+---
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
