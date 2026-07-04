@@ -5317,3 +5317,384 @@ Referring back to the hardware breakdown in `Ekran görüntüsü 2026-07-04 0920
 
 ---
 🔬 *Documentation Compiled for Embedded Systems Reference Archives.*
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+---
+
+# Table of Contents
+
+- Introduction
+- Evolution of Wireless Communication in Embedded Systems
+- HC-05 Bluetooth Module
+- HC-06 Bluetooth Module
+- nRF24L01 RF Transceiver
+- Communication Protocol Comparison
+- Hardware Architecture
+- Technical Specifications
+- Advantages and Limitations
+- Arduino Integration
+- Power Consumption Analysis
+- Communication Performance
+- Security Considerations
+- Real-World Applications
+- HC-05 vs HC-06 vs nRF24L01
+- Future Technologies
+- Conclusion
+- References
+
+---
+
+# Introduction
+
+Wireless communication has become one of the most fundamental components of embedded systems and Internet of Things (IoT) architectures. Among the numerous communication modules available for Arduino-based systems, the HC-05, HC-06, and nRF24L01 remain the most widely adopted because of their affordability, reliability, and ease of integration.
+
+Although these modules are often grouped together by hobbyists, they are designed for fundamentally different communication paradigms. Understanding these differences enables engineers to select the optimal module for a given application rather than relying solely on popularity.
+
+This article presents an academic yet practical overview suitable for engineering students, researchers, and embedded systems developers.
+
+---
+
+# Evolution of Wireless Communication in Embedded Systems
+
+Wireless communication for microcontrollers has evolved through several generations.
+
+| Generation | Technology | Typical Use |
+|------------|------------|-------------|
+| Wired UART | Serial Cable | Programming |
+| Bluetooth Classic | HC-05 / HC-06 | Mobile Communication |
+| RF Transceiver | nRF24L01 | Device-to-Device Networks |
+| WiFi | ESP8266 / ESP32 | Internet Connectivity |
+| BLE | HM-10, ESP32 | Low Energy Applications |
+| LoRa | SX1278 | Long Range IoT |
+
+Each technology optimizes a different engineering trade-off involving:
+
+- Energy efficiency
+- Communication distance
+- Latency
+- Throughput
+- Network scalability
+
+---
+
+# HC-05 Bluetooth Module
+
+## Overview
+
+The HC-05 is a Bluetooth Classic (Bluetooth v2.0 + EDR) serial communication module designed to provide transparent UART communication between microcontrollers and Bluetooth-enabled devices.
+
+Unlike many inexpensive Bluetooth modules, HC-05 supports both:
+
+- Master Mode
+- Slave Mode
+
+This flexibility makes it highly suitable for peer-to-peer embedded communication.
+
+---
+
+## Internal Architecture
+
+The HC-05 consists primarily of
+
+- Bluetooth Radio
+- UART Interface
+- Flash Memory
+- AT Command Processor
+- Baseband Controller
+
+Communication occurs through the UART interface while Bluetooth protocol management remains transparent to the Arduino.
+
+---
+
+## Technical Specifications
+
+| Parameter | Value |
+|-----------|-------|
+| Bluetooth Version | 2.0 + EDR |
+| Frequency | 2.4 GHz |
+| Interface | UART |
+| Default Baud Rate | 9600 bps |
+| AT Mode Baud Rate | 38400 bps |
+| Supply Voltage | 3.6–6V |
+| Logic Voltage | 3.3V |
+| Typical Range | 10 meters |
+| Roles | Master & Slave |
+
+---
+
+## Advantages
+
+- Dual-role capability
+- Mature firmware
+- Extensive AT command support
+- Easy smartphone connectivity
+- Excellent Arduino compatibility
+
+---
+
+## Limitations
+
+- Higher power consumption than BLE
+- One active connection at a time
+- Limited communication range
+- Bluetooth Classic is gradually being replaced by BLE in many modern applications
+
+---
+
+# HC-06 Bluetooth Module
+
+## Overview
+
+The HC-06 was developed as a simplified version of the HC-05.
+
+Instead of supporting both communication roles, HC-06 functions exclusively as a Slave device.
+
+Its firmware intentionally minimizes configuration complexity.
+
+---
+
+## Technical Specifications
+
+| Parameter | Value |
+|-----------|-------|
+| Bluetooth Version | 2.0 |
+| Communication | UART |
+| Frequency | 2.4 GHz |
+| Range | 10 m |
+| Role | Slave Only |
+| Baud Rate | 9600 bps |
+
+---
+
+## Advantages
+
+- Lower cost
+- Easy configuration
+- Stable serial communication
+- Excellent beginner module
+
+---
+
+## Limitations
+
+- Cannot initiate Bluetooth pairing
+- Limited AT commands
+- No Master mode
+
+---
+
+# nRF24L01 RF Transceiver
+
+## Overview
+
+Unlike HC-05 and HC-06, the nRF24L01 is **not a Bluetooth device**.
+
+Instead, it is a low-power 2.4 GHz RF transceiver developed by Nordic Semiconductor for direct device-to-device wireless communication.
+
+This distinction fundamentally changes its operating model.
+
+Instead of pairing with smartphones, two microcontrollers communicate directly using custom packet-based protocols.
+
+---
+
+## Internal Features
+
+The nRF24L01 includes
+
+- RF Transceiver
+- Packet Engine
+- Automatic Acknowledgment
+- CRC Error Detection
+- Retransmission Engine
+- FIFO Buffers
+
+These hardware accelerators significantly reduce processor workload.
+
+---
+
+## Technical Specifications
+
+| Parameter | Value |
+|-----------|-------|
+| Frequency | 2.4 GHz |
+| Interface | SPI |
+| Maximum Data Rate | 2 Mbps |
+| Communication Range | 100 m (standard antenna) |
+| Enhanced Version | >1000 m (PA+LNA) |
+| Operating Voltage | 1.9–3.6V |
+| Current Consumption | ~12 mA |
+
+---
+
+# Communication Protocol Comparison
+
+| Feature | HC-05 | HC-06 | nRF24L01 |
+|----------|-------|--------|-----------|
+| Bluetooth | Yes | Yes | No |
+| UART | Yes | Yes | No |
+| SPI | No | No | Yes |
+| Smartphone Compatible | Yes | Yes | No |
+| Master Mode | Yes | No | N/A |
+| Mesh Support | No | No | Custom |
+| Automatic Retransmission | Bluetooth Stack | Bluetooth Stack | Hardware |
+| CRC | Yes | Yes | Yes |
+
+---
+
+# Hardware Interfaces
+
+## HC-05 / HC-06
+
+```
+Arduino TX ---- RX
+Arduino RX ---- TX
+5V ----------- VCC
+GND ---------- GND
+```
+
+Voltage division is recommended on the Arduino TX line because the module's logic level is 3.3 V.
+
+---
+
+## nRF24L01
+
+```
+Arduino MOSI → MOSI
+Arduino MISO → MISO
+Arduino SCK  → SCK
+Arduino CSN  → CSN
+Arduino CE   → CE
+3.3V         → VCC
+GND          → GND
+```
+
+Unlike HC modules, nRF24L01 communicates using the SPI bus.
+
+---
+
+# Power Consumption
+
+| Module | Typical Current |
+|----------|----------------|
+| HC-05 | 30–40 mA |
+| HC-06 | 25–30 mA |
+| nRF24L01 | 11–14 mA |
+
+For battery-powered applications, the nRF24L01 is generally more energy-efficient.
+
+---
+
+# Communication Performance
+
+| Characteristic | HC-05 | HC-06 | nRF24L01 |
+|---------------|--------|--------|-----------|
+| Latency | Medium | Medium | Very Low |
+| Packet Loss | Low | Low | Very Low |
+| Throughput | Medium | Medium | High |
+| Multi-node Networks | Limited | Limited | Excellent |
+
+---
+
+# Security Considerations
+
+## HC Modules
+
+Bluetooth security relies on
+
+- Pairing
+- PIN authentication
+- Bluetooth encryption mechanisms
+
+However, HC-05 and HC-06 implement Bluetooth Classic, which offers weaker security compared to modern Bluetooth Low Energy (BLE).
+
+---
+
+## nRF24L01
+
+The nRF24L01 provides
+
+- CRC
+- Address filtering
+- Automatic acknowledgment
+
+It **does not implement encryption**.
+
+Therefore, applications requiring confidentiality should add software-based encryption such as:
+
+- AES-128
+- ChaCha20
+- XXTEA
+
+---
+
+# Arduino Integration
+
+Both Bluetooth modules utilize Arduino's UART interface, making software development relatively straightforward.
+
+Conversely, the nRF24L01 communicates over SPI and is commonly used with the RF24 library, which provides high-level APIs for packet transmission, addressing, acknowledgments, and retransmissions. :contentReference[oaicite:0]{index=0}
+
+---
+
+# Practical Applications
+
+## HC-05
+
+- Smartphone control
+- Bluetooth terminal communication
+- Robotics
+- Home automation
+- Industrial monitoring
+
+---
+
+## HC-06
+
+- Sensor data transmission
+- Wireless serial replacement
+- Educational laboratories
+- Embedded debugging
+
+---
+
+## nRF24L01
+
+- Wireless sensor networks
+- Drone telemetry
+- Remote control systems
+- Smart agriculture
+- Multi-node embedded systems
+- Industrial automation
+
+---
+
+# HC-05 vs HC-06 vs nRF24L01
+
+| Feature | HC-05 | HC-06 | nRF24L01 |
+|----------|--------|--------|-----------|
+| Ease of Use | ★★★★★ | ★★★★★ | ★★★★☆ |
+| Communication Speed | ★★★☆☆ | ★★★☆☆ | ★★★★★ |
+| Power Efficiency | ★★★☆☆ | ★★★☆☆ | ★★★★★ |
+| Smartphone Support | ★★★★★ | ★★★★★ | ☆☆☆☆☆ |
+| Embedded Networking | ★★☆☆☆ | ★☆☆☆☆ | ★★★★★ |
+| Cost | Low | Very Low | Very Low |
+
+---
+
+# Future Outlook
+
+Modern embedded systems are increasingly transitioning toward:
+
+- Bluetooth Low Energy (BLE)
+- Wi-Fi 6
+- Thread
+- Matter
+- LoRaWAN
+
+Nevertheless, HC-05, HC-06, and nRF24L01 remain indispensable educational tools due to their simplicity, affordability, and extensive ecosystem support.
+
+For undergraduate engineering education, these modules provide an excellent foundation for understanding wireless communication principles before advancing to more sophisticated IoT technologies.
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
