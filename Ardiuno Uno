@@ -6184,5 +6184,104 @@ Distance < 10 cm
 * Multiple sensor fusion
 * Mapping and localization
 
----
+----------------------
 
+Example Code
+
+#include <HCSR04.h>
+
+// --- Telemetry Configuration ---
+// Initializes the ultrasonic transceiver sensor on Trigger Pin 13 and Echo Pin 12
+HCSR04 hc(13, 12); 
+
+// --- Actuator Interface Mapping ---
+#define motorA1 7
+#define motorA2 6
+#define motorAe 10  // PWM pin for left motor velocity control
+#define motorB1 5
+#define motorB2 4
+#define motorBe 3   // PWM pin for right motor velocity control
+
+// --- Kinematic Variables ---
+int motorHiz = 120; // Bound velocity constant (0 - 255 PWM duty cycle)
+int mesafe;         // Container for calculated distance vector in centimeters
+
+void setup() {
+  // Actuator control lines configured as explicit low-impedance outputs
+  pinMode(motorA1, OUTPUT);
+  pinMode(motorA2, OUTPUT);
+  pinMode(motorAe, OUTPUT);
+  pinMode(motorB1, OUTPUT);
+  pinMode(motorB2, OUTPUT);
+  pinMode(motorBe, OUTPUT);
+  
+  // Initialization of the hardware asynchronous serial channel for diagnostic logging
+  Serial.begin(9600);
+}
+
+void loop() {
+  // Fetch real-time spatial telemetry from the ultrasonic sensor grid
+  mesafe = hc.dist();
+  
+  // Transmit current proximity analytics to the host machine interface
+  Serial.println(mesafe);
+  
+  // Algorithmic Decision-Making Rule
+  if (mesafe < 10) { 
+    // Reactive Avoidance Protocol triggered under the critical 10 cm envelope
+    geri();       // Initiate retrograde displacement to safely clear the hazard
+    delay(200);   // Temporal window for translational kinetic shift
+    sol();        // Execute an angular counter-clockwise pivot maneuver
+    delay(400);   // Angular duration constraint
+  } 
+  else {
+    // Default Behavior Tree: Unobstructed Forward Propulsion
+    ileri();
+  }
+}
+
+// ==========================================
+// KINEMATIC PRIMITIVES & MOTION DEFINITIONS
+// ==========================================
+
+/**
+ * Executes a full forward propulsion vector by configuring H-bridge logic 
+ * to differential forward states while enforcing standard velocity constraints.
+ */
+void ileri() {
+  digitalWrite(motorA1, HIGH);
+  digitalWrite(motorA2, LOW);
+  analogWrite(motorAe, motorHiz);
+  
+  digitalWrite(motorB1, HIGH);
+  digitalWrite(motorB2, LOW);
+  analogWrite(motorBe, motorHiz); // Fixed: Corrected from digitalWrite to analogWrite
+}
+
+/**
+ * Reverses the current orientation vector by flipping the logic levels 
+ * on all primary actuator lines to force a synchronous retrograde motion.
+ */
+void geri() {
+  digitalWrite(motorA1, LOW);
+  digitalWrite(motorA2, HIGH);
+  analogWrite(motorAe, motorHiz);
+  
+  digitalWrite(motorB1, LOW);
+  digitalWrite(motorB2, HIGH);
+  analogWrite(motorBe, motorHiz); // Fixed: Corrected from digitalWrite to analogWrite
+}
+
+/**
+ * Induces an angular rotation vector to the left (counter-clockwise) 
+ * by reversing Motor A's phase while maintaining Motor B's positive forward velocity.
+ */
+void sol() {
+  digitalWrite(motorA1, LOW);
+  digitalWrite(motorA2, HIGH);
+  analogWrite(motorAe, motorHiz);
+  
+  digitalWrite(motorB1, HIGH);
+  digitalWrite(motorB2, LOW);
+  analogWrite(motorBe, motorHiz);
+}
