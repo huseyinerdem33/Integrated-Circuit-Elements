@@ -5862,14 +5862,14 @@ The integrated USB interface enables direct programming through a standard USB c
 
 # ESP8266 vs NodeMCU
 
-| Feature | ESP8266 Module | NodeMCU |
-|----------|----------------|----------|
-| Microcontroller | Yes | Yes |
-| USB Interface | No | Yes |
-| Voltage Regulator | No | Yes |
-| Breadboard Friendly | Limited | Yes |
-| Programming | External Adapter | USB |
-| Ease of Use | Intermediate | Beginner-Friendly |
+|         Feature     | ESP8266 Module | NodeMCU  |
+|---------------------|----------------|----------|
+|    Microcontroller  |        Yes     |    Yes   |
+|    USB Interface    |         No     |    Yes   |
+|   Voltage Regulator |        No      |    Yes   |
+| Breadboard Friendly |      Limited   |    Yes   |
+|      Programming    | External Adapter  | USB   |
+|      Ease of Use    | Intermediate   | Beginner-Friendly |
 
 It is important to note that **NodeMCU is not a different microcontroller**; it is a development board built around the ESP8266 chip.
 
