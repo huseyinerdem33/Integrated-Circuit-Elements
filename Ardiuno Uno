@@ -6188,6 +6188,27 @@ Distance < 10 cm
 
 Example Code
 
+/*
+==================================================
+Project Name : Autonomous Obstacle Avoidance Robot
+Author       : Hüseyin ERDEM
+Board        : Arduino UNO
+Description  :
+This project implements an autonomous obstacle
+avoidance robot using an HC-SR04 ultrasonic sensor
+and two DC motors.
+
+The robot continuously measures the distance ahead.
+If an obstacle is detected within the safety range,
+it automatically reverses, turns left, and then
+continues moving forward.
+
+Motor speed is controlled using PWM signals, while
+distance data is transmitted through the Serial
+Monitor for debugging and telemetry purposes.
+==================================================
+*/
+
 #include <HCSR04.h>
 
 // --- Telemetry Configuration ---
