@@ -6012,3 +6012,177 @@ Nevertheless, the ESP8266 continues to be an outstanding platform for learning e
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+# 🚗 Autonomous Obstacle Avoidance Robot
+
+An Arduino-based autonomous mobile robot capable of detecting nearby obstacles using an ultrasonic distance sensor and performing real-time avoidance maneuvers through differential drive control.
+
+## 📌 Overview
+
+This project demonstrates a simple autonomous navigation system built with an **Arduino**, an **HC-SR04 ultrasonic sensor**, and a dual **DC motor driver**.
+
+The robot continuously measures the distance to objects in front of it. When an obstacle enters the predefined safety zone, the control algorithm automatically performs an avoidance sequence consisting of:
+
+1. Reverse movement
+2. Counter-clockwise rotation
+3. Resume forward navigation
+
+The project provides a clean and modular implementation suitable for robotics beginners while maintaining readable engineering documentation.
+
+---
+
+## ✨ Features
+
+* Real-time obstacle detection
+* Autonomous navigation
+* Differential drive motor control
+* PWM-based speed regulation
+* Modular motion control functions
+* Serial telemetry output for debugging
+* Simple finite-state obstacle avoidance logic
+
+---
+
+## 🔧 Hardware Requirements
+
+* Arduino Uno (or compatible board)
+* HC-SR04 Ultrasonic Distance Sensor
+* L298N (or equivalent) Motor Driver
+* 2 × DC Geared Motors
+* Robot Chassis
+* Battery Pack
+* Jumper Wires
+
+---
+
+## 📍 Pin Configuration
+
+| Component            | Arduino Pin |
+| -------------------- | ----------- |
+| HC-SR04 Trigger      | 13          |
+| HC-SR04 Echo         | 12          |
+| Motor A IN1          | 7           |
+| Motor A IN2          | 6           |
+| Motor A Enable (PWM) | 10          |
+| Motor B IN1          | 5           |
+| Motor B IN2          | 4           |
+| Motor B Enable (PWM) | 3           |
+
+---
+
+## ⚙️ Software Architecture
+
+The program is organized into three major components:
+
+### Sensor Layer
+
+* Continuously acquires distance measurements using the HC-SR04 sensor.
+* Sends telemetry through the serial interface.
+
+### Decision Layer
+
+If the measured distance is less than **10 cm**:
+
+* Move backward
+* Rotate left
+* Continue forward
+
+Otherwise:
+
+* Continue normal forward movement.
+
+### Motion Layer
+
+The robot's movement is abstracted into dedicated functions:
+
+* `ileri()` → Forward Motion
+* `geri()` → Reverse Motion
+* `sol()` → Left Rotation
+
+Each function independently configures the H-Bridge outputs and motor PWM signals.
+
+---
+
+## 🚀 Algorithm
+
+```text
+Start
+
+↓
+
+Measure Distance
+
+↓
+
+Obstacle Detected?
+
+├── No
+│
+└── Move Forward
+
+Yes
+
+↓
+
+Move Backward
+
+↓
+
+Turn Left
+
+↓
+
+Move Forward
+
+↓
+
+Repeat
+```
+
+---
+
+## 📊 Control Logic
+
+The obstacle avoidance behavior follows a simple reactive control strategy.
+
+```
+Distance ≥ 10 cm
+        │
+        ▼
+ Move Forward
+
+Distance < 10 cm
+        │
+        ▼
+ Reverse
+        │
+        ▼
+ Rotate Left
+        │
+        ▼
+ Continue Navigation
+```
+
+---
+
+## 🛠️ Technologies
+
+* Arduino C++
+* HC-SR04 Library
+* PWM Motor Control
+* Embedded Systems Programming
+
+---
+
+## 📈 Future Improvements
+
+* Servo-mounted ultrasonic scanning
+* Dynamic path planning
+* PID motor speed control
+* Encoder feedback
+* Bluetooth control mode
+* OLED status display
+* Multiple sensor fusion
+* Mapping and localization
+
+---
+
