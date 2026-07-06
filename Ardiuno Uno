@@ -5686,13 +5686,13 @@ This article explores the architecture, capabilities, programming methods, and r
 
 Wireless microcontrollers have evolved considerably over the past decade.
 
-| Generation | Technology | Primary Application |
-|------------|------------|---------------------|
-| Arduino Uno | No Wireless | Embedded Control |
-| HC-05 Bluetooth | Bluetooth Classic | Local Communication |
-| ESP8266 | Wi-Fi | Internet of Things |
-| ESP32 | Wi-Fi + Bluetooth | Advanced IoT |
-| Raspberry Pi Pico W | Wi-Fi | Embedded Linux Integration |
+| Generation          | Technology          | Primary Application       |
+|:--------------------|:--------------------|:--------------------------|
+| Arduino Uno         | No Wireless         | Embedded Control          |
+| HC-05 Bluetooth     | Bluetooth Classic   | Local Communication       |
+| ESP8266             | Wi-Fi               | Internet of Things        |
+| ESP32               | Wi-Fi + Bluetooth   | Advanced IoT              |
+| Raspberry Pi Pico W | Wi-Fi               | Embedded Linux Integration|
 
 The ESP8266 marked a turning point by integrating networking capabilities directly into a microcontroller platform.
 
@@ -5740,19 +5740,19 @@ The Wi-Fi subsystem operates independently of the application processor, enablin
 
 # Technical Specifications
 
-| Feature | Specification |
-|----------|---------------|
-| CPU | Tensilica L106 |
-| Clock Speed | 80 MHz (default) / 160 MHz (overclock) |
-| Architecture | 32-bit RISC |
-| Wi-Fi | IEEE 802.11 b/g/n |
-| Flash Memory | External SPI Flash |
-| SRAM | 160 KB |
-| GPIO Pins | Up to 17 |
-| ADC | 10-bit |
-| Operating Voltage | 3.3V |
-| Communication | UART, SPI, I2C (software), PWM |
-| Security | WPA/WPA2 |
+| Feature            | Specification                        |
+|:-------------------|:-------------------------------------|
+| CPU                | Tensilica L106                       |
+| Clock Speed        | 80 MHz (default) / 160 MHz (OC)      |
+| Architecture       | 32-bit RISC                          |
+| Wi-Fi              | IEEE 802.11 b/g/n                    |
+| Flash Memory       | External SPI Flash                   |
+| SRAM               | 160 KB                               |
+| GPIO Pins          | Up to 17                             |
+| ADC                | 10-bit                               |
+| Operating Voltage  | 3.3V                                 |
+| Communication      | UART, SPI, I2C (Software), PWM       |
+| Security           | WPA/WPA2                             |
 
 ---
 
@@ -5778,12 +5778,12 @@ These interfaces make the ESP8266 suitable for a wide variety of embedded applic
 
 The ESP8266 utilizes both internal and external memory.
 
-| Memory Type | Purpose |
-|--------------|----------|
-| ROM | Bootloader |
-| SRAM | Program Execution |
-| Flash | User Programs |
-| EEPROM Emulation | Configuration Storage |
+| Memory Type        | Purpose                |
+|:-------------------|:-----------------------|
+| ROM                | Bootloader             |
+| SRAM               | Program Execution      |
+| Flash              | User Programs          |
+| EEPROM Emulation   | Configuration Storage  |
 
 Unlike AVR-based Arduino boards, EEPROM is emulated within flash memory.
 
@@ -5862,14 +5862,14 @@ The integrated USB interface enables direct programming through a standard USB c
 
 # ESP8266 vs NodeMCU
 
-|         Feature     | ESP8266 Module | NodeMCU  |
-|---------------------|----------------|----------|
-|    Microcontroller  |        Yes     |    Yes   |
-|    USB Interface    |         No     |    Yes   |
-|   Voltage Regulator |        No      |    Yes   |
-| Breadboard Friendly |      Limited   |    Yes   |
-|      Programming    | External Adapter  | USB   |
-|      Ease of Use    | Intermediate   | Beginner-Friendly |
+| Feature              | ESP8266 Module  | NodeMCU            |
+|:---------------------|:---------------:|:------------------:|
+| Microcontroller      | Yes             | Yes                |
+| USB Interface        | No              | Yes                |
+| Voltage Regulator    | No              | Yes                |
+| Breadboard Friendly  | Limited         | Yes                |
+| Programming          | External Adapter| USB                |
+| Ease of Use          | Intermediate    | Beginner-Friendly  |
 
 It is important to note that **NodeMCU is not a different microcontroller**; it is a development board built around the ESP8266 chip.
 
@@ -6486,7 +6486,7 @@ https://youtu.be/your-video
 ```
 
 ---
-
+--------------------------------------------------------------------------------
 Example Code : 
 
 /*
