@@ -6308,3 +6308,183 @@ void sol() {
 }
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+🎹 Capacitive Touch Piano
+
+*An Arduino-based musical instrument powered by capacitive sensing.*
+
+![Arduino](https://img.shields.io/badge/Arduino-Mega-00979D?style=for-the-badge&logo=arduino&logoColor=white)
+![Language](https://img.shields.io/badge/Language-C++-00599C?style=for-the-badge&logo=cplusplus&logoColor=white)
+![Library](https://img.shields.io/badge/Library-CapacitiveSensor-orange?style=for-the-badge)
+![Status](https://img.shields.io/badge/Status-Working-success?style=for-the-badge)
+
+---
+
+*"Turn a simple touch into music."* 🎵
+
+</div>
+
+---
+
+# 📖 About the Project
+
+This project transforms an **Arduino Mega** into a simple capacitive touch piano.
+
+Instead of using mechanical buttons, the piano detects the electrical capacitance of your finger. Once a touch is detected, the Arduino immediately generates the corresponding musical note through a buzzer.
+
+The project demonstrates how capacitive sensing can be used to build interactive electronic musical instruments with minimal hardware.
+
+---
+
+# ✨ Features
+
+- 🎹 8 Capacitive Touch Keys
+- ⚡ Fast touch detection
+- 🔊 Real-time sound generation
+- 🎵 One note plays at a time
+- 🧩 Easy to modify and expand
+- 💻 Beginner-friendly Arduino code
+
+---
+
+# 🎼 Musical Notes
+
+| Touch Sensor | Note         | Frequency |
+|:------------:|:------------ | --------:|
+| Key 1        | Do (C4)      | **261 Hz** |
+| Key 2        | Re (D4)      | **294 Hz** |
+| Key 3        | Mi (E4)      | **329 Hz** |
+| Key 4        | Fa (F4)      | **349 Hz** |
+| Key 5        | Sol (G4)     | **392 Hz** |
+| Key 6        | La (A4)      | **440 Hz** |
+| Key 7        | Si (B4)      | **493 Hz** |
+| Key 8        | High Do (C5) | **523 Hz** |
+
+---
+
+# 🛠 Hardware
+
+- Arduino Mega 2560
+- Capacitive Touch Electrodes
+- CapacitiveSensor Library
+- Passive/Active Buzzer
+- Jumper Wires
+- Resistors (for capacitive sensing)
+
+---
+
+# ⚙ Pin Configuration
+
+| Arduino Pin | Function        |
+|:-----------:|:--------------- |
+| 4           | Shared Send Pin |
+| 3           | Do              |
+| 5           | Re              |
+| 6           | Mi              |
+| 7           | Fa              |
+| 8           | Sol             |
+| 9           | La              |
+| 10          | Si              |
+| 11          | High Do         |
+| 49          | Buzzer          |
+
+---
+
+# 🧠 How It Works
+
+```text
+Finger Touch
+      │
+      ▼
+Capacitive Sensor
+      │
+      ▼
+Arduino Reads Sensor Value
+      │
+      ▼
+Threshold Comparison
+      │
+      ▼
+Play Musical Frequency
+      │
+      ▼
+Buzzer Produces Sound
+```
+
+Each sensor continuously measures capacitance.
+
+When the measured value exceeds the predefined threshold (`800`), the Arduino identifies the touched key and immediately generates its musical frequency using the built-in `tone()` function.
+
+When no key is touched, `noTone()` stops the sound.
+
+---
+
+# 📚 Libraries
+
+```cpp
+#include <CapacitiveSensor.h>
+```
+
+Library used:
+
+- CapacitiveSensor
+
+---
+
+# 🚀 Possible Improvements
+
+- 🎼 Polyphonic playback
+- 🎹 Larger keyboard
+- 🔊 Speaker amplifier
+- 🎧 Headphone output
+- 🎛 Volume control
+- 🌈 RGB lighting effects
+- 📀 Melody recording
+- 🎵 MIDI output support
+- 📱 Bluetooth connectivity
+
+---
+
+# 💡 Learning Outcomes
+
+This project is a great example for understanding:
+
+- Capacitive sensing
+- Arduino programming
+- Digital signal generation
+- Musical frequencies
+- Embedded systems
+- Interactive electronics
+
+---
+
+# 📷 Project Preview
+
+> Add your project photos or wiring diagram here.
+
+```text
+images/
+├── piano.jpg
+├── wiring.png
+└── demo.gif
+```
+
+---
+
+# ▶ Demo
+
+You can also add a demonstration video here.
+
+```text
+demo.mp4
+```
+
+or
+
+```text
+https://youtu.be/your-video
+```
+
+---
+
+Example Code : 
