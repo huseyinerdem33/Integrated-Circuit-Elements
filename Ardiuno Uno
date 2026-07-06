@@ -6518,3 +6518,64 @@ Example Code :
  instrument.
 ===============================================================
 */
+
+#include <CapacitiveSensor.h> // Include the CapacitiveSensor library
+
+// Define capacitive sensor pins (Send pin: 4, Receive pins: 3 to 11)
+CapacitiveSensor doSensor  = CapacitiveSensor(4, 3);  // Sensor for Do note
+CapacitiveSensor reSensor  = CapacitiveSensor(4, 5);  // Sensor for Re note
+CapacitiveSensor miSensor  = CapacitiveSensor(4, 6);  // Sensor for Mi note
+CapacitiveSensor faSensor  = CapacitiveSensor(4, 7);  // Sensor for Fa note
+CapacitiveSensor solSensor = CapacitiveSensor(4, 8);  // Sensor for Sol note
+CapacitiveSensor laSensor  = CapacitiveSensor(4, 9);  // Sensor for La note
+CapacitiveSensor siSensor  = CapacitiveSensor(4, 10); // Sensor for Si note
+CapacitiveSensor DOOSensor = CapacitiveSensor(4, 11); // Sensor for High Do note
+
+// Define the frequencies of the musical notes in Hz
+#define do_ 261  // Frequency for Do (C4)
+#define re  294  // Frequency for Re (D4)
+#define mi  329  // Frequency for Mi (E4)
+#define fa  349  // Frequency for Fa (F4)
+#define sol 392  // Frequency for Sol (G4)
+#define la  440  // Frequency for La (A4)
+#define si  493  // Frequency for Si (B4)
+#define DOO 523  // Frequency for High Do (C5)
+
+int deger = 800;             // Threshold value for touch detection
+const int buzzerPin = 49;    // The digital pin connected to the buzzer
+
+void setup() {
+  Serial.begin(9600);        // Initialize serial communication at 9600 bps
+  pinMode(buzzerPin, OUTPUT); // Set the buzzer pin as an output
+}
+
+void loop() {
+  // Check each sensor and play the corresponding note if the threshold is exceeded
+  if (doSensor.capacitiveSensor(30) > deger) {
+    tone(buzzerPin, do_);    // Play Do note
+  }
+  else if (reSensor.capacitiveSensor(30) > deger) {
+    tone(buzzerPin, re);     // Play Re note
+  }
+  else if (miSensor.capacitiveSensor(30) > deger) {
+    tone(buzzerPin, mi);     // Play Mi note
+  }
+  else if (faSensor.capacitiveSensor(30) > deger) {
+    tone(buzzerPin, fa);     // Play Fa note
+  }
+  else if (solSensor.capacitiveSensor(30) > deger) {
+    tone(buzzerPin, sol);    // Play Sol note
+  }
+  else if (laSensor.capacitiveSensor(30) > deger) {
+    tone(buzzerPin, la);     // Play La note
+  }
+  else if (siSensor.capacitiveSensor(30) > deger) {
+    tone(buzzerPin, si);     // Play Si note
+  }
+  else if (DOOSensor.capacitiveSensor(30) > deger) {
+    tone(buzzerPin, DOO);    // Play High Do note
+  }
+  else {
+    noTone(buzzerPin);       // Stop the sound if no sensor is touched
+  }
+}
