@@ -6488,3 +6488,33 @@ https://youtu.be/your-video
 ---
 
 Example Code : 
+
+/*
+===============================================================
+ Project Name : Capacitive Touch Piano
+ Author       : Hüseyin ERDEM
+ Board        : Arduino Mega 2560
+ Library      : CapacitiveSensor
+ Language     : C++
+
+ Description:
+ --------------------------------------------------------------
+ This project implements an 8-key capacitive touch piano using
+ the CapacitiveSensor library.
+
+ Each touch pad acts as a virtual piano key. When a user's
+ finger touches one of the sensors, the Arduino measures the
+ change in capacitance and compares it against a predefined
+ threshold.
+
+ If the measured value exceeds the threshold, the corresponding
+ musical note is generated through a buzzer using the built-in
+ tone() function. Only one note is played at a time, and the
+ sound stops automatically when no touch is detected.
+
+ This project demonstrates the practical application of
+ capacitive sensing, digital signal generation, and embedded
+ systems programming for creating a simple interactive musical
+ instrument.
+===============================================================
+*/
