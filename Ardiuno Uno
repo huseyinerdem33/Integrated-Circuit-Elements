@@ -6581,3 +6581,176 @@ void loop() {
 }
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+# Arduino Servo Piano Robot
+
+## Project Overview
+
+This project demonstrates how embedded systems and robotics can work together to perform a creative real-world application: playing a piano automatically.
+...
+
+/*
+===============================================================
+ Project Name : Servo-Based Piano Playing Robot
+ Author       : Hüseyin ERDEM
+ Board        : Arduino Mega 2560
+ Library      : Servo
+ Language     : C++
+
+ Description:
+ --------------------------------------------------------------
+ This project implements a servo-based robotic piano player
+ using four servo motors. Two servos control the horizontal
+ positioning of the left and right arms, while the remaining
+ two servos perform the key pressing action.
+
+ A melody is stored as an array of predefined musical note IDs.
+ During program execution, the Arduino sequentially reads each
+ note from the melody array and calls the corresponding function.
+ Each function moves the appropriate arm to the required piano
+ key position and actuates the striking servo to press the key.
+
+ Timing parameters such as note duration and key press interval
+ are controlled through configurable delay values, allowing the
+ playback speed to be easily adjusted.
+
+ This project demonstrates the practical application of servo
+ motor control, sequential motion programming, embedded systems,
+ and robotic automation for performing predefined piano melodies.
+===============================================================
+*/
+
+#include <Servo.h>
+
+// Servo motor instances
+Servo solUst, solAlt, sagAlt, sagUst;
+
+// Musical Note ID definitions
+#define do_   0
+#define re    1
+#define mi    2
+#define fa    3
+#define sol   4
+#define la    5
+#define si    6
+#define DO_   7
+
+// Timing configurations (in milliseconds)
+#define tempo 400
+#define vurus 40
+
+// Melody array containing sequence of notes (Twinkle Twinkle Little Star style)
+int nota[] = {do_, do_, sol, sol, la, la, sol, fa, fa, mi, mi, re, re, do_, do_, do_, sol, sol};
+
+void setup() {
+  // Attaching servo motors to specific digital pins
+  solUst.attach(3);
+  solAlt.attach(5);
+  sagAlt.attach(6);
+  sagUst.attach(9);
+
+  // Initializing default restful mechanical positions
+  solAlt.write(62);
+  sagAlt.write(34);
+}
+
+// Routine to play Note: DO (Low)
+void DOO() {
+  solAlt.write(82);
+  delay(200);
+  solUst.write(90);
+  delay(vurus);
+  solUst.write(120);
+  delay(tempo);
+}
+
+// Routine to play Note: RE
+void ree() {
+  solAlt.write(75); // Adjusted placeholder mechanical angle
+  delay(200);
+  solUst.write(90);
+  delay(vurus);
+  solUst.write(120);
+  delay(tempo);
+}
+
+// Routine to play Note: MI
+void mii() {
+  solAlt.write(68); // Adjusted placeholder mechanical angle
+  delay(200);
+  solUst.write(90);
+  delay(vurus);
+  solUst.write(120);
+  delay(tempo);
+}
+
+// Routine to play Note: FA
+void faa() {
+  solAlt.write(60); // Adjusted placeholder mechanical angle
+  delay(200);
+  solUst.write(90);
+  delay(vurus);
+  solUst.write(120);
+  delay(tempo);
+}
+
+// Routine to play Note: SOL
+void soll() {
+  sagAlt.write(45); // Adjusted placeholder mechanical angle using right arm
+  delay(200);
+  sagUst.write(90);
+  delay(vurus);
+  sagUst.write(120);
+  delay(tempo);
+}
+
+// Routine to play Note: LA
+void laa() {
+  sagAlt.write(55); 
+  delay(200);
+  sagUst.write(90);
+  delay(vurus);
+  sagUst.write(120);
+  delay(tempo);
+}
+
+// Routine to play Note: SI
+void sii() {
+  sagAlt.write(65); 
+  delay(200);
+  sagUst.write(90);
+  delay(vurus);
+  sagUst.write(120);
+  delay(tempo);
+}
+
+// Routine to play Note: DO (High)
+void DOO_High() {
+  sagAlt.write(75); 
+  delay(200);
+  sagUst.write(90);
+  delay(vurus);
+  sagUst.write(120);
+  delay(tempo);
+}
+
+void loop() {
+  // Loop through the array sequence based on calculated total note count
+  for (int i = 0; i < sizeof(nota) / sizeof(int); i++) {
+    if (nota[i] == 0) DOO();
+    else if (nota[i] == 1) ree();
+    else if (nota[i] == 2) mii();
+    else if (nota[i] == 3) faa();
+    else if (nota[i] == 4) soll();
+    else if (nota[i] == 5) laa();
+    else if (nota[i] == 6) sii();
+    else if (nota[i] == 7) DOO_High();
+  }
+  
+  // Halt execution after finishing the melody line
+  while(1); 
+}
