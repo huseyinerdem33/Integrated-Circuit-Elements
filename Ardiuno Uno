@@ -6582,6 +6582,16 @@ void loop() {
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+# Capacitive Touch Audio Player
+
+## Project Overview
+
+This project demonstrates the integration of capacitive touch sensing and digital audio playback using an Arduino Mega 2560. By utilizing the **CapacitiveSensor** and **SimpleSDAudio** libraries, the system detects human touch through capacitive sensors and plays the corresponding WAV audio files stored on an SD card.
+
+Instead of using conventional mechanical buttons, the system employs capacitive touch sensors to create a more intuitive and interactive user interface. Each sensor is assigned to a different audio track, allowing users to trigger playback simply by touching the corresponding sensing pad.
+
+Through this project, users gain practical experience in capacitive sensing, digital audio playback, SD card file management, sensor interfacing, and embedded systems programming. It serves as an excellent learning platform for engineering students, makers, and Arduino enthusiasts interested in developing touch-based interactive multimedia applications.
+
 Example Code : 
 /*
 ===============================================================
