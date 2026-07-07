@@ -6582,7 +6582,85 @@ void loop() {
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+Example Code : 
+/*
+===============================================================
+ Project Name : Capacitive Touch Audio Player
+ Author       : Hüseyin ERDEM
+ Board        : Arduino Mega 2560
+ Libraries    : CapacitiveSensor, SimpleSDAudio
+ Language     : C++
 
+ Description:
+ --------------------------------------------------------------
+ This project implements a capacitive touch-based audio player
+ using three touch sensors and an SD card audio module.
+
+ Each capacitive sensor functions as a touch-sensitive input.
+ When a user touches one of the sensors, the Arduino measures
+ the change in capacitance and compares it against a predefined
+ threshold value.
+
+ If the threshold is exceeded, the corresponding WAV audio file
+ stored on the SD card is loaded and played through the audio
+ output using the SimpleSDAudio library. Audio playback
+ continues as long as the user's finger remains in contact with
+ the sensor and automatically stops when the touch is released.
+
+ This project demonstrates the practical application of
+ capacitive sensing, SD card file management, digital audio
+ playback, and embedded systems programming for creating an
+ interactive touch-controlled multimedia interface.
+===============================================================
+*/
+#include <CapacitiveSensor.h>
+#include <SimpleSDAudio.h>
+
+// Initializing capacitive sensor pins (Pin 4 is emitter, Pins 2, 6, 8 are receivers)
+CapacitiveSensor cs_4_2 = CapacitiveSensor(4, 2);
+CapacitiveSensor cs_4_6 = CapacitiveSensor(4, 6);
+CapacitiveSensor cs_4_8 = CapacitiveSensor(4, 8);
+
+void setup() {
+  // Disable regular auto-calibration interval for accurate manual threshold handling
+  cs_4_2.set_cs_Autocal_Millis(0xFFFFFFFF);
+  cs_4_6.set_cs_Autocal_Millis(0xFFFFFFFF);
+  cs_4_8.set_cs_Autocal_Millis(0xFFFFFFFF);
+
+  // Set SD Card Chip Select (CS) pin (Pin 53 commonly used on Arduino Mega boards)
+  SdPlay.setSDCSPin(53);
+
+  // Initialize SD Audio engine with Full-Rate, Mono output options
+  if (!SdPlay.init(SSDA_MODE_FULLRATE | SSDA_MODE_MONO | SSDA_MODE_AUTOINT)) {
+    while (1); // Halt system safely if the SD card initialization fails
+  }
+}
+
+void loop() {
+  // --- Sensor 1 Action Routine ---
+  if (cs_4_2.capacitiveSensor(30) > 500) {
+    SdPlay.setFile("baris.wav"); // Load the specific target audio file
+    while (cs_4_2.capacitiveSensor(30) > 500) {
+      SdPlay.play(); // Play and loop the audio file while capacitive contact remains active
+    }
+  }
+
+  // --- Sensor 2 Action Routine ---
+  if (cs_4_6.capacitiveSensor(30) > 500) {
+    SdPlay.setFile("track2.wav"); 
+    while (cs_4_6.capacitiveSensor(30) > 500) {
+      SdPlay.play(); 
+    }
+  }
+
+  // --- Sensor 3 Action Routine ---
+  if (cs_4_8.capacitiveSensor(30) > 500) {
+    SdPlay.setFile("track3.wav"); 
+    while (cs_4_8.capacitiveSensor(30) > 500) {
+      SdPlay.play(); 
+    }
+  }
+}
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -6593,6 +6671,7 @@ void loop() {
 This project demonstrates how embedded systems and robotics can work together to perform a creative real-world application: playing a piano automatically.
 ...
 
+Example Code : 
 /*
 ===============================================================
  Project Name : Servo-Based Piano Playing Robot
