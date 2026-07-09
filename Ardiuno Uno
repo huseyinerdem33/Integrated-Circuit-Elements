@@ -7141,3 +7141,172 @@ The calculated value is displayed on the LCD in **cm³**, while the buzzer infor
 The developed prototype is intended for educational and laboratory purposes while demonstrating practical embedded system design. The system can also be adapted for warehouse automation, package dimension measurement, industrial quality control, and smart manufacturing applications.
 
 Example Code :
+
+/*
+===============================================================
+ Project Name : Automatic Volume Measurement System
+ Author       : Hüseyin ERDEM
+ Board        : Arduino Uno
+ Libraries    : Servo, HCSR04, Wire, LiquidCrystal_I2C
+ Language     : C++
+
+ Description:
+ --------------------------------------------------------------
+ This program implements an automatic volume measurement system
+ using an ultrasonic distance sensor, two servo motors, an I2C
+ LCD display, and a buzzer.
+
+ The two servo motors rotate the ultrasonic sensor to predefined
+ positions in order to measure the width, length, and height of
+ an object from different directions. The measured distances are
+ processed to calculate the object's dimensions by applying the
+ required calibration offsets.
+
+ After all three dimensions are obtained, the system calculates
+ the object's volume using the standard geometric equation:
+
+      Volume = Width × Length × Height
+
+ The calculated volume is displayed on a 16x2 I2C LCD in cubic
+ centimeters (cm³). A buzzer provides audible feedback before
+ each measurement and signals the completion of the measurement
+ sequence with multiple beeps.
+
+ The entire measurement process is executed once during system
+ startup, making the device suitable for automatic object volume
+ estimation applications in educational, laboratory, and embedded
+ system projects.
+===============================================================
+*/
+
+#include <Servo.h>
+#include <HCSR04.h>
+#include <Wire.h>
+#include <LiquidCrystal_I2C.h>
+
+// Sensor and Display Initializations
+LiquidCrystal_I2C lcd(0x27, 16, 2);
+HCSR04 hc(3, 4); // Trig: 3, Echo: 4
+
+Servo altServo;
+Servo ustServo;
+
+// Pin and Variable Definitions
+int BuzzerPin = 11;
+int uzunlukA = 0;
+int uzunlukB = 0;
+int x = 0; // Width
+int y = 0; // Length
+int z = 0; // Height
+
+void setup() {
+  pinMode(BuzzerPin, OUTPUT);
+  
+  altServo.attach(10);
+  ustServo.attach(9);
+  
+  // LCD Initialization and Welcome Message
+  lcd.init();
+  lcd.backlight();
+  lcd.setCursor(3, 0);
+  lcd.print("Volume");
+  lcd.setCursor(2, 1);
+  lcd.print("Calculating...");
+  
+  // Calling Measurement Functions
+  en();
+  boy();
+  yukseklik();
+  
+  // Volume Calculation (Width * Length * Height)
+  float Hacim = (x * y * z);
+  
+  // Displaying Results on LCD
+  lcd.init();
+  lcd.backlight();
+  lcd.setCursor(3, 0);
+  lcd.print("Volume:");
+  lcd.setCursor(2, 1);
+  lcd.print(Hacim);
+  lcd.setCursor(12, 1);
+  lcd.print("cm^3");
+  
+  // Measurement Completed Notification (Beep 4 times)
+  for (int i = 0; i < 4; i++) {
+    digitalWrite(BuzzerPin, HIGH);
+    delay(600);
+    digitalWrite(BuzzerPin, LOW);
+    delay(400); // Delay between beeps
+  }
+}
+
+void loop() {
+  // All operations run once in setup, loop is left empty.
+}
+
+// 1. Function: Width Measurement
+void en() {
+  delay(2000); // Initial startup delay after system boot
+  
+  altServo.write(0);
+  ustServo.write(0);
+  
+  digitalWrite(BuzzerPin, HIGH);
+  delay(600);
+  digitalWrite(BuzzerPin, LOW);
+  
+  uzunlukA = hc.dist();
+  delay(400);
+  
+  altServo.write(0);
+  ustServo.write(180);
+  
+  digitalWrite(BuzzerPin, HIGH);
+  delay(600);
+  digitalWrite(BuzzerPin, LOW);
+  
+  uzunlukB = hc.dist();
+  delay(400);
+  
+  x = (uzunlukA + uzunlukB + 8);
+}
+
+// 2. Function: Length Measurement
+void boy() {
+  altServo.write(90);
+  ustServo.write(0);
+  
+  digitalWrite(BuzzerPin, HIGH);
+  delay(600);
+  digitalWrite(BuzzerPin, LOW);
+  
+  uzunlukA = hc.dist();
+  delay(400);
+  
+  altServo.write(90);
+  ustServo.write(180);
+  
+  digitalWrite(BuzzerPin, HIGH);
+  delay(600);
+  digitalWrite(BuzzerPin, LOW);
+  
+  uzunlukB = hc.dist();
+  delay(400);
+  
+  y = (uzunlukA + uzunlukB + 8); // Logical completion for length calculation
+}
+
+// 3. Function: Height Measurement
+void yukseklik() {
+  altServo.write(90);
+  ustServo.write(90);
+  
+  digitalWrite(BuzzerPin, HIGH);
+  delay(600);
+  digitalWrite(BuzzerPin, LOW);
+  
+  uzunlukA = hc.dist();
+  delay(400);
+  
+  z = (uzunlukA + 12);
+}
