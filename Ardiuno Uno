@@ -7397,3 +7397,48 @@ The modular design allows future integration with wireless communication, IoT pl
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
+Example Code : 
+
+/*
+===============================================================
+ Project Name : Ultrasonic Distance Warning System with NeoPixel
+ Author       : Hüseyin ERDEM
+ Board        : Arduino Uno
+ Libraries    : HCSR04, Adafruit_NeoPixel
+ Language     : C++
+
+ Description:
+ --------------------------------------------------------------
+ This program implements an ultrasonic distance monitoring and
+ visual warning system using an HC-SR04 ultrasonic sensor,
+ a NeoPixel LED ring, and a buzzer.
+
+ The ultrasonic sensor continuously measures the distance
+ between the system and a nearby object in real time. Based on
+ the measured distance, the Arduino dynamically adjusts the
+ colors of the NeoPixel LED ring to provide intuitive visual
+ feedback.
+
+ Three operating states are defined:
+
+ • Safe Zone (Distance > 15 cm)
+   - The NeoPixel ring illuminates in blue, indicating that
+     the detected object is at a safe distance.
+
+ • Warning Zone (5 cm ≤ Distance ≤ 15 cm)
+   - The LED color gradually changes from green to red as the
+     object approaches the sensor, providing a proportional
+     visual indication of proximity.
+
+ • Danger Zone (Distance < 5 cm)
+   - The LED ring turns red and the buzzer is activated to
+     alert the user of a potentially hazardous distance.
+
+ The system continuously updates the measured distance and
+ refreshes the LED colors in real time, demonstrating the
+ integration of ultrasonic sensing, RGB LED control, and
+ embedded programming for proximity monitoring and collision
+ warning applications.
+
+===============================================================
+*/
