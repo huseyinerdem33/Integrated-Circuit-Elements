@@ -7310,3 +7310,90 @@ void yukseklik() {
   
   z = (uzunlukA + 12);
 }
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+# 🟦 **SOCIAL DISTANCE SENSOR**
+
+## 🟩 *Real-Time Ultrasonic Distance Monitoring and Warning System Using Arduino*
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+## 🔷 **ABSTRACT**
+
+Maintaining a safe distance between individuals has become increasingly important in public environments, workplaces, healthcare facilities, and educational institutions. This project presents a **Social Distance Sensor** capable of continuously monitoring the distance between the user and nearby objects or individuals using an **HC-SR04 ultrasonic sensor**.
+
+An **Arduino Uno** processes the measured distance in real time and controls a **NeoPixel RGB LED ring** to provide intuitive visual feedback. The LED colors represent different safety levels: **blue** indicates a safe distance, **green-to-red** represents the warning region, and **red** combined with a buzzer indicates that the minimum safety distance has been exceeded.
+
+The proposed system demonstrates the integration of ultrasonic sensing, RGB lighting, and embedded programming to create a simple, low-cost, and reliable real-time distance monitoring device suitable for educational and smart safety applications.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+# 🔵 **1. INTRODUCTION**
+
+## 🟢 **1.1 Background**
+
+The ability to monitor interpersonal distance has become increasingly significant in modern society. Applications such as healthcare, public transportation, workplaces, educational institutions, and industrial environments require reliable systems capable of providing immediate feedback whenever a minimum safety distance is violated.
+
+Recent advances in embedded systems and sensor technologies have enabled the development of compact, low-cost, and intelligent monitoring devices. Ultrasonic sensors are particularly suitable for proximity detection because they offer accurate, non-contact distance measurements while requiring minimal hardware resources.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+## 🟡 **1.2 Project Overview**
+
+The **Social Distance Sensor** is designed to monitor the distance between the user and surrounding objects in real time. The system is built around an **Arduino Uno**, an **HC-SR04 ultrasonic sensor**, a **NeoPixel RGB LED ring**, and a **buzzer**.
+
+The ultrasonic sensor continuously measures the distance to nearby objects. According to predefined safety thresholds, the Arduino updates the NeoPixel LED ring as follows:
+
+🔵 **Safe Zone (Distance > 15 cm)**
+
+The LED ring illuminates **blue**, indicating that the detected object is at a safe distance.
+
+🟢🟡 **Warning Zone (5–15 cm)**
+
+The LED ring gradually changes from **green** to **red**, allowing the user to visually observe the decreasing distance.
+
+🔴 **Danger Zone (Distance < 5 cm)**
+
+The LED ring displays **red**, and the buzzer is activated to warn the user that the safety distance has been exceeded.
+
+The system continuously refreshes these indications in real time, providing immediate visual and audible feedback.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+## 🎯 **1.3 Objectives**
+
+✅ Develop a real-time social distance monitoring system.
+
+✅ Measure proximity using an HC-SR04 ultrasonic sensor.
+
+✅ Provide intuitive RGB visual feedback using a NeoPixel LED ring.
+
+✅ Generate an audible warning when the safety distance is exceeded.
+
+✅ Demonstrate practical applications of embedded systems and real-time sensing.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+## 🌍 **1.4 Applications**
+
+The proposed system can be applied in various environments, including:
+
+🏥 Healthcare Facilities
+
+🏫 Educational Institutions
+
+🏭 Industrial Safety Systems
+
+🚗 Parking Assistance
+
+🤖 Mobile Robotics
+
+🏢 Smart Buildings
+
+🛒 Public Service Areas
+
+The modular design allows future integration with wireless communication, IoT platforms, cloud monitoring, and artificial intelligence-based safety systems.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
