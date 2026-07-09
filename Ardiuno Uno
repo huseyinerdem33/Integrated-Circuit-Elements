@@ -7079,3 +7079,65 @@ void donustur() {
 }
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+📦 AUTOMATIC OBJECT VOLUME MEASUREMENT SYSTEM USING ARDUINO AND AN HC-SR04 ULTRASONIC SENSOR**
+
+### *Embedded Systems Project Report*
+
+**Author:** Hüseyin ERDEM
+
+**Platform:** Arduino Uno
+
+**Programming Language:** C++
+
+**Libraries:** Servo, HCSR04, Wire, LiquidCrystal_I2C
+
+═══════════════════════════════════════════════════════════════════════
+
+# 📖 ABSTRACT
+
+This project presents the design and implementation of an **Automatic Object Volume Measurement System** using an Arduino Uno and an HC-SR04 ultrasonic sensor. Two servo motors automatically rotate the ultrasonic sensor to measure the width, length, and height of an object. The measured dimensions are processed to calculate the object's volume, which is then displayed on a 16×2 I2C LCD. A buzzer provides audible notifications throughout the measurement process. The proposed system demonstrates the integration of embedded programming, ultrasonic sensing, servo motor control, and real-time data processing for automated volume estimation.
+
+═══════════════════════════════════════════════════════════════════════
+
+# 📚 1. INTRODUCTION
+
+## 🔹 1.1 Background
+
+Accurate object volume measurement is essential in engineering, manufacturing, logistics, and warehouse management. Conventional measurement techniques often require manual tools and user intervention, making the process slower and more susceptible to human error. Embedded systems equipped with sensors provide an efficient and reliable alternative for automatic dimension measurement.
+
+---
+
+## 🔹 1.2 Project Overview
+
+The proposed system utilizes an **Arduino Uno**, an **HC-SR04 ultrasonic sensor**, **two servo motors**, an **I2C LCD**, and a **buzzer** to perform automatic object volume measurement.
+
+The servo motors rotate the ultrasonic sensor to predetermined positions, allowing the system to obtain measurements from different directions. After calculating the object's width, length, and height, the system computes its volume using the equation:
+
+### **Volume = Width × Length × Height**
+
+The calculated value is displayed on the LCD in **cm³**, while the buzzer informs the user before each measurement and when the measurement process has been completed successfully.
+
+---
+
+## 🎯 1.3 Objectives
+
+✔ Develop an automatic volume measurement system.
+
+✔ Measure width, length, and height automatically.
+
+✔ Calculate object volume accurately.
+
+✔ Integrate ultrasonic sensing with embedded systems.
+
+✔ Demonstrate Arduino-based automation techniques.
+
+---
+
+## 🌍 1.4 Scope of the Project
+
+The developed prototype is intended for educational and laboratory purposes while demonstrating practical embedded system design. The system can also be adapted for warehouse automation, package dimension measurement, industrial quality control, and smart manufacturing applications.
+
+Example Code :
