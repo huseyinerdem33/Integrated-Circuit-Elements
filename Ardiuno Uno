@@ -7442,3 +7442,67 @@ Example Code :
 
 ===============================================================
 */
+
+#include <HCSR04.h>
+#include <Adafruit_NeoPixel.h>
+
+HCSR04 hc(4, 5); // Trig: 4, Echo: 5
+
+#ifdef __AVR__
+#include <avr/power.h>
+#endif
+
+#define PIN          8
+#define LEDSAYISI   24
+
+Adafruit_NeoPixel LEDLER(LEDSAYISI, PIN, NEO_GRB + NEO_KHZ800);
+
+#define BEKLEME     50 // Pause time between pixels (in milliseconds)
+
+void setup() {
+  pinMode(11, OUTPUT); // Buzzer or Alert Pin
+  Serial.begin(9600);
+  
+  #if defined(__AVR_ATtiny85__) && (F_CPU == 16000000)
+  clock_prescale_set(clock_div_1);
+  #endif
+  
+  LEDLER.begin(); // Initialize NeoPixel strip (REQUIRED)
+}
+
+void loop() {
+  // Get current distance value
+  float current_dist = hc.dist();
+  
+  // Map distance to color intensities (0-15 cm range)
+  int yesil = map(current_dist, 0, 15, 0, 150);     // Green increases as distance increases
+  int kirmizi = map(current_dist, 0, 15, 150, 0);   // Red increases as distance decreases
+  int mavi = 0;
+  
+  // Case 1: Safe distance (Greater than 15 cm)
+  if (current_dist > 15) {
+    kirmizi = 0;
+    yesil = 0;
+    mavi = 150; // Blue light indicates safe/standby state
+  }
+  // Case 2: Danger zone (Less than 5 cm)
+  else if (current_dist < 5) {
+    digitalWrite(11, HIGH); // Activate alert (Buzzer/LED)
+    delay(BEKLEME);
+    mavi = 0;
+  }
+  
+  // Turn off alert pin for stability if not in immediate danger zone
+  if (current_dist >= 5) {
+    digitalWrite(11, LOW);
+    mavi = 0;
+  }
+  
+  // Update all pixels on the NeoPixel strip with calculated colors
+  for (int i = 0; i < LEDSAYISI; i++) {
+    LEDLER.setPixelColor(i, LEDLER.Color(kirmizi, yesil, mavi));
+  }
+  
+  LEDLER.show(); // Send the updated color data to the hardware
+  delay(50);     // Small stability delay for the ultrasonic sensor
+} 
