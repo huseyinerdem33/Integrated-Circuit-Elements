@@ -6886,7 +6886,7 @@ The primary objective of this project is to demonstrate the integration of:
 
 The developed system provides a practical foundation for applications such as robotic arms, mobile robots, autonomous platforms, educational robotics, and industrial automation projects.
 
----
+----
 
 > 💡 **This project demonstrates how a low-cost Arduino platform and nRF24L01 wireless modules can be combined to create a responsive and reliable remote robotic control system suitable for educational, research, and prototype development purposes.**
 
