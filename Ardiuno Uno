@@ -7506,3 +7506,97 @@ void loop() {
 } 
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+# 🟦 **LASER SHOOTING TARGET GAME**
+
+## 🟩 *Arduino-Based Random Servo Target System with Laser Hit Detection and NeoPixel Score Display*
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+# 🔷 **ABSTRACT**
+
+This project presents an interactive **Laser Shooting Target Game** developed using an **Arduino Uno**, four servo-driven targets, light-dependent resistors (LDRs), and a NeoPixel LED strip. The system is designed to simulate a reaction-based target shooting game in which randomly selected targets appear for a limited time and must be hit using a laser pointer.
+
+Each target is controlled by an independent servo motor that moves the target into an active position. A corresponding LDR sensor detects the laser beam when the player successfully hits the target. The Arduino continuously selects random targets, measures the player's reaction time, records successful hits, and updates the game status in real time.
+
+A NeoPixel LED strip serves both as a visual countdown timer during gameplay and as a score display at the end of each round through animated RGB lighting effects. Missed targets are also indicated using dedicated LED feedback, allowing the player to monitor performance throughout the game.
+
+The proposed system demonstrates the integration of embedded programming, servo motor control, analog sensor acquisition, real-time timing with the **millis()** function, random event generation, and RGB LED animation to create an engaging educational platform for studying mechatronics and embedded system design.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+# 🔵 **1. INTRODUCTION**
+
+## 🟢 **1.1 Background**
+
+Reaction-based target games have long been used for entertainment, sports training, and educational demonstrations. Modern embedded systems make it possible to build intelligent target systems capable of automatically generating random challenges, measuring response times, and providing immediate visual feedback.
+
+The combination of servo motors, optical sensors, and programmable microcontrollers enables the development of compact, low-cost interactive gaming systems suitable for laboratories, engineering education, robotics competitions, and STEM learning environments.
+
+By integrating real-time sensing and electromechanical control, such systems provide valuable practical experience in embedded programming, timing algorithms, actuator control, and sensor interfacing.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+## 🟡 **1.2 Project Overview**
+
+The **Laser Shooting Target Game** consists of an **Arduino Uno**, four servo motors, four LDR-based laser detection sensors, and a **30-pixel NeoPixel LED strip**.
+
+At the beginning of each game, the system performs a short countdown before starting a **30-second challenge**. During gameplay, one of the four targets is randomly selected and moved into the shooting position by its corresponding servo motor.
+
+The player has approximately one second to hit the active target using a laser pointer. When the laser beam is detected by the associated LDR sensor, the target is considered successfully hit and the player's score is updated.
+
+The NeoPixel LED strip performs multiple real-time functions throughout the game:
+
+🔵 **Game Timer**
+
+Blue LEDs progressively illuminate along the strip, providing a visual indication of the remaining game time.
+
+🔴 **Miss Indicator**
+
+If a target is not hit within the allowed time, a red LED records the missed opportunity.
+
+🟢 **Final Score Display**
+
+At the end of the game, the NeoPixel strip displays the player's score through sequential green, red, and blue LED animations, providing an intuitive visualization of overall performance.
+
+The entire system operates autonomously, continuously generating random targets and processing player interactions without external intervention.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+## 🎯 **1.3 Objectives**
+
+✅ Develop an Arduino-based interactive laser shooting game.
+
+✅ Randomly generate target appearances using servo motors.
+
+✅ Detect successful laser hits through LDR sensors.
+
+✅ Measure gameplay using real-time timing with the **millis()** function.
+
+✅ Provide visual timer, miss indication, and animated score display using a NeoPixel LED strip.
+
+✅ Demonstrate the integration of sensors, actuators, embedded programming, and real-time control algorithms.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+## 🌍 **1.4 Applications**
+
+The proposed system can be adapted for numerous educational and recreational applications, including:
+
+🎯 Interactive Shooting Games
+
+🤖 Robotics and Mechatronics Laboratories
+
+🏫 STEM Education and Engineering Courses
+
+⚙️ Embedded Systems Programming Training
+
+🏆 Reaction Time Competitions
+
+🎮 Arcade-Style Educational Demonstrations
+
+🧪 Sensor and Servo Motor Experimentation
+
+The modular architecture allows future enhancements such as wireless score transmission, LCD displays, mobile application integration, multiplayer support, IoT connectivity, artificial intelligence-based difficulty adjustment, and automatic player performance analysis.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
