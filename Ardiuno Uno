@@ -7663,3 +7663,151 @@ to create an interactive embedded laser shooting game.
 
 ===============================================================
 */
+
+#include <Servo.h>              // Include the Servo library to control servo motors
+#include <Adafruit_NeoPixel.h>  // Include the Adafruit NeoPixel library for LED strip control
+
+#define PIN          2          // Define the Arduino pin connected to the NeoPixel strip
+#define NUMPIXELS   30          // Define the total number of LEDs in the NeoPixel strip
+#define DELAYVAL     5          // Define a default delay value
+
+Servo HedefAServo;             // Create a Servo object for Target A
+Servo HedefBServo;             // Create a Servo object for Target B
+Servo HedefCServo;             // Create a Servo object for Target C
+Servo HedefDServo;             // Create a Servo object for Target D
+
+int skor = 0;                  // Variable to keep track of the player's score
+int sayac = 0;                 // Counter variable used for game tracking / LED timing
+unsigned long ilkZaman;        // Variable to store the start time of the 30-second game loop
+unsigned long OncekiZaman = 0; // Variable to store the last timestamp for individual target intervals
+
+// Initialize the NeoPixel object with the number of pixels, pin, and color/frequency settings
+Adafruit_NeoPixel pixels(NUMPIXELS, PIN, NEO_GRB + NEO_KHZ800);
+
+void setup() {
+  pinMode(1, OUTPUT);                 // Set digital pin 1 as an output (Note: Pin 1 is TX, usually avoid using it if debugging)
+  HedefAServo.attach(3);              // Attach Target A servo to digital pin 3
+  HedefBServo.attach(5);              // Attach Target B servo to digital pin 5
+  HedefCServo.attach(6);              // Attach Target C servo to digital pin 6
+  HedefDServo.attach(9);              // Attach Target D servo to digital pin 9
+  
+  randomSeed(analogRead(4));          // Seed the random number generator using noise from unconnected analog pin 4
+  pixels.begin();                     // Initialize the NeoPixel strip
+  pixels.show();                      // Turn off all pixels initially
+}
+
+void loop() {
+  delay(5000);                        // Wait 5 seconds before starting a new round
+  ilkZaman = millis();                // Record the starting time of the game round
+  oyun();                             // Call the main game function
+}
+
+void oyun() {
+  // Main game loop running for 30 seconds (30000 milliseconds)
+  while ((millis() - ilkZaman) < 30000) {
+    // Calculate which pixel to light up based on elapsed seconds (acts as a timer bar)
+    int c = (millis() - ilkZaman) / 1000;
+    pixels.setPixelColor(c, pixels.Color(0, 0, 150)); // Set the timer pixel color to Blue
+    pixels.show();                                    // Update the LED strip display
+    
+    // Reset all targets to their hidden/default positions
+    HedefAServo.write(15);
+    HedefBServo.write(140);
+    HedefCServo.write(140);
+    HedefDServo.write(140);
+    
+    OncekiZaman = millis();            // Record the time before popping up a target
+    int a = random(1, 5);              // Pick a random target between 1 and 4
+    
+    if (a == 1) {
+      // While the target sensor (Analog 0) does not detect a laser hit (value below threshold)
+      while (analogRead(0) < 900) {
+        HedefAServo.write(110);        // Move Target A to the visible/active position
+        // If the player fails to hit the target within 1 second (1000 ms), break out to pick a new target
+        if ((millis() - OncekiZaman) > 1000) {
+          break;                       // Break the while loop to handle timeout instead of infinite loop
+        }
+      }
+      skor++;                          // Increment score if hit or loop exited
+      kontrol();                       // Run the control check function
+    }
+    else if (a == 2) {
+      while (analogRead(1) < 900) {
+        HedefBServo.write(10);         // Move Target B to the visible/active position
+        if ((millis() - OncekiZaman) > 1000) {
+          break;
+        }
+      }
+      skor++;
+      kontrol();
+    }
+    else if (a == 3) {
+      while (analogRead(2) < 900) {
+        HedefCServo.write(10);         // Move Target C to the visible/active position
+        if ((millis() - OncekiZaman) > 1000) {
+          break;
+        }
+      }
+      skor++;
+      kontrol();
+    }
+    else if (a == 4) {
+      while (analogRead(3) < 900) {
+        HedefDServo.write(10);         // Move Target D to the visible/active position
+        if ((millis() - OncekiZaman) > 1000) {
+          break;
+        }
+      }
+      skor++;
+      kontrol();
+    }
+  }
+  // Once the 30 seconds are up, display the final score
+  sonSkor();
+}
+
+void kontrol() {
+  // Check if 1 second has passed since the last target interaction
+  if ((millis() - OncekiZaman) > 1000) {
+    pixels.setPixelColor(sayac, pixels.Color(150, 0, 0)); // Set pixel to Red to indicate a missed/timed-out shot
+    pixels.show();                                        // Update the LED strip display
+    sayac++;                                              // Increment the failure/miss counter
+    
+    if (sayac == 30) {                 // If 30 misses occur (or strip is full)
+      sonSkor();                       // Trigger the end game score display
+    }
+  }
+}
+
+void sonSkor() {
+  pixels.clear();                      // Clear all pixels on the NeoPixel strip
+  
+  // First Animation: Light up Green pixels up to the total score achieved
+  for (int y = 0; y < skor; y++) {
+    pixels.setPixelColor(y, pixels.Color(0, 150, 0)); // Corrected fixed typo: converted pixels.Cplor to pixels.Color (Green)
+    pixels.show();                     // Display the green pixel
+    delay(250);                        // Delay for visual effect
+  }
+  
+  pixels.clear();                      // Clear the strip again
+  
+  // Second Animation: Light up Red pixels up to the total score achieved
+  for (int y = 0; y < skor; y++) {
+    pixels.setPixelColor(y, pixels.Color(150, 0, 0)); // Set pixel to Red
+    pixels.show();                     // Display the red pixel
+    delay(150);                        // Delay for visual effect
+  }
+  
+  pixels.clear();                      // Clear the strip once more
+  
+  // Third Animation: Light up Blue pixels up to the total score achieved
+  for (int y = 0; y < skor; y++) {
+    pixels.setPixelColor(y, pixels.Color(0, 0, 150)); // Set pixel to Blue
+    pixels.show();                     // Display the blue pixel
+    delay(50);                         // Fast delay for visual effect
+  }
+  
+  delay(1000);                         // Hold the final display state for 1 second
+  sayac = 0;                           // Reset the counter for the next round
+  skor = 0;                            // Reset the score for the next round
+}
