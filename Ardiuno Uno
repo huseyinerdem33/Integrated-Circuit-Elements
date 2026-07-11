@@ -7602,3 +7602,64 @@ The modular architecture allows future enhancements such as wireless score trans
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 Example Code : 
+
+# /*
+
+Project Name : Laser Shooting Target Game with Servo Targets
+Author       : Hüseyin ERDEM
+Board        : Arduino Uno
+Libraries    : Servo, Adafruit_NeoPixel
+Language     : C++
+
+## Description:
+
+This program implements a laser shooting target game using
+four servo-driven targets, four light sensors (LDRs),
+and a NeoPixel LED strip for visual feedback.
+
+At the beginning of each game, the system waits for a short
+countdown before starting a 30-second challenge. During the
+game, one of the four targets is randomly selected and moved
+into the active position by its corresponding servo motor.
+
+Each target is equipped with a light sensor that detects
+the laser beam from the player's laser gun. The player has
+one second to successfully hit the active target before it
+automatically returns to its resting position and another
+random target is selected.
+
+The NeoPixel LED strip performs multiple functions throughout
+the game:
+
+• Time Indicator
+
+* A blue progress bar advances across the LED strip,
+  representing the elapsed game time during the
+  30-second round.
+
+• Miss Indicator
+
+* If the player fails to hit a target within the allowed
+  one-second interval, a red LED is illuminated to record
+  the missed opportunity.
+
+• Final Score Display
+
+* At the end of the game, the total score is displayed
+  through three consecutive LED animations:
+  • Green animation
+  • Red animation
+  • Blue animation
+
+The player's score increases whenever a target interaction
+is completed, and the final score is visualized using the
+NeoPixel strip before all counters are reset for the next
+round.
+
+This project demonstrates the integration of servo motor
+control, analog sensor reading, random target generation,
+real-time timing using millis(), and NeoPixel LED animations
+to create an interactive embedded laser shooting game.
+
+===============================================================
+*/
