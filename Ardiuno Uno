@@ -7961,3 +7961,133 @@ Example Code :
 
 ===============================================================
 */
+#include <Adafruit_NeoPixel.h> // Include the Adafruit NeoPixel library
+
+#define PIN1        9          // Digital output pin for the first NeoPixel strip
+#define PIN2        10         // Digital output pin for the second NeoPixel strip
+#define PIN3        11         // Digital output pin for the third NeoPixel strip
+#define NUMPIXELS   60         // Number of LEDs in each NeoPixel strip
+#define Bekleme     5          // Delay time in milliseconds for the animations
+
+int sensorPin1 = A0;           // Analog input pin for the first sensor
+int sensorPin2 = A1;           // Analog input pin for the second sensor
+int sensorPin3 = A2;           // Analog input pin for the third sensor
+
+int sensorDeger1 = 0;          // Variable to store the value of the first sensor
+int sensorDeger2 = 0;          // Variable to store the value of the second sensor
+int sensorDeger3 = 0;          // Variable to store the value of the third sensor
+
+// Initialize NeoPixel objects for each of the three strips
+Adafruit_NeoPixel pixels1(NUMPIXELS, PIN1, NEO_GRB + NEO_KHZ800);
+Adafruit_NeoPixel pixels2(NUMPIXELS, PIN2, NEO_GRB + NEO_KHZ800);
+Adafruit_NeoPixel pixels3(NUMPIXELS, PIN3, NEO_GRB + NEO_KHZ800);
+
+void setup() {
+  pixels1.begin();             // Initialize the first NeoPixel strip
+  pixels2.begin();             // Initialize the second NeoPixel strip
+  pixels3.begin();             // Initialize the third NeoPixel strip
+  randomSeed(100);             // Seed the random number generator for consistent pseudo-randomness
+}
+
+void loop() {
+  sensorDeger1 = analogRead(sensorPin1); // Read the current value from the first sensor
+  sensorDeger2 = analogRead(sensorPin2); // Read the current value from the second sensor
+  sensorDeger3 = analogRead(sensorPin3); // Read the current value from the third sensor
+
+  // Clear all pixels on all three strips before starting new animations
+  pixels1.clear(); 
+  pixels2.clear(); 
+  pixels3.clear();
+
+  // Light up the first 4 pixels of the first strip with random colors
+  for(int i = 0; i < 4; i++) {
+    int red   = random(0, 150); // Generate a random brightness for red (0-149)
+    int green = random(0, 150); // Generate a random brightness for green (0-149)
+    int blue  = random(0, 150); // Generate a random brightness for blue (0-149)
+    pixels1.setPixelColor(i, pixels1.Color(red, green, blue)); // Set the color of pixel i
+    pixels1.show();             // Update the strip to show the new color
+  }
+
+  // Light up the first 4 pixels of the second strip with random colors
+  for(int i = 0; i < 4; i++) {
+    int red   = random(0, 150); // Generate a random brightness for red
+    int green = random(0, 150); // Generate a random brightness for green
+    int blue  = random(0, 150); // Generate a random brightness for blue
+    pixels2.setPixelColor(i, pixels2.Color(red, green, blue)); // Set the color of pixel i
+    pixels2.show();             // Update the strip to show the new color
+  }
+
+  // Light up the first 4 pixels of the third strip with random colors
+  for(int i = 0; i < 4; i++) {
+    int red   = random(0, 150); // Generate a random brightness for red
+    int green = random(0, 150); // Generate a random brightness for green
+    int blue  = random(0, 150); // Generate a random brightness for blue
+    pixels3.setPixelColor(i, pixels3.Color(red, green, blue)); // Set the color of pixel i
+    pixels3.show();             // Update the strip to show the new color
+  }
+
+  // Check sensor thresholds to trigger full strip animations
+  if(sensorDeger1 > 200) { Led1(); } // If sensor 1 is above 200, trigger Led1 animation
+  if(sensorDeger2 > 200) { Led2(); } // If sensor 2 is above 200, trigger Led2 animation
+  if(sensorDeger3 > 300) { Led3(); } // If sensor 3 is above 300, trigger Led3 animation
+}
+
+// Animation function for the first strip
+void Led1() {
+  pixels1.clear();             // Clear the first strip
+  for(int i = 0; i < NUMPIXELS; i++) {
+    int red   = random(0, 150); // Generate a random red value
+    int green = random(0, 150); // Generate a random green value
+    int blue  = random(0, 150); // Generate a random blue value
+    pixels1.setPixelColor(i, pixels1.Color(red, green, blue)); // Set color for pixel i
+    pixels1.show();             // Push data to the first strip
+    delay(Bekleme);             // Wait for the defined animation delay time
+
+    sensorDeger1 = analogRead(sensorPin1); // Re-read the sensor during the loop
+    if(sensorDeger1 < 200) {    // If value drops below threshold, abort animation
+      pixels1.clear();          // Clear the strip immediately
+      pixels1.show();           // Update the strip to blank
+      break;                    // Exit the for-loop early to return to main loop
+    }
+  }
+}
+
+// Animation function for the second strip (Added because it was missing in original images)
+void Led2() {
+  pixels2.clear();             // Clear the second strip
+  for(int i = 0; i < NUMPIXELS; i++) {
+    int red   = random(0, 150); // Generate a random red value
+    int green = random(0, 150); // Generate a random green value
+    int blue  = random(0, 150); // Generate a random blue value
+    pixels2.setPixelColor(i, pixels2.Color(red, green, blue)); // Set color for pixel i
+    pixels2.show();             // Push data to the second strip
+    delay(Bekleme);             // Wait for the defined animation delay time
+
+    sensorDeger2 = analogRead(sensorPin2); // Re-read the sensor during the loop
+    if(sensorDeger2 < 200) {    // If value drops below threshold, abort animation
+      pixels2.clear();          // Clear the strip immediately
+      pixels2.show();           // Update the strip to blank
+      break;                    // Exit the for-loop early to return to main loop
+    }
+  }
+}
+
+// Animation function for the third strip
+void Led3() {
+  pixels3.clear();             // Clear the third strip
+  for(int i = 0; i < NUMPIXELS; i++) {
+    int red   = random(0, 150); // Generate a random red value
+    int green = random(0, 150); // Generate a random green value
+    int blue  = random(0, 150); // Generate a random blue value
+    pixels3.setPixelColor(i, pixels3.Color(red, green, blue)); // Set color for pixel i
+    pixels3.show();             // Push data to the third strip
+    delay(Bekleme);             // Wait for the defined animation delay time
+
+    sensorDeger3 = analogRead(sensorPin3); // Re-read the sensor during the loop
+    if(sensorDeger3 < 300) {    // If value drops below threshold, abort animation
+      pixels3.clear();          // Clear the strip immediately
+      pixels3.show();           // Update the strip to blank
+      break;                    // Exit the for-loop early to return to main loop
+    }
+  }
+}
