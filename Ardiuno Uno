@@ -7904,3 +7904,60 @@ The modular architecture allows future integration with wireless communication, 
 
 Example Code :
 
+/*
+===============================================================
+ Project Name : Triple Sensor NeoPixel Interactive Lighting System
+ Author       : Hüseyin ERDEM
+ Board        : Arduino Uno
+ Library      : Adafruit_NeoPixel
+ Language     : C++
+
+ Description:
+ --------------------------------------------------------------
+ This program implements an interactive RGB lighting system
+ using three analog sensors and three independent NeoPixel LED
+ strips.
+
+ Each analog sensor continuously monitors an external input
+ such as a force-sensitive resistor (FSR), touch sensor, or
+ another analog sensing device. The measured sensor values are
+ evaluated in real time to control the lighting behavior of the
+ corresponding NeoPixel strip.
+
+ During normal operation, the first four LEDs of each strip
+ display randomly generated RGB colors, providing a continuous
+ ambient lighting effect.
+
+ Three operating channels are defined:
+
+ • Channel 1 (Sensor on A0)
+   - When the sensor value exceeds a threshold of 200,
+     the first NeoPixel strip performs a progressive lighting
+     animation in which LEDs are illuminated sequentially with
+     randomly generated colors.
+   - The animation automatically stops and the strip is cleared
+     when the sensor value falls below the threshold.
+
+ • Channel 2 (Sensor on A1)
+   - When the sensor value exceeds 200,
+     the second NeoPixel strip performs the same sequential
+     random-color animation.
+   - The animation is continuously monitored and immediately
+     terminates if the sensor is no longer activated.
+
+ • Channel 3 (Sensor on A2)
+   - When the sensor value exceeds a threshold of 300,
+     the third NeoPixel strip executes the sequential RGB
+     animation.
+   - The animation continues only while the sensor remains
+     above its activation threshold.
+
+ Throughout program execution, all three sensors are sampled
+ continuously, allowing each LED strip to operate
+ independently. Random RGB values are generated for every LED,
+ creating dynamic visual effects while demonstrating real-time
+ sensor acquisition, NeoPixel control, and event-driven
+ embedded programming techniques.
+
+===============================================================
+*/
