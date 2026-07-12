@@ -7812,4 +7812,92 @@ void sonSkor() {
   skor = 0;                            // Reset the score for the next round
 }
 
-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+# 🟦 **MULTI-SENSOR NEOPIXEL INTERACTIVE LIGHTING SYSTEM**
+
+## 🟩 *Real-Time Analog Sensor Controlled RGB LED Animation Using Arduino*
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+# 🔷 **ABSTRACT**
+
+This project presents a **Multi-Sensor NeoPixel Interactive Lighting System** capable of generating dynamic RGB lighting effects based on real-time inputs from three independent analog sensors. The system utilizes an **Arduino Uno**, three analog sensors connected to the analog input pins, and three independent **NeoPixel LED strips**.
+
+The Arduino continuously monitors the output of each sensor and evaluates the measured analog values in real time. Under normal operating conditions, the first four LEDs of each strip display randomly generated RGB colors, creating a continuous ambient lighting effect. When a sensor value exceeds its predefined activation threshold, the corresponding NeoPixel strip performs a sequential full-strip lighting animation using randomly generated colors. The animation automatically terminates once the sensor value falls below its threshold.
+
+The proposed system demonstrates the integration of analog sensing, addressable RGB LED technology, and embedded programming techniques to create an interactive lighting platform suitable for educational, artistic, and human-machine interaction applications.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+# 🔵 **1. INTRODUCTION**
+
+## 🟢 **1.1 Background**
+
+Interactive lighting systems have become increasingly popular in modern embedded applications, including smart environments, interactive installations, educational laboratories, and entertainment systems. Advances in microcontrollers and addressable RGB LEDs have enabled the development of visually attractive systems that respond instantly to user interaction through various sensing technologies.
+
+Analog sensors, such as force-sensitive resistors (FSRs), pressure sensors, touch sensors, or light sensors, provide continuous measurements that can be processed by microcontrollers to generate responsive lighting effects. Combining these sensors with individually addressable NeoPixel LEDs allows designers to create flexible and highly interactive embedded systems with minimal hardware complexity.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+## 🟡 **1.2 Project Overview**
+
+The **Multi-Sensor NeoPixel Interactive Lighting System** is designed to provide independent RGB lighting effects using three analog input channels. The system consists of an **Arduino Uno**, three analog sensors connected to pins **A0**, **A1**, and **A2**, and three independent **NeoPixel LED strips** connected to digital output pins.
+
+The Arduino continuously samples each analog sensor and controls its corresponding LED strip according to predefined threshold values.
+
+### 🔵 Idle Mode
+
+When no sensor exceeds its activation threshold, the first four LEDs of each strip illuminate with randomly generated RGB colors, creating a continuous ambient lighting effect.
+
+### 🟢 Channel 1 (Sensor A0)
+
+When the sensor value exceeds **200**, the first NeoPixel strip performs a sequential lighting animation in which LEDs are illuminated one by one using randomly generated RGB colors. The animation stops immediately when the sensor value falls below the threshold.
+
+### 🟡 Channel 2 (Sensor A1)
+
+When the sensor value exceeds **200**, the second NeoPixel strip performs the same sequential random-color animation. Continuous sensor monitoring ensures that the animation terminates as soon as the sensor is no longer activated.
+
+### 🔴 Channel 3 (Sensor A2)
+
+When the sensor value exceeds **300**, the third NeoPixel strip executes the sequential RGB animation. The animation continues only while the measured sensor value remains above the activation threshold.
+
+The three channels operate independently, allowing multiple lighting animations to run simultaneously according to the current sensor inputs.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+## 🎯 **1.3 Objectives**
+
+✅ Develop a real-time interactive lighting system using Arduino.
+
+✅ Acquire and process data from three independent analog sensors.
+
+✅ Control three NeoPixel LED strips independently.
+
+✅ Generate dynamic RGB lighting animations based on sensor activation.
+
+✅ Demonstrate real-time sensor acquisition, addressable LED control, and event-driven embedded programming techniques.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+## 🌍 **1.4 Applications**
+
+The proposed system can be applied in various interactive and embedded applications, including:
+
+🎨 Interactive Art Installations
+
+🏠 Smart Home Lighting Systems
+
+🎮 Interactive Gaming Interfaces
+
+🏫 Embedded Systems Education
+
+🤖 Human–Machine Interaction (HMI)
+
+🖐 Touch and Pressure Detection Systems
+
+🎭 Exhibition and Museum Displays
+
+The modular architecture allows future integration with wireless communication, IoT platforms, mobile applications, artificial intelligence, and advanced sensor technologies, enabling more sophisticated interactive lighting and automation systems.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
